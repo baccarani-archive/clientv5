@@ -21,7 +21,7 @@
 		<div class="col-lg-6">
 
 			<fieldset class="form-group">
-
+				
 				<label>1st DOT #:</label>
 				<input class="form-control" placeholder="Enter The DOT #" formControlName="dot1" ng-model="dot1" (change)="onDot1Change($event)"
 				 autofocus>
@@ -55,32 +55,27 @@
 				</div>
 
 				<label>Years in Business:</label>
-				<select class="form-control" name="yearInBus" ng-model="yearInBus">
-                        <option ng-model="yearInBus" value="0">0</option>
-                        <option ng-model="yearInBus" value="1">1</option>
-                        <option ng-model="yearInBus" value="2">2</option>
-                        <option ng-model="yearInBus" value="3">3</option>
-                        <option ng-model="yearInBus" value="4">4</option>
-                        <option ng-model="yearInBus" value="5">5</option>
-                        <option ng-model="yearInBus" value="6">6</option>
-                        <option ng-model="yearInBus" value="7">7</option>
-                        <option ng-model="yearInBus"value="8">8</option>
-                        <option ng-model="yearInBus" value="9">9</option>
-                        <option ng-model="yearInBus" value="10">10</option>
-                        <option ng-model="yearInBus" value="11">More Than 10</option>
-                      </select>
+				<input type="number" class="form-control" name="yearInBus" ng-model="yearInBus">
 
+				<div [hidden]="checkYIB(isYIB)">
 				<br><label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label>
 				<div class="radio">
 					<label> <input type="radio" name="optionsRadiosFiveExp"
 							id="optionsRadios1" value="option1" checked> Yes
 						</label>
 				</div>
+
+				
 				<div class="radio">
 					<label> <input type="radio" name="optionsRadiosFiveExp"
 							id="optionsRadios2" value="option2"> No
 						</label>
 				</div>
+				</div>
+
+				<p>{{isYIB}}</p>
+				<p>{{yearInBus}}</p>
+				
 
 
 				<label>Primary AL Limit:</label>

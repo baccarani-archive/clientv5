@@ -14,6 +14,9 @@ export class BSElementComponent {
     rForm: FormGroup;
     post: any;
 
+    //Hiding Question
+    isYIB: boolean = true;
+
     applicantName: string = '';
     stateCode: string = '';
     zip: string = '';
@@ -25,7 +28,7 @@ export class BSElementComponent {
     effDate: string = '';
     expDate: string = '';
     safetyRating: string = '';
-    yearInBus: string = '';
+    yearInBus: number = 4;
     primaryALLimit: string = '';
     primaryCGLimit: string = '';
     truckersOnly: string = '';
@@ -210,6 +213,17 @@ export class BSElementComponent {
             }
         );
         console.log("data here:" + data);
+    }
+
+    checkYIB(boolean){
+
+        if(this.yearInBus <= 3){
+            this.isYIB = false;
+        }else{
+            this.isYIB = true;
+        }
+
+        return this.isYIB;
     }
 
 }
