@@ -10,6 +10,10 @@ import { LoginModule } from './login/login.module';
 import { SignupModule } from './signup/signup.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
+import { BsElementService } from './dashboard/bs-element/bs-element.service';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +29,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     DashboardModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [BsElementService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
