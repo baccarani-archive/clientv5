@@ -20,20 +20,17 @@
 		<br>
 		<div class="col-lg-6">
 
-
 			<fieldset class="form-group">
 
 				<label>1st DOT #:</label>
 				<input class="form-control" placeholder="Enter The DOT #" formControlName="dot1" ng-model="dot1" (change)="onDot1Change($event)"
 				 autofocus>
 
-
-
 				<br><label>Effective Date:</label>
-				<input class="form-control" type="date">
+				<input class="form-control" placeholder="mm/dd/yyyy">
 
 				<br><label>Expiration Date:</label>
-				<input class="form-control" type="date">
+				<input class="form-control" placeholder="mm/dd/yyyy">
 
 				<br><label>Satefy Rating:</label>
 				<div class="radio">
@@ -139,122 +136,29 @@
 
 		<div class="col-lg-6">
 
-
 			<fieldset class="form-group">
 
 				<label>Name Of Applicant:</label>
-				<input type="text" formControlName="applicantName" (ngModel)="applicantName">
+				<input class="form-control" formControlName="applicantName" (ngModel)="applicantName">
 
-				<br><label>Effective Date:</label>
-				<input class="form-control" type="date">
+				<br><label>State:</label>
+				<input class="form-control" formControlName="stateCode" (ngModel)="stateCode">
 
-				<br><label>Expiration Date:</label>
-				<input class="form-control" type="date">
+				<br><label>ZIP:</label>
+				<input class="form-control" formControlName="zip" (ngModel)="zip">
 
-				<br><label>Satefy Rating:</label>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosSafetyRating"
-							id="optionsRadios1" value="option1" checked> Satisfactory
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosSafetyRating"
-							id="optionsRadios2" value="option2"> Unsatisfactory
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosSafetyRating"
-							id="optionsRadios3" value="option3"> Conditional
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosSafetyRating"
-							id="optionsRadios3" value="option4"> Not Rated
-						</label>
-				</div>
+				<br><label>Vehicle Type:</label>
+				<input class="form-control" formControlName="vehicleType" (ngModel)="vehicleType">
 
-				<label>Years in Business:</label>
-				<select class="form-control" name="yearInBus" ng-model="yearInBus">
-                        <option ng-model="yearInBus" value="0">0</option>
-                        <option ng-model="yearInBus" value="1">1</option>
-                        <option ng-model="yearInBus" value="2">2</option>
-                        <option ng-model="yearInBus" value="3">3</option>
-                        <option ng-model="yearInBus" value="4">4</option>
-                        <option ng-model="yearInBus" value="5">5</option>
-                        <option ng-model="yearInBus" value="6">6</option>
-                        <option ng-model="yearInBus" value="7">7</option>
-                        <option ng-model="yearInBus"value="8">8</option>
-                        <option ng-model="yearInBus" value="9">9</option>
-                        <option ng-model="yearInBus" value="10">10</option>
-                        <option ng-model="yearInBus" value="11">More Than 10</option>
-                      </select>
+				<br><label>DOT Revoked:</label>
+				<input class="form-control" formControlName="hasDOTRevoked" (ngModel)="hasDOTRevoked">
 
-				<br><label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosFiveExp"
-							id="optionsRadios1" value="option1" checked> Yes
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosFiveExp"
-							id="optionsRadios2" value="option2"> No
-						</label>
-				</div>
-
-
-				<label>Primary AL Limit:</label>
-				<input class="form-control" placeholder="Enter Primary AL Limit Between $1,000,000 - $2,000,000">
-
-				<br><label>Primary CGL Limit:</label>
-				<input class="form-control" placeholder="Enter Primary CGL Limit Between $1,000,000 - $2,000,000">
-
-				<br><label>CGL Class 99793 (Truckers) Only:</label>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosCGLClasee"
-							id="optionsRadios1" value="option1" checked> Yes
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosCGLClasee"
-							id="optionsRadios2" value="option2"> No
-						</label>
-				</div>
-
-				<label>Primary EL Limit:</label>
-				<input class="form-control" placeholder="Enter Primary EL Limit Between $1,000,000 - $2,000,000">
-
-				<br><label>Any Of The Following Services Provided Or Commodities Hauled:</label>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosHauled"
-							id="optionsRadios1" value="option1" checked> Yes
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosHauled"
-							id="optionsRadios2" value="option2"> No
-						</label>
-				</div>
-
-				<label>Unscheduled Vehicles Operated Under The Applicant's Authority:</label>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosAppAuth"
-							id="optionsRadios1" value="option1" checked> Yes
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosAppAuth"
-							id="optionsRadios2" value="option2"> No
-						</label>
-				</div>
+				<br><label>Garbage Hauled:</label>
+				<input class="form-control" formControlName="garbageHaul" (ngModel)="garbageHaul">
 
 			</fieldset>
-			<button type="submit" class="btn btn-secondary">Next</button>
-			<button type="reset" class="btn btn-secondary">Save</button>
 
 		</div>
-
-
-
 	</form>
 
 </div>
