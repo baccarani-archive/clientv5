@@ -1,0 +1,145 @@
+<div class="container-fluid">
+	<!-- Page Heading -->
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header"><i class="fa fa-cloud" style="color:#FF8C00"></i> Quest</h2>
+			<ol class="breadcrumb">
+				<li class="active"><i class="fa fa-file-text"></i> Initial Eligibility</li>
+				<li class="active"><i class="fa fa-file-text"></i> <a href="Javascript:void(0)" routerLink="/dashboard/chart">Fleet Entry</a></li>
+				<li class="active"><i class="fa fa-file-text"></i> <a href="Javascript:void(0)" routerLink="/dashboard/tables">Primary Liability</a></li>
+				<li class="active"><i class="fa fa-file-text"></i> <a href="Javascript:void(0)" routerLink="/dashboard/forms">Pricing Indication</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- /.row -->
+
+
+	<form role="form">
+		<br>
+		<h4>Initial Eligibility</h4>
+		<br>
+		<div class="col-lg-12">
+
+
+			<div class="col-lg-6">
+				<fieldset class="form-group">
+
+					<label>1st DOT #:</label>
+					<input class="form-control" placeholder="Enter The DOT #">
+
+					<br><label>Effective Date:</label>
+					<input class="form-control" type="date">
+
+					<br><label>Expiration Date:</label>
+					<input class="form-control" type="date">
+
+					<br><label>Satefy Rating:</label>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadiosSafetyRating"
+							id="optionsRadios1" value="option1" checked> Satisfactory
+						</label>
+					</div>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadiosSafetyRating"
+							id="optionsRadios2" value="option2"> Unsatisfactory
+						</label>
+					</div>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadiosSafetyRating"
+							id="optionsRadios3" value="option3"> Conditional
+						</label>
+					</div>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadiosSafetyRating"
+							id="optionsRadios3" value="option4"> Not Rated
+						</label>
+					</div>
+
+					<label>Years in Business:</label>
+					<select class="form-control" name="yearInBus" ng-model="yearInBus">
+                        <option ng-model="yearInBus" value="0">0</option>
+                        <option ng-model="yearInBus" value="1">1</option>
+                        <option ng-model="yearInBus" value="2">2</option>
+                        <option ng-model="yearInBus" value="3">3</option>
+                        <option ng-model="yearInBus" value="4">4</option>
+                        <option ng-model="yearInBus" value="5">5</option>
+                        <option ng-model="yearInBus" value="6">6</option>
+                        <option ng-model="yearInBus" value="7">7</option>
+                        <option ng-model="yearInBus"value="8">8</option>
+                        <option ng-model="yearInBus" value="9">9</option>
+                        <option ng-model="yearInBus" value="10">10</option>
+                        <option ng-model="yearInBus" value="11">More Than 10</option>
+                      </select>
+
+					<br><label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadiosFiveExp"
+							id="optionsRadios1" value="option1" checked> Yes
+						</label>
+					</div>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadiosFiveExp"
+							id="optionsRadios2" value="option2"> No
+						</label>
+					</div>
+
+				</fieldset>
+			</div>
+
+			<div class="col-lg-6">
+				<fieldset class="form-group">
+
+					<label>Primary AL Limit:</label>
+					<input class="form-control" placeholder="Enter Primary AL Limit Between $1,000,000 - $2,000,000">
+
+					<br><label>Primary CGL Limit:</label>
+					<input class="form-control" placeholder="Enter Primary CGL Limit Between $1,000,000 - $2,000,000">
+
+					<br><label>CGL Class 99793 (Truckers) Only:</label>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadiosCGLClasee"
+							id="optionsRadios1" value="option1" checked> Yes
+						</label>
+					</div>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadiosCGLClasee"
+							id="optionsRadios2" value="option2"> No
+						</label>
+					</div>
+
+					<label>Primary EL Limit:</label>
+					<input class="form-control" placeholder="Enter Primary EL Limit Between $1,000,000 - $2,000,000">
+
+					<br><label>Any Of The Following Services Provided Or Commodities Hauled:</label>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadiosHauled"
+							id="optionsRadios1" value="option1" checked> Yes
+						</label>
+					</div>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadiosHauled"
+							id="optionsRadios2" value="option2"> No
+						</label>
+					</div>
+
+					<label>Unscheduled Vehicles Operated Under The Applicant's Authority:</label>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadiosAppAuth"
+							id="optionsRadios1" value="option1" checked> Yes
+						</label>
+					</div>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadiosAppAuth"
+							id="optionsRadios2" value="option2"> No
+						</label>
+					</div>
+
+				</fieldset>
+			</div>
+
+		</div>
+		<button type="submit" class="btn btn-secondary">Next</button>
+		<button type="reset" class="btn btn-secondary">Save</button>
+	</form>
+
+</div>
