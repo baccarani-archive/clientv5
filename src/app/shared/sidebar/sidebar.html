@@ -5,7 +5,7 @@
 
 
 		<div class="nested-menu">
-			<a class="list-group-item" (click)="addExpandClass('pages')"> <span><i
+			<a [routerLink]="['blankpage']" [routerLinkActive]="['router-link-active']" class="list-group-item" (click)="addExpandClass('pages')"> <span><i
 					class="fa fa-cloud" style="color:#FF8C00;"></i> &nbsp;Quest</span>
 			</a>
 			<li class="nested" [ngClass]="{'expand' : showMenu === 'pages' }">
