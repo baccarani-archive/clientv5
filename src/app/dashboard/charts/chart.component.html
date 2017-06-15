@@ -1,17 +1,18 @@
 <div class="container-fluid">
-	<!-- Page Heading -->
-	<div class="row">
-		<div class="col-lg-12">
-			<h2 class="page-header"><i class="fa fa-cloud" style="color:#FF8C00"></i> Quest</h2>
-			<ol class="breadcrumb">
-				<li class="active"><i class="fa fa-file-text"></i> <a href="Javascript:void(0)" routerLink="/dashboard/element">Initial Eligibility</a></li>
-				<li class="active"><i class="fa fa-file-text"></i> Fleet Entry</li>
-				<li class="active"><i class="fa fa-file-text"></i> <a href="Javascript:void(0)" routerLink="/dashboard/tables">Primary Liability</a></li>
-				<li class="active"><i class="fa fa-file-text"></i> <a href="Javascript:void(0)" routerLink="/dashboard/forms">Pricing Indication</a></li>
-			</ol>
-		</div>
-	</div>
-	<!-- /.row -->
+  <!-- Page Heading -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="page-header"><i class="fa fa-cloud" style="color:#FF8C00"></i> Quest</h2>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+        <i class="fa fa-cloud" style="color:#FF8C00"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard']">Quest</a>
+        </li>
+        <li class="breadcrumb-item active" ><i class="fa {{icon}}"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard/element']">Initial Eligibility</a></li>
+		<li class="breadcrumb-item active"><i class="fa {{icon}}"></i> Fleet Entry</li>
+      </ol>
+    </div>
+  </div>
+  <!-- /.row -->
 
 	<form role="form">
 		<br>
