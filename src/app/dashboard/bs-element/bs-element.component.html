@@ -17,14 +17,15 @@
   <form [formGroup]="rForm">
     <br>
     <h4>Initial Eligibility</h4>
+    <p style="color:red">* required</p>
     <br>
     <div class="col-lg-6">
 
       <fieldset class="form-group">
 
         <br>
-        <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
-          <label class="form-control-label" for="inputError">* 1st DOT #:</label>
+        <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched, 'form-group has-success' : dot1=='219494'}">
+          <label class="form-control-label" for="inputError">* 1st DOT #</label>
           <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)"
             autofocus>
         </div>
@@ -92,9 +93,9 @@
 
         <br>
         <label>Any Of The Following Services Provided Or Commodities Hauled:</label><br>
-        <input type="radio" [(ngModel)]="isProvidedComodities" formControlName="isProvidedCommodities" name="isProvidedCommodities"
+        <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" name="isProvidedCommodities"
           value=yes>Yes<br>
-        <input type="radio" [(ngModel)]="isProvidedComodities" formControlName="isProvidedCommodities" name="isProvidedCommodities"
+        <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" name="isProvidedCommodities"
           value=no>No<br>
         <!--<div class="alert">Ineligible due to ___</div>-->
         <!--<p>{{isProvidedCommodities}}</p>-->
@@ -110,8 +111,6 @@
 
 
       </fieldset>
-      <input type="button" onclick="return saveForm();" value="Save as draft" />
-      <button type="submit" class="btn btn-secondary" routerLink="/dashboard/chart">Test</button>
       <button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid">Next</button>
       <button type="reset" class="btn btn-secondary">Save</button>
 

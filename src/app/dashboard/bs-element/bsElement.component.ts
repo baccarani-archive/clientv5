@@ -26,6 +26,7 @@ export class BSElementComponent {
     expDate: string = '';
     safetyRating: string = '';
     yearInBus: number = null;
+    isDrivingExperience: string = '';
     primaryALLimit: string = '';
     primaryCGLimit: string = '';
     truckersOnly: string = '';
