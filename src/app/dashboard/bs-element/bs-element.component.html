@@ -1,159 +1,169 @@
 <div class="container-fluid">
-	<!-- Page Heading -->
-	<div class="row">
-		<div class="col-lg-12">
-			<h2 class="page-header"><i class="fa fa-cloud" style="color:#FF8C00"></i> Quest</h2>
-			<ol class="breadcrumb">
-				<li class="active"><i class="fa fa-file-text"></i> Initial Eligibility</li>
-				<li class="active"><i class="fa fa-file-text"></i> <a href="Javascript:void(0)" routerLink="/dashboard/chart">Fleet Entry</a></li>
-				<li class="active"><i class="fa fa-file-text"></i> <a href="Javascript:void(0)" routerLink="/dashboard/tables">Primary Liability</a></li>
-				<li class="active"><i class="fa fa-file-text"></i> <a href="Javascript:void(0)" routerLink="/dashboard/forms">Pricing Indication</a></li>
-			</ol>
-		</div>
-	</div>
-	<!-- /.row -->
+  <!-- Page Heading -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="page-header"><i class="fa fa-cloud" style="color:#FF8C00"></i> Quest</h2>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-file-text"></i> Initial Eligibility</li>
+        <li class="active"><i class="fa fa-file-text"></i> <a href="Javascript:void(0)" routerLink="/dashboard/chart">Fleet Entry</a></li>
+        <li class="active"><i class="fa fa-file-text"></i> <a href="Javascript:void(0)" routerLink="/dashboard/tables">Primary Liability</a></li>
+        <li class="active"><i class="fa fa-file-text"></i> <a href="Javascript:void(0)" routerLink="/dashboard/forms">Pricing Indication</a></li>
+      </ol>
+    </div>
+  </div>
+  <!-- /.row -->
 
 
-	<form role="form">
-		<br>
-		<h4>Initial Eligibility</h4>
-		<br>
-		<div class="col-lg-6">
+  <form [formGroup]="rForm">
+    <br>
+    <h4>Initial Eligibility</h4>
+    <br>
+    <div class="col-lg-6">
 
-			<fieldset class="form-group">
-				
-				<label>1st DOT #:</label>
-				<input class="form-control" placeholder="Enter The DOT #" formControlName="dot1" ng-model="dot1" (change)="onDot1Change($event)"
-				 autofocus>
+      <fieldset class="form-group">
 
-				<br><label>Effective Date:</label>
-				<input class="form-control" placeholder="mm/dd/yyyy">
+        <br>
+        <label>1st DOT #:</label>
+        <input type="text" class="form-control" formControlName="dot1" ng-model="dot1" (change)="onDot1Change($event)" autofocus>
+        <div class="alert" *ngIf="!rForm.controls['dot1'].valid && rForm.controls['dot1'].touched">Requred: Please Enter The DOT # (Risks That Do Not Have A DOT # Are Ineligible)</div>
 
-				<br><label>Expiration Date:</label>
-				<input class="form-control" placeholder="mm/dd/yyyy">
+        <br>
+        <label>Effective Date: </label>
+        <input type="date" class="form-control" formControlName="effDate">
 
-				<br><label>Satefy Rating:</label>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosSafetyRating"
-							id="optionsRadios1" value="option1" checked> Satisfactory
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosSafetyRating"
-							id="optionsRadios2" value="option2"> Unsatisfactory
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosSafetyRating"
-							id="optionsRadios3" value="option3"> Conditional
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosSafetyRating"
-							id="optionsRadios3" value="option4"> Not Rated
-						</label>
-				</div>
+        <br>
+        <label>Expiration Date:</label>
+        <input type="date" class="form-control" formControlName="expDate">
+        <div class="alert" *ngIf="(!rForm.controls['effDate'].valid || !rForm.controls['expDate'].valid) && (rForm.controls['effDate'].touched
+            || rForm.controls['expDate'].touched)">Requred: Effective and Expiration Dates</div>
 
-				<label>Years in Business:</label>
-				<input type="number" class="form-control" name="yearInBus" ng-model="yearInBus">
+        <br>
+        <label>Safety Rating:</label>
+        <select name="safetyRating" ng-model="safetyRating">
+                        <option value="safetyRating">Satisfactory</option>
+                        <option value="safetyRating">Conditional</option>
+                        <option value="safetyRating">Unsatisfactory</option>
+                        <option value="safetyRating">Not Rated</option>
+                      </select>
 
-				<div [hidden]="checkYIB(isYIB)">
-				<br><label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosFiveExp"
-							id="optionsRadios1" value="option1" checked> Yes
-						</label>
-				</div>
+        <br>
+        <label>Years in Business:</label>
+        <select name="yearInBus" ng-model="yearInBus">
+                        <option ng-model="yearInBus" value="0">0</option>
+                        <option ng-model="yearInBus" value="1">1</option>
+                        <option ng-model="yearInBus" value="2">2</option>
+                        <option ng-model="yearInBus" value="3">3</option>
+                        <option ng-model="yearInBus" value="4">4</option>
+                        <option ng-model="yearInBus" value="5">5</option>
+                        <option ng-model="yearInBus" value="6">6</option>
+                        <option ng-model="yearInBus" value="7">7</option>
+                        <option ng-model="yearInBus"value="8">8</option>
+                        <option ng-model="yearInBus" value="9">9</option>
+                        <option ng-model="yearInBus" value="10">10</option>
+                        <option ng-model="yearInBus" value="11">More Than 10</option>
+                      </select>
 
-				
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosFiveExp"
-							id="optionsRadios2" value="option2"> No
-						</label>
-				</div>
-				</div>
+        <br>
+        <label ng-if="yearInBus <= 2">All Drivers Have 5 Years Similar Comercial Driving Experience:</label><br>
+        <input type="radio" ng-model="checked" formControlName="isDrivingExperience" name="isDrivingExperience"
+          value="yes">Yes
+        <br>
+        <input type="radio" ng-model="checked" formControlName="isDrivingExperience" name="isDrivingExperience"
+          value="no">No
 
-				<p>{{isYIB}}</p>
-				<p>{{yearInBus}}</p>
-				
+        <br>
+        <label>Primary AL Limit:</label>
+        <input type="text" class="form-control" formControlName="primaryALLimit" [(ngModel)]="primaryALLimit">
+        <div class="alert" *ngIf="!rForm.controls['primaryALLimit'].valid && rForm.controls['primaryALLimit'].touched">Requred: Primary AL Limit Between $1,000,000-$2,000,000</div>
+
+        <br>
+        <label>Primary CGL Limit:</label>
+        <input type="text" class="form-control" formControlName="primaryCGLimit" [(ngModel)]="primaryCGLimit">
+        <div class="alert" *ngIf="!rForm.controls['primaryCGLimit'].valid && rForm.controls['primaryCGLimit'].touched">Requred: Primary CGL Limit Between $1,000,000-$2,000,000</div>
+
+        <br>
+        <label>CGL Class 99793 (Truckers) Only: </label>
+        <input type="text" class="form-control" formControlName="truckersOnly">
+        <div class="alert" *ngIf="!rForm.controls['truckersOnly'].valid && rForm.controls['truckersOnly'].touched">Requred: CGL Class 99793 (Truckers) Only</div>
+
+        <br>
+        <label>Primary EL Limit:</label>
+        <input type="text" class="form-control" formControlName="primaryELLimit">
+        <div class="alert" *ngIf="!rForm.controls['primaryELLimit'].valid && rForm.controls['primaryELLimit'].touched">Requred: Primary EL Limit Between $1,000,000-$2,000,000</div>
+
+        <br>
+        <label>Any Of The Following Services Provided Or Commodities Hauled:</label><br>
+        <input type="radio" ng-model="isProvidedComodities" formControlName="isProvidedCommodities" name="isProvidedCommodities"
+          value=true>Yes <br>
+        <input type="radio" ng-model="isProvodedComodities" formControlName="isProvidedCommodities" name="isProvidedCommodities"
+          value=false>No
+        <br>
+        <!--<div ng-controller="TestCtrl"> -->
+        <!--<div class="alert" [hidden]="isProvidedCommodities">Ineligible due to ___</div>-->
+        <!--</div> -->
+
+        <br>
+        <label>Unscheduled Vehicles Operated Under The Applicant's Authority:</label><br>
+        <input type="radio" ng-model="checked" ng-init="checked = true" formControlName="isUnschedVehicleAuth"
+          name="isUnschedVehicleAuth" value="yes">Yes <br>
+        <input type="radio" ng-model="checked" ng-init="checked = false" formControlName="isUnschedVehicleAuth"
+          name="isUnschedVehicleAuth" value="no">No
 
 
-				<label>Primary AL Limit:</label>
-				<input class="form-control" placeholder="Enter Primary AL Limit Between $1,000,000 - $2,000,000">
+        <br>
+        <label>Projected Gross Sales:</label>
+        <input type="text" class="form-control" formControlName="projectedGrossSales">
+        <div class="alert" *ngIf="!rForm.controls['projectedGrossSales'].valid && rForm.controls['projectedGrossSales'].touched">Requred: Projected Gross Sales</div>
 
-				<br><label>Primary CGL Limit:</label>
-				<input class="form-control" placeholder="Enter Primary CGL Limit Between $1,000,000 - $2,000,000">
+        <br>
+        <label>Projected Mileage:</label>
+        <input type="text" class="form-control" formControlName="projectedMileage">
+        <div class="alert" *ngIf="!rForm.controls['projectedMileage'].valid && rForm.controls['projectedMileage'].touched">Requred: Projected Mileage</div>
 
-				<br><label>CGL Class 99793 (Truckers) Only:</label>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosCGLClasee"
-							id="optionsRadios1" value="option1" checked> Yes
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosCGLClasee"
-							id="optionsRadios2" value="option2"> No
-						</label>
-				</div>
 
-				<label>Primary EL Limit:</label>
-				<input class="form-control" placeholder="Enter Primary EL Limit Between $1,000,000 - $2,000,000">
+      </fieldset>
+      <button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid">Next</button>
+      <button type="reset" class="btn btn-secondary">Save</button>
 
-				<br><label>Any Of The Following Services Provided Or Commodities Hauled:</label>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosHauled"
-							id="optionsRadios1" value="option1" checked> Yes
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosHauled"
-							id="optionsRadios2" value="option2"> No
-						</label>
-				</div>
+    </div>
 
-				<label>Unscheduled Vehicles Operated Under The Applicant's Authority:</label>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosAppAuth"
-							id="optionsRadios1" value="option1" checked> Yes
-						</label>
-				</div>
-				<div class="radio">
-					<label> <input type="radio" name="optionsRadiosAppAuth"
-							id="optionsRadios2" value="option2"> No
-						</label>
-				</div>
+    <div class="col-lg-6">
 
-			</fieldset>
-			<button type="submit" class="btn btn-secondary">Next</button>
-			<button type="reset" class="btn btn-secondary">Save</button>
+      <fieldset class="form-group">
 
-		</div>
+        <br>
+        <label>Name Of Applicant:</label>
+        <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
+        <div class="alert" *ngIf="!rForm.controls['applicantName'].valid && rForm.controls['applicantName'].touched">Requred: Please Enter Applicant's Name</div>
 
-		<div class="col-lg-6">
+        <br>
+        <label>State:</label>
+        <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
+        <div class="alert" *ngIf="!rForm.controls['stateCode'].valid && rForm.controls['stateCode'].touched">Requred: Please Enter Applicant's State</div>
 
-			<fieldset class="form-group">
+        <br>
+        <label>ZIP:</label>
+        <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
+        <div class="alert" *ngIf="!rForm.controls['zip'].valid && rForm.controls['zip'].touched">Requred: Please Enter Applicant's Zip Code</div>
 
-				<label>Name Of Applicant:</label>
-				<input class="form-control" formControlName="applicantName" (ngModel)="applicantName">
+        <br>
+        <label>Vehicle Type:</label>
+        <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
+        <div class="alert" *ngIf="!rForm.controls['vehicleType'].valid && rForm.controls['vehicleType'].touched">Required: Vehicle Type</div>
 
-				<br><label>State:</label>
-				<input class="form-control" formControlName="stateCode" (ngModel)="stateCode">
+        <br>
+        <label>DOT Revoked:</label>
+        <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
+        <div class="alert" *ngIf="!rForm.controls['hasDOTRevoked'].valid && rForm.controls['hasDOTRevoked'].touched">Requred: Has the DOT been Revoked?</div>
 
-				<br><label>ZIP:</label>
-				<input class="form-control" formControlName="zip" (ngModel)="zip">
+        <br>
+        <label>Garbage Hauled:</label>
+        <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
+        <div class="alert" *ngIf="!rForm.controls['garbageHaul'].valid && rForm.controls['garbageHaul'].touched">Requred: Is Garbage Being Hauled</div>
 
-				<br><label>Vehicle Type:</label>
-				<input class="form-control" formControlName="vehicleType" (ngModel)="vehicleType">
+      </fieldset>
 
-				<br><label>DOT Revoked:</label>
-				<input class="form-control" formControlName="hasDOTRevoked" (ngModel)="hasDOTRevoked">
-
-				<br><label>Garbage Hauled:</label>
-				<input class="form-control" formControlName="garbageHaul" (ngModel)="garbageHaul">
-
-			</fieldset>
-
-		</div>
-	</form>
+    </div>
+  </form>
 
 </div>

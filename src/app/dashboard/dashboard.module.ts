@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Ng2BootstrapModule } from 'ng2-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomeModule } from './home/home.module';
 import { ChartModule } from './charts/chart.module';
@@ -36,7 +37,9 @@ import {SidebarComponent} from '../shared/index';
       BSComponentModule,
         BSElementModule,
         BlankPageModule,
-        QuestModule
+        QuestModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent]
