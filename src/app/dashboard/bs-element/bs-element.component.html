@@ -23,8 +23,11 @@
       <fieldset class="form-group">
 
         <br>
-        <label>1st DOT #:</label>
-        <input type="text" class="form-control" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)" autofocus>
+        <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
+          <label class="form-control-label" for="inputError">* 1st DOT #:</label>
+          <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)"
+            autofocus>
+        </div>
         <!--<div class="alert" *ngIf="!rForm.controls['dot1'].valid && rForm.controls['dot1'].touched">Requred: Please Enter The DOT #</div>-->
         <!--<input type="text" value="{{dot1}}">-->
 
