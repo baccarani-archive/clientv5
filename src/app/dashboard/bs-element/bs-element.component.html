@@ -107,7 +107,8 @@
 
 
       </fieldset>
-      <button type="submit" routerLink="/dashboard/chart">Test</button>
+      <input type="button" onclick="return saveForm();" value="Save as draft" />
+      <button type="submit" class="btn btn-secondary" routerLink="/dashboard/chart">Test</button>
       <button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid">Next</button>
       <button type="reset" class="btn btn-secondary">Save</button>
 

@@ -212,6 +212,4 @@ export class BSElementComponent {
         console.log("data here:" + data);
     }
 
-    
-
 }
