@@ -121,7 +121,7 @@ export class BSElementComponent {
             'effDate': [null, Validators.required],
             'expDate': [null, Validators.required],
             'safetyRating': [null],
-            'yearInBus': [null],
+            'yearInBus': [null, Validators.required],
             'isDrivingExperience': [null],
             'primaryALLimit': [null, Validators.compose([Validators.required, Validators.minLength(6)])],
             'primaryCGLimit': [null, Validators.compose([Validators.required, Validators.minLength(6)])],

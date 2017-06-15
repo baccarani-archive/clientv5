@@ -17,31 +17,31 @@
   <form [formGroup]="rForm">
     <br>
     <h4>Initial Eligibility</h4>
-    <p style="color:red">* required</p>
     <br>
+    <p style="color:red">* required</p>
     <div class="col-lg-6">
 
       <fieldset class="form-group">
 
-        <br>
         <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched, 'form-group has-success' : dot1=='219494'}">
           <label class="form-control-label" for="inputError">* 1st DOT #</label>
           <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)"
             autofocus>
         </div>
-        <!--<div class="alert" *ngIf="!rForm.controls['dot1'].valid && rForm.controls['dot1'].touched">Requred: Please Enter The DOT #</div>-->
         <!--<input type="text" value="{{dot1}}">-->
 
         <br>
-        <label>Effective Date: </label>
-        <input type="date" class="form-control" formControlName="effDate" [(ngModel)]="effDate">
+        <div [ngClass]="{'form-group has-danger' : !rForm.controls['effDate'].valid && rForm.controls['effDate'].touched}">
+          <label class="form-control-label" for="inputError">Effective Date:</label>
+          <input type="date" class="form-control form-control-danger" formControlName="effDate" [(ngModel)]="effDate">
+        </div>
         <!--<p>{{effDate}}</p>-->
 
         <br>
-        <label>Expiration Date:</label>
-        <input type="date" class="form-control" formControlName="expDate" [(ngModel)]="expDate">
-        <!--<div class="alert" *ngIf="(!rForm.controls['effDate'].valid || !rForm.controls['expDate'].valid) && (rForm.controls['effDate'].touched
-            || rForm.controls['expDate'].touched)">Requred: Effective and Expiration Dates</div>-->
+        <div [ngClass]="{'form-group has-danger' : !rForm.controls['expDate'].valid && rForm.controls['expDate'].touched}">
+          <label class="form-control-label" for="inputError">Expiration Date:</label>
+          <input type="date" class="form-control form-control-danger" formControlName="expDate" [(ngModel)]="expDate">
+        </div>
         <!--<p>{{expDate}}</p>-->
 
         <br>
@@ -55,8 +55,10 @@
         <!--<p>{{safetyRating}}</p>-->
 
         <br>
-        <label>Years in Business:</label>
-        <input type="text" class="form-control" formControlName="yearInBus" [(ngModel)]="yearInBus">
+        <div [ngClass]="{'form-group has-danger' : !rForm.controls['yearInBus'].valid && rForm.controls['yearInBus'].touched}">
+          <label class="form-control-label" for="inputError">Years in Business:</label>
+          <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus">
+        </div>
         <!--<p>{{yearInBus}}</p>-->
 
         <br>
@@ -68,26 +70,33 @@
         <!--<p>{{isDrivingExperience}}</p>-->
 
         <br>
-        <label>Primary AL Limit:</label>
-        <input type="text" class="form-control" formControlName="primaryALLimit" [(ngModel)]="primaryALLimit">
-        <!--<div class="alert" *ngIf="!rForm.controls['primaryALLimit'].valid && rForm.controls['primaryALLimit'].touched">Requred: Primary AL Limit Between $1,000,000-$2,000,000</div>-->
+        <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryALLimit'].valid && rForm.controls['primaryALLimit'].touched}">
+          <label class="form-control-label" for="inputError">Primary AL Limit:</label>
+          <input type="text" class="form-control form-control-danger" formControlName="primaryALLimit" [(ngModel)]="primaryALLimit">
+        </div>
         <!--<p>{{primaryALLimit}}</p>-->
 
         <br>
-        <label>Primary CGL Limit:</label>
-        <input type="text" class="form-control" formControlName="primaryCGLimit" [(ngModel)]="primaryCGLimit">
+        <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryCGLimit'].valid && rForm.controls['primaryCGLimit'].touched}">
+          <label class="form-control-label">Primary CGL Limit:</label>
+          <input type="text" class="form-control form-control-danger" formControlName="primaryCGLimit" [(ngModel)]="primaryCGLimit">
+        </div>
         <!--<div class="alert" *ngIf="!rForm.controls['primaryCGLimit'].valid && rForm.controls['primaryCGLimit'].touched">Requred: Primary CGL Limit Between $1,000,000-$2,000,000</div>-->
         <!--<p>{{primaryCGLimit}}</p>-->
 
         <br>
-        <label>CGL Class 99793 (Truckers) Only: </label>
-        <input type="text" class="form-control" formControlName="truckersOnly" [(ngModel)]="truckersOnly">
+        <div [ngClass]="{'form-group has-danger' : !rForm.controls['truckersOnly'].valid && rForm.controls['truckersOnly'].touched}">
+          <label class="form-control-label">CGL Class 99793 (Truckers) Only: </label>
+          <input type="text" class="form-control form-control-danger" formControlName="truckersOnly" [(ngModel)]="truckersOnly">
+        </div>
         <!--<div class="alert" *ngIf="!rForm.controls['truckersOnly'].valid && rForm.controls['truckersOnly'].touched">Requred: CGL Class 99793 (Truckers) Only</div>-->
         <!--<p>{{truckersOnly}}</p>-->
 
         <br>
-        <label>Primary EL Limit:</label>
-        <input type="text" class="form-control" formControlName="primaryELLimit" [(ngModel)]="primaryELLimit">
+        <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryELLimit'].valid && rForm.controls['primaryELLimit'].touched}">
+          <label class="form-control-label">Primary EL Limit:</label>
+          <input type="text" class="form-control form-control-danger" formControlName="primaryELLimit" [(ngModel)]="primaryELLimit">
+        </div>
         <!--<div class="alert" *ngIf="!rForm.controls['primaryELLimit'].valid && rForm.controls['primaryELLimit'].touched">Requred: Primary EL Limit Between $1,000,000-$2,000,000</div>-->
         <!--<p>{{primaryELLimit}}</p>-->
 
