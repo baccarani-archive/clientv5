@@ -1,9 +1,10 @@
+import { RouterModule} from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { BlankPageComponent } from './blankPage.component';
 
 @NgModule({
-    imports: [],
+    imports: [RouterModule],
     declarations: [BlankPageComponent],
     exports: [BlankPageComponent]
 })

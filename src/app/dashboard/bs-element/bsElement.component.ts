@@ -43,13 +43,13 @@ export class BSElementComponent {
     totalPercent: string = '';
     */
 
-    privatePassenger: number = 1;
-    lightTrucks: number = 1;
-    mediumTrucks: number = 1;
-    heavyTrucks: number = 1;
+    privatePassenger: number = 0;
+    lightTrucks: number = 0;
+    mediumTrucks: number = 0;
+    heavyTrucks: number = 0;
     extraHeavyTrucks: number = 0;
     heavyTrucksTractors: number = 0;
-    extraHeavyTrucksTractors: number = 1;
+    extraHeavyTrucksTractors: number = 0;
     trailers: number = 0;
 
     totalAdj: number = 0;
@@ -75,34 +75,38 @@ export class BSElementComponent {
     //Rating Parameters
     noOfPU = this.privatePassenger + this.lightTrucks + this.mediumTrucks + this.heavyTrucks + this.extraHeavyTrucks + this.heavyTrucksTractors + this.extraHeavyTrucksTractors + this.trailers;
     //Placeholder
-    interceptCoef: number = 4.171;
+    intercept: number = null;
     logUnit: number = Math.log(this.noOfPU);
     isLogUnit: boolean = this.logUnit >= 5000;
     if(isLogUnit) {
         this.logUnit = 5000;
     }
     //Placeholders
-    logUnitCoef: number = -0.059;
-    logMile: number = 12.5;
-    logMileCoef: number = 0.044;
-    logISORate: number = 2351.09;
-    logISORateCoef: number = 0.47;
-    priorViolationCoef: number = -0.159;
-    priorInspectionCoef: number = -0.093;
-    priorCrashCoef: number = -0.155;
+    logUnitCoef: number = null;
+    logMile: number = null;
+    logMileCoef: number = null;
+    logISORate: number = null;
+    logISORateCoef: number = null;
+    priorViolCoef: number = null;
+    priorInspCoef: number = null;
+    priorCrashCoef: number = null;
 
     //Primary $1M Premium Rating Formula
-    baseLC = Math.exp(this.interceptCoef + ((Math.log1p(this.logISORate) * this.logISORateCoef)));
+    baseLC = Math.exp(this.intercept + ((Math.log1p(this.logISORate) * this.logISORateCoef)));
     sizeAdj = Math.exp(Math.log(this.noOfPU) * this.logUnitCoef);
     mileageAdj = Math.exp(this.logMile * this.logMileCoef);
-    violFactor = Math.exp(this.priorViolationCoef);
-    inspFactor = Math.exp(this.priorInspectionCoef);
+    violFactor = Math.exp(this.priorViolCoef);
+    inspFactor = Math.exp(this.priorInspCoef);
     crashFactor = Math.exp(this.priorCrashCoef);
     //Placeholder
     targetLR: number = 0.6;
     //Placeholder
     ALAEPerc: number = 1.02;
     LCM = 1 / (this.targetLR * this.ALAEPerc);
+    //Placeholder
+    Emod = 1;
+    oneMRate = this.baseLC * this.sizeAdj * this.mileageAdj * this.violFactor * this.inspFactor * this.crashFactor * this.LCM * this.Emod;
+    oneMPremium = 0;
 
 
 
@@ -174,7 +178,7 @@ export class BSElementComponent {
             'logISORate': [null],
             'logISORateCoef': [null],
             'priorViolationCoef': [null],
-            'priorInspectionCoef': [null],
+            'priorInspCoef': [null],
             'priorCrashCoef': [null]
         });
 
@@ -192,6 +196,33 @@ export class BSElementComponent {
 
             return adjTotal;
         }
+
+        this.oneMPremium = this.oneMRate * this.totalAdj;
+        console.log("Rating Parameters");
+        console.log("# of PU " + this.noOfPU);
+        console.log("Intercept Coef " + this.intercept);
+        console.log("LogUnit " + this.logUnit);
+        console.log("LogUnit_Coef " + this.logUnitCoef);
+        console.log("LogMile " + this.logMile);
+        console.log("LogMile_Coef " + this.logMileCoef);
+        console.log("LogISORate " + this.logISORate);
+        console.log("logISORate_Coef " + this.logISORateCoef);
+        console.log("priorViolation_Coef " + this.priorViolCoef);
+        console.log("priorInspection_Coef " + this.priorInspCoef);
+        console.log("priorCrash_Coef " + this.priorCrashCoef);
+
+        console.log(" ");
+        console.log("Premuim Formula");
+        console.log("Base LC " + this.baseLC);
+        console.log("Size Adj. " + this.sizeAdj);
+        console.log("Mileage Adj. " + this.mileageAdj);
+        console.log("Viol. Factor " + this.violFactor);
+        console.log("Insp. Factor " + this.inspFactor);
+        console.log("Crash Factor " + this.crashFactor);
+        console.log("LCM " + this.LCM);
+        console.log("Emod " + this.Emod);
+        console.log("1M Rate " + this.oneMRate);
+        console.log("1M Premium " + this.oneMPremium);
     }
 
     onDot1Change(event: any) {
@@ -208,9 +239,24 @@ export class BSElementComponent {
                 this.vehicleType = response.initialEligibility.vehicleType;
                 this.hasDOTRevoked = response.initialEligibility.hasDOTRevoked;
                 this.garbageHaul = response.initialEligibility.garbageHaul;
+
+                this.intercept = response.TRANS_LC_201704.intercept;
+                this.logUnitCoef = response.TRANS_LC_201704.logUnitCoef;
+                this.logMile = response.TRANS_LC_201704.logMile;
+                this.logMileCoef = response.TRANS_LC_201704.logMileCoef;
+                this.logISORate = response.TRANS_LC_201704.logISORate;
+                this.logISORateCoef = response.TRANS_LC_201704.logISORateCoef;
+                this.priorViolCoef = response.TRANS_LC_201704.priorViolCoef;
+                this.priorInspCoef = response.TRANS_LC_201704.priorInspCoef;
+                this.priorCrashCoef = response.TRANS_LC_201704.priorCrashCoef;
+                // this.cargoCoef = response.TRANS_LC_201704.cargoCoef;
+                // this.popDensity = response.TRANS_LC_201704.popDensity;
             }
         );
         console.log("data here:" + data);
+        
     }
+
+
 
 }
