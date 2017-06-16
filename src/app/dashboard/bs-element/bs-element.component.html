@@ -5,7 +5,7 @@
       <h2 class="page-header"><i class="fa fa-cloud" style="color:#FF8C00"></i> Quest</h2>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-        <i class="fa fa-cloud" style="color:#FF8C00"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard/blankpage']">Quest</a>
+          <i class="fa fa-cloud" style="color:#FF8C00"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard/blankpage']">Quest</a>
         </li>
         <li class="breadcrumb-item active"><i class="fa fa-file"></i> Initial Eligibility</li>
       </ol>
@@ -17,150 +17,147 @@
   <form [formGroup]="rForm">
     <h4>Initial Eligibility</h4>
     <br>
-    <p style="color:red">* required</p>
-    <div class="col-lg-6">
+    <div class="col-lg-12">
 
-      <fieldset class="form-group">
+      <div class="col-lg-6">
 
-        <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched, 'form-group has-success' : dot1=='219494'}">
-          <label class="form-control-label" for="inputError">* 1st DOT #</label>
-          <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)"
-            autofocus>
-        </div>
-        <!--<input type="text" value="{{dot1}}">-->
+        <fieldset class="form-group">
 
-        <br>
-        <div [ngClass]="{'form-group has-danger' : !rForm.controls['effDate'].valid && rForm.controls['effDate'].touched}">
-          <label class="form-control-label" for="inputError">Effective Date:</label>
-          <input type="date" class="form-control form-control-danger" formControlName="effDate" [(ngModel)]="effDate">
-        </div>
-        <!--<p>{{effDate}}</p>-->
+          <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched, 'form-group has-success' : dot1=='219494'}">
+            <label class="form-control-label" for="inputError">1st DOT #:</label>
+            <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)"
+              autofocus>
+          </div>
+          <!--<input type="text" value="{{dot1}}">-->
 
-        <br>
-        <div [ngClass]="{'form-group has-danger' : !rForm.controls['expDate'].valid && rForm.controls['expDate'].touched}">
-          <label class="form-control-label" for="inputError">Expiration Date:</label>
-          <input type="date" class="form-control form-control-danger" formControlName="expDate" [(ngModel)]="expDate">
-        </div>
-        <!--<p>{{expDate}}</p>-->
+          <br>
+          <div [ngClass]="{'form-group has-danger' : !rForm.controls['effDate'].valid && rForm.controls['effDate'].touched}">
+            <label class="form-control-label" for="inputError">Effective Date:</label>
+            <input type="text" class="form-control form-control-danger" formControlName="effDate" [(ngModel)]="effDate">
+          </div>
+          <!--<p>{{effDate}}</p>-->
 
-        <br>
-        <label>Safety Rating:</label><br>
-        <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" value="Satisfactory">Satisfactory<br>
-        <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" value="Conditional">Conditional<br>
-        <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" value="Unsatisfactory">Unsatisfactory<br>
-        <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" value="NotRated">Not
-        Rated
-        <br>
-        <!--<p>{{safetyRating}}</p>-->
+          <br>
+          <div [ngClass]="{'form-group has-danger' : !rForm.controls['expDate'].valid && rForm.controls['expDate'].touched}">
+            <label class="form-control-label" for="inputError">Expiration Date:</label>
+            <input type="text" class="form-control form-control-danger" formControlName="expDate" [(ngModel)]="expDate">
+          </div>
+          <!--<p>{{expDate}}</p>-->
 
-        <br>
-        <div [ngClass]="{'form-group has-danger' : !rForm.controls['yearInBus'].valid && rForm.controls['yearInBus'].touched}">
-          <label class="form-control-label" for="inputError">Years in Business:</label>
-          <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus">
-        </div>
-        <!--<p>{{yearInBus}}</p>-->
+          <br>
+          <label>Safety Rating:</label><br>
+          <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" value="Satisfactory">Satisfactory<br>
+          <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" value="Conditional">Conditional<br>
+          <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" value="Unsatisfactory">Unsatisfactory<br>
+          <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" value="NotRated">Not
+          Rated
+          <br>
+          <!--<p>{{safetyRating}}</p>-->
 
-        <br>
-        <div [hidden]="yearInBus > 3 || yearInBus === null">
-          <label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label><br>
-          <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" name="isDrivingExperience" value="yes">Yes<br>
-          <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" name="isDrivingExperience" value="no">No<br>
-        </div>
-        <!--<p>{{isDrivingExperience}}</p>-->
+          <br>
+          <div [ngClass]="{'form-group has-danger' : !rForm.controls['yearInBus'].valid && rForm.controls['yearInBus'].touched}">
+            <label class="form-control-label" for="inputError">Years in Business:</label>
+            <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus">
+          </div>
+          <!--<p>{{yearInBus}}</p>-->
 
-        <br>
-        <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryALLimit'].valid && rForm.controls['primaryALLimit'].touched}">
-          <label class="form-control-label" for="inputError">Primary AL Limit:</label>
-          <input type="text" class="form-control form-control-danger" formControlName="primaryALLimit" [(ngModel)]="primaryALLimit">
-        </div>
-        <!--<p>{{primaryALLimit}}</p>-->
+          <br>
+          <div [hidden]="yearInBus > 3 || yearInBus === null">
+            <label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label><br>
+            <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" name="isDrivingExperience" value="yes">Yes<br>
+            <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" name="isDrivingExperience" value="no">No<br>
+          </div>
+          <!--<p>{{isDrivingExperience}}</p>-->
 
-        <br>
-        <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryCGLimit'].valid && rForm.controls['primaryCGLimit'].touched}">
-          <label class="form-control-label">Primary CGL Limit:</label>
-          <input type="text" class="form-control form-control-danger" formControlName="primaryCGLimit" [(ngModel)]="primaryCGLimit">
-        </div>
-        <!--<div class="alert" *ngIf="!rForm.controls['primaryCGLimit'].valid && rForm.controls['primaryCGLimit'].touched">Requred: Primary CGL Limit Between $1,000,000-$2,000,000</div>-->
-        <!--<p>{{primaryCGLimit}}</p>-->
+          <br>
+          <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryALLimit'].valid && rForm.controls['primaryALLimit'].touched}">
+            <label class="form-control-label" for="inputError">Primary AL Limit:</label>
+            <input type="text" class="form-control form-control-danger" formControlName="primaryALLimit" [(ngModel)]="primaryALLimit">
+          </div>
+          <!--<p>{{primaryALLimit}}</p>-->
 
-        <br>
-        <div [ngClass]="{'form-group has-danger' : !rForm.controls['truckersOnly'].valid && rForm.controls['truckersOnly'].touched}">
-          <label class="form-control-label">CGL Class 99793 (Truckers) Only: </label>
-          <input type="text" class="form-control form-control-danger" formControlName="truckersOnly" [(ngModel)]="truckersOnly">
-        </div>
-        <!--<div class="alert" *ngIf="!rForm.controls['truckersOnly'].valid && rForm.controls['truckersOnly'].touched">Requred: CGL Class 99793 (Truckers) Only</div>-->
-        <!--<p>{{truckersOnly}}</p>-->
+          <br>
+          <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryCGLimit'].valid && rForm.controls['primaryCGLimit'].touched}">
+            <label class="form-control-label">Primary CGL Limit:</label>
+            <input type="text" class="form-control form-control-danger" formControlName="primaryCGLimit" [(ngModel)]="primaryCGLimit">
+          </div>
+          <!--<div class="alert" *ngIf="!rForm.controls['primaryCGLimit'].valid && rForm.controls['primaryCGLimit'].touched">Requred: Primary CGL Limit Between $1,000,000-$2,000,000</div>-->
+          <!--<p>{{primaryCGLimit}}</p>-->
 
-        <br>
-        <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryELLimit'].valid && rForm.controls['primaryELLimit'].touched}">
-          <label class="form-control-label">Primary EL Limit:</label>
-          <input type="text" class="form-control form-control-danger" formControlName="primaryELLimit" [(ngModel)]="primaryELLimit">
-        </div>
-        <!--<div class="alert" *ngIf="!rForm.controls['primaryELLimit'].valid && rForm.controls['primaryELLimit'].touched">Requred: Primary EL Limit Between $1,000,000-$2,000,000</div>-->
-        <!--<p>{{primaryELLimit}}</p>-->
+          <br>
+          <div [ngClass]="{'form-group has-danger' : !rForm.controls['truckersOnly'].valid && rForm.controls['truckersOnly'].touched}">
+            <label class="form-control-label">CGL Class 99793 (Truckers) Only: </label>
+            <input type="text" class="form-control form-control-danger" formControlName="truckersOnly" [(ngModel)]="truckersOnly">
+          </div>
+          <!--<div class="alert" *ngIf="!rForm.controls['truckersOnly'].valid && rForm.controls['truckersOnly'].touched">Requred: CGL Class 99793 (Truckers) Only</div>-->
+          <!--<p>{{truckersOnly}}</p>-->
 
-        <br>
-        <label>Any Of The Following Services Provided Or Commodities Hauled:</label><br>
-        <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" name="isProvidedCommodities"
-          value=yes>Yes<br>
-        <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" name="isProvidedCommodities"
-          value=no>No<br>
-        <!--<div class="alert">Ineligible due to ___</div>-->
-        <!--<p>{{isProvidedCommodities}}</p>-->
+          <br>
+          <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryELLimit'].valid && rForm.controls['primaryELLimit'].touched}">
+            <label class="form-control-label">Primary EL Limit:</label>
+            <input type="text" class="form-control form-control-danger" formControlName="primaryELLimit" [(ngModel)]="primaryELLimit">
+          </div>
+          <!--<div class="alert" *ngIf="!rForm.controls['primaryELLimit'].valid && rForm.controls['primaryELLimit'].touched">Requred: Primary EL Limit Between $1,000,000-$2,000,000</div>-->
+          <!--<p>{{primaryELLimit}}</p>-->
 
-        <br>
-        <label>Unscheduled Vehicles Operated Under The Applicant's Authority:</label><br>
-        <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = true" formControlName="isUnschedVehicleAuth" name="isUnschedVehicleAuth"
-          value="yes">Yes<br>
-        <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = false" formControlName="isUnschedVehicleAuth" name="isUnschedVehicleAuth"
-          value="no">No<br>
-        <!--<p>{{isUnschedVehicleAuth}}</p>-->
+          <br>
+          <label>Any Of The Following Services Provided Or Commodities Hauled:</label><br>
+          <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" name="isProvidedCommodities"
+            value=yes>Yes<br>
+          <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" name="isProvidedCommodities"
+            value=no>No<br>
+          <!--<div class="alert">Ineligible due to ___</div>-->
+          <!--<p>{{isProvidedCommodities}}</p>-->
+
+          <br>
+          <label>Unscheduled Vehicles Operated Under The Applicant's Authority:</label><br>
+          <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = true" formControlName="isUnschedVehicleAuth" name="isUnschedVehicleAuth"
+            value="yes">Yes<br>
+          <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = false" formControlName="isUnschedVehicleAuth" name="isUnschedVehicleAuth"
+            value="no">No<br>
+          <!--<p>{{isUnschedVehicleAuth}}</p>-->
 
 
 
-      </fieldset>
-      <button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid">Next</button>
-      <button type="reset" class="btn btn-secondary">Save</button>
+        </fieldset>
 
-    </div>
 
-    <div class="col-lg-6">
+      </div>
 
-      <fieldset class="form-group">
+      <div class="col-lg-6">
 
-        <br>
-        <label>Name Of Applicant:</label>
-        <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
-        <!--<div class="alert" *ngIf="!rForm.controls['applicantName'].valid && rForm.controls['applicantName'].touched">Requred: Please Enter Applicant's Name</div>-->
+        <fieldset class="form-group">
 
-        <br>
-        <label>State:</label>
-        <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
-        <!--<div class="alert" *ngIf="!rForm.controls['stateCode'].valid && rForm.controls['stateCode'].touched">Requred: Please Enter Applicant's State</div>-->
+          <label class="form-control-label">Name Of Applicant:</label>
+          <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
 
-        <br>
-        <label>ZIP:</label>
-        <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
-        <!--<div class="alert" *ngIf="!rForm.controls['zip'].valid && rForm.controls['zip'].touched">Requred: Please Enter Applicant's Zip Code</div>-->
+          <br>
+          <label class="form-control-label">State:</label>
+          <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
 
-        <br>
-        <label>Vehicle Type:</label>
-        <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
-        <!--<div class="alert" *ngIf="!rForm.controls['vehicleType'].valid && rForm.controls['vehicleType'].touched">Required: Vehicle Type</div>-->
+          <br>
+          <label class="form-control-label">ZIP:</label>
+          <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
 
-        <br>
-        <label>DOT Revoked:</label>
-        <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
-        <!--<div class="alert" *ngIf="!rForm.controls['hasDOTRevoked'].valid && rForm.controls['hasDOTRevoked'].touched">Requred: Has the DOT been Revoked?</div>-->
+          <br>
+          <label class="form-control-label">Vehicle Type:</label>
+          <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
 
-        <br>
-        <label>Garbage Hauled:</label>
-        <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
-        <!--<div class="alert" *ngIf="!rForm.controls['garbageHaul'].valid && rForm.controls['garbageHaul'].touched">Requred: Is Garbage Being Hauled</div>-->
+          <br>
+          <label class="form-control-label">DOT Revoked:</label>
+          <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
 
-      </fieldset>
+          <br>
+          <label class="form-control-label">Garbage Hauled:</label>
+          <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
+
+        </fieldset>
+
+      </div>
 
     </div>
+    <button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid">Next</button>
+    <button type="reset" class="btn btn-secondary">Save</button>
   </form>
 
 </div>
