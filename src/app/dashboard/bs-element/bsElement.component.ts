@@ -43,7 +43,7 @@ export class BSElementComponent {
     totalPercent: string = '';
     */
 
-    privatePassenger: number = 0;
+    privatePassenger: number = 10;
     lightTrucks: number = 0;
     mediumTrucks: number = 0;
     heavyTrucks: number = 0;
@@ -74,14 +74,14 @@ export class BSElementComponent {
 
     //Rating Parameters
     noOfPU = this.privatePassenger + this.lightTrucks + this.mediumTrucks + this.heavyTrucks + this.extraHeavyTrucks + this.heavyTrucksTractors + this.extraHeavyTrucksTractors + this.trailers;
-    //Placeholder
+
     intercept: number = null;
     logUnit: number = Math.log(this.noOfPU);
     isLogUnit: boolean = this.logUnit >= 5000;
     if(isLogUnit) {
         this.logUnit = 5000;
     }
-    //Placeholders
+
     logUnitCoef: number = null;
     logMile: number = null;
     logMileCoef: number = null;
@@ -170,16 +170,27 @@ export class BSElementComponent {
             'riskPremuimOne': [null],
             'riskPremiumTwo': [null],
 
-            'interceptCoef': [null],
+            'intercept': [null],
             'logUnit': [null],
             'logUnitCoef': [null],
             'logMile': [null],
             'logMileCoef': [null],
             'logISORate': [null],
             'logISORateCoef': [null],
-            'priorViolationCoef': [null],
+            'priorViolCoef': [null],
             'priorInspCoef': [null],
-            'priorCrashCoef': [null]
+            'priorCrashCoef': [null],
+
+            'baseLC': [null],
+            'sizeAdj': [null],
+            'mileageAdj': [null],
+            'violFactor': [null],
+            'inspFactor': [null],
+            'crashFactor': [null]
+            
+
+
+
         });
 
         /* Pricing Engine */
@@ -254,7 +265,7 @@ export class BSElementComponent {
             }
         );
         console.log("data here:" + data);
-        
+
     }
 
 

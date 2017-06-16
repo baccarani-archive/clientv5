@@ -15,21 +15,23 @@
 
 
   <form [formGroup]="rForm">
+
     <h4>Initial Eligibility</h4>
     <br>
+
     <div class="col-lg-12">
 
       <div class="col-lg-6">
 
         <fieldset class="form-group">
 
-          <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched, 'form-group has-success' : dot1=='219494'}">
+          <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
             <label class="form-control-label" for="inputError">1st DOT #:</label>
             <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)"
               autofocus>
           </div>
           <!--<input type="text" value="{{dot1}}">-->
-          <p>{{intercept}}</p>
+
 
           <br>
           <div [ngClass]="{'form-group has-danger' : !rForm.controls['effDate'].valid && rForm.controls['effDate'].touched}">
@@ -128,7 +130,6 @@
       <div class="col-lg-6">
 
         <fieldset class="form-group">
-
           <label class="form-control-label">Name Of Applicant:</label>
           <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
 
@@ -151,14 +152,91 @@
           <br>
           <label class="form-control-label">Garbage Hauled:</label>
           <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label class="form-control-label">Intercept:</label>
+          <input type="text" class="form-control" formControlName="intercept" [(ngModel)]="intercept">
+
+          <br>
+          <label class="form-control-label">logUnitCoef:</label>
+          <input type="text" class="form-control" formControlName="logUnitCoef" [(ngModel)]="logUnitCoef">
+
+          <br>
+          <label class="form-control-label">logMile:</label>
+          <input type="text" class="form-control" formControlName="logMile" [(ngModel)]="logMile">
+
+          <br>
+          <label class="form-control-label">logMileCoef:</label>
+          <input type="text" class="form-control" formControlName="logMileCoef" [(ngModel)]="logMileCoef">
+
+          <br>
+          <label class="form-control-label">logISORate:</label>
+          <input type="text" class="form-control" formControlName="logISORate" [(ngModel)]="logISORate">
+
+          <br>
+          <label class="form-control-label">logISORateCoef:</label>
+          <input type="text" class="form-control" formControlName="logISORateCoef" [(ngModel)]="logISORateCoef">
+
+          <br>
+          <label class="form-control-label">priorViolCoef:</label>
+          <input type="text" class="form-control" formControlName="priorViolCoef" [(ngModel)]="priorViolCoef">
+
+          <br>
+          <label class="form-control-label">priorInspCoef:</label>
+          <input type="text" class="form-control" formControlName="priorInspCoef" [(ngModel)]="priorInspCoef">
+
+          <br>
+          <label class="form-control-label">priorCrashCoef:</label>
+          <input type="text" class="form-control" formControlName="priorCrashCoef" [(ngModel)]="priorCrashCoef">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label class="form-control-label">logUnit:</label>
+          <input type="text" class="form-control" formControlName="logUnit" [(ngModel)]="logUnit">
+
+          <br>
+          <label class="form-control-label">baseLC:</label>
+          <input type="text" class="form-control" formControlName="baseLC" [(ngModel)]="baseLC">
+
+          <br>
+          <label class="form-control-label">sizeAdj:</label>
+          <input type="text" class="form-control" formControlName="sizeAdj" [(ngModel)]="sizeAdj">
+
+          <br>
+          <label class="form-control-label">mileageAdj:</label>
+          <input type="text" class="form-control" formControlName="mileageAdj" [(ngModel)]="mileageAdj">
+
+          <br>
+          <label class="form-control-label">violFactor:</label>
+          <input type="text" class="form-control" formControlName="violFactor" [(ngModel)]="violFactor">
+
+          <br>
+          <label class="form-control-label">inspFactor:</label>
+          <input type="text" class="form-control" formControlName="inspFactor" [(ngModel)]="inspFactor">
+
+          <br>
+          <label class="form-control-label">crashFactor:</label>
+          <input type="text" class="form-control" formControlName="crashFactor" [(ngModel)]="crashFactor">
+
+
+
+          
+
 
         </fieldset>
+
+
+
+
 
       </div>
 
     </div>
+
     <button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid">Next</button>
     <button type="reset" class="btn btn-secondary">Save</button>
+
   </form>
 
 </div>
