@@ -22,8 +22,8 @@ export class BSElementComponent {
     garbageHaul: string = '';
 
     dot1: string = '';
-    effDate: string = '';
-    expDate: string = '';
+    effDate: Date = null;
+    expDate: Date = null;
     safetyRating: string = '';
     yearInBus: number = null;
     isDrivingExperience: string = '';
