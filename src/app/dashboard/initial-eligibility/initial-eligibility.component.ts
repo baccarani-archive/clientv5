@@ -9,6 +9,7 @@ import { DashboardService } from './../dashboard.service';
     selector: 'app-initial-eligibility',
     templateUrl: './initial-eligibility.component.html',
     providers: [DashboardService],
+    styleUrls: ['./initial-eligibility.component.css']
 
 })
 
