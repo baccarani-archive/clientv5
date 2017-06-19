@@ -6,7 +6,8 @@ import { BsElementService } from './bs-element.service';
 
 @Component({
     selector: 'app-bs-element',
-    templateUrl: './bs-element.component.html'
+    templateUrl: './bs-element.component.html',
+    styleUrls: ['./bs-element.component.css']
 })
 
 export class BSElementComponent {
@@ -126,6 +127,7 @@ export class BSElementComponent {
     fatalCrash: number = null; //this.baseFatality * this.cargoFactor * this.weightFactor * this.popDenFactor;
     factor1x1P: number = null; //Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
     rate1x1P: number = null; //this.factor1x1P * (this.oneMPremium / this.totalAdj);
+
 
     constructor(private fb: FormBuilder, private phaseOneService: BsElementService) {
 
@@ -320,7 +322,6 @@ export class BSElementComponent {
             }
         );
         console.log("data here:" + data);
-
     }
 
 
