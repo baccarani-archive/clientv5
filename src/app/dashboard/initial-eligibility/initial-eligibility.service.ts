@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class BsElementService {
+export class InitialEligibilityService {
 
   private loginUrl = 'http://localhost:8080/getDOTData';
 

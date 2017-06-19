@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { BSElementComponent } from './bsElement.component';
+import { PrimaryLiabilityComponent } from './primary-liability.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -18,8 +18,13 @@ import 'rxjs/add/operator/toPromise';
 
 @NgModule({
     imports: [RouterModule, FormsModule, ReactiveFormsModule, BrowserModule],
-    declarations: [BSElementComponent],
-    exports: [BSElementComponent]
+     declarations: [PrimaryLiabilityComponent],
+    exports: [PrimaryLiabilityComponent]
 })
 
-export class BSElementModule { }
+export class PrimaryLiabilityModule { }
+
+
+
+
+

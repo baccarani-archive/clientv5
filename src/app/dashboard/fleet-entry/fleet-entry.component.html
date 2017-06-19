@@ -7,14 +7,14 @@
 				<li class="breadcrumb-item">
 					<i class="fa fa-cloud" style="color:#FF8C00"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard/blankpage']">QUEST</a>
 				</li>
-				<li class="breadcrumb-item active"><i class="fa fa-file"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard/element']">Initial Eligibility</a></li>
+				<li class="breadcrumb-item active"><i class="fa fa-file"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard/initialeligibility']">Initial Eligibility</a></li>
 				<li class="breadcrumb-item active"><i class="fa fa-file"></i> Fleet Entry</li>
 			</ol>
 		</div>
 	</div>
 	<!-- /.row -->
 
-	<form role="form">
+	<form [formGroup]="rForm">
 
 		<h4>Fleet Entry</h4>
 		<br>
@@ -24,7 +24,11 @@
 				<fieldset class="form-group">
 
 					<br><label>Private Passenger:</label>
-					<input type="number" class="form-control" formControlName="privatePassenger" min="0">
+					<input type="number" class="form-control" formControlName="privatePassenger" min="0" [(ngModel)]="privatePassenger">
+
+					<p>
+						{{privatePassenger}}
+					</p>
 
 
 					<br><label>Light Trucks:</label>
@@ -48,12 +52,11 @@
 
 
 					<br><label>Extra Heavy Trucks/Tractors:</label>
-					<input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0">
+					<input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0" [(ngModel)]="extraHeavyTrucksTractors" (input)="newExtraHeavyTrucksTractors()">
 
-
-					<br><label>Trailers:</label>
-					<input type="number" class="form-control" formControlName="trailers" min="0">
-					<br>
+					<p>
+						{{extraHeavyTrucksTractors}}
+					</p>
 
 				</fieldset>
 			</div>
