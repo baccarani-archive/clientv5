@@ -5,16 +5,11 @@ import { DashboardService } from './../dashboard.service';
 
 
 @Component({
-<<<<<<< HEAD:src/app/dashboard/bs-element/bsElement.component.ts
-    selector: 'app-bs-element',
-    templateUrl: './bs-element.component.html',
-    styleUrls: ['./bs-element.component.css']
-=======
+
     selector: 'app-initial-eligibility',
     templateUrl: './initial-eligibility.component.html',
     providers: [DashboardService],
 
->>>>>>> bd5139c7dc994e2a364dc8aa0fdf770ff8bf617f:src/app/dashboard/initial-eligibility/initial-eligibility.component.ts
 })
 
 export class InitialEligibility implements OnInit {
@@ -135,12 +130,7 @@ export class InitialEligibility implements OnInit {
     factor1x1P: number = null; //Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
     rate1x1P: number = null; //this.factor1x1P * (this.oneMPremium / this.totalAdj);
 
-<<<<<<< HEAD:src/app/dashboard/bs-element/bsElement.component.ts
-
-    constructor(private fb: FormBuilder, private phaseOneService: BsElementService) {
-=======
     constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService, private data: DashboardService) {
->>>>>>> bd5139c7dc994e2a364dc8aa0fdf770ff8bf617f:src/app/dashboard/initial-eligibility/initial-eligibility.component.ts
 
         this.rForm = fb.group({
 
