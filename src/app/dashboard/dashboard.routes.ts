@@ -5,8 +5,6 @@ import { FleetEntryRoutes } from './fleet-entry/fleet-entry.route';
 import { BlankPageRoutes } from './blank-page/blankPage.routes';
 import { PrimaryLiabilityRoutes } from './primary-liability/primary-liability.routes';
 import { PricingIndicationRoutes } from './pricing-indication/pricing-indication.routes';
-import { GridRoutes } from './grid/grid.routes';
-import { BSComponentRoutes } from './bs-component/bsComponent.routes';
 import { InitialEligibilityRoutes } from './initial-eligibility/initial-eligibility.routes';
 
 import { DashboardComponent } from './index';
@@ -18,11 +16,9 @@ export const DashboardRoutes: Route[] = [
       children: [
         ...HomeRoutes,
         ...FleetEntryRoutes,
-        ...BSComponentRoutes,
         ...PrimaryLiabilityRoutes,
         ...BlankPageRoutes,
         ...PricingIndicationRoutes,
-        ...GridRoutes,
         ...InitialEligibilityRoutes
       ]
     }

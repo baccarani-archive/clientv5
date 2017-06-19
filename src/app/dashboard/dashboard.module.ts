@@ -9,8 +9,6 @@ import { FleetEntryModule } from './fleet-entry/fleet-entry.module';
 import { BlankPageModule } from './blank-page/blankPage.module';
 import { PrimaryLiabilityModule } from './primary-liability/primary-liability.module';
 import { PricingIndicationModule } from './pricing-indication/pricing-indication.module';
-import { GridModule } from './grid/grid.module';
-import { BSComponentModule } from './bs-component/bsComponent.module';
 import { InitialEligibilityModule } from './initial-eligibility/initial-eligibility.module';
 
 import { DashboardComponent } from './dashboard.component';
@@ -32,8 +30,6 @@ import { SidebarComponent } from '../shared/index';
     FleetEntryModule,
     PrimaryLiabilityModule,
     PricingIndicationModule,
-    GridModule,
-    BSComponentModule,
     InitialEligibilityModule,
     BlankPageModule,
     FormsModule,
