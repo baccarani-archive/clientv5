@@ -10,10 +10,10 @@
 			</a>
 			<li class="nested" [ngClass]="{'expand' : showMenu === 'pages' }">
 				<ul class="submenu">
-					<li><a [routerLink]="['element']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>Initial Eligibility</span></a></li>
-					<li><a [routerLink]="['chart']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>Fleet Entry</span></a></li>
-					<li><a [routerLink]="['tables']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>Primary Liability</span></a></li>
-					<li><a [routerLink]="['forms']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>Pricing Indication</span></a></li>
+					<li><a [routerLink]="['initialeligibility']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>Initial Eligibility</span></a></li>
+					<li><a [routerLink]="['fleetentry']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>Fleet Entry</span></a></li>
+					<li><a [routerLink]="['primaryliability']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>Primary Liability</span></a></li>
+					<li><a [routerLink]="['pricingindication']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>Pricing Indication</span></a></li>
 				</ul>
 			</li>
 		</div>
@@ -31,16 +31,16 @@
 		<a [routerLink]="['test1']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 			<i class="fa fa-file-text" ></i> &nbsp;Initial Eligibility
 		</a>
-		<a [routerLink]="['chart']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+		<a [routerLink]="['fleetentry']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 			<i class="fa fa-file-text" ></i> Fleet Entry
 		</a>
-		<a [routerLink]="['tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+		<a [routerLink]="['primaryliability']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 			<i class="fa fa-file-text" ></i> Primary Liability
 		</a>
 		<a [routerLink]="['forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 			<i class="fa fa-file-text"></i> Pricing Indication
 		</a> 
-				<a [routerLink]="['element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+				<a [routerLink]="['initialeligibility']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 			<i class="fa fa-refresh"></i> &nbsp;In Progress
 		</a>
 				<a [routerLink]="['components']" [routerLinkActive]="['router-link-active']" class="list-group-item">

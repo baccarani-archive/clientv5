@@ -1,14 +1,13 @@
 import { Route } from '@angular/router';
 
 import { HomeRoutes } from './home/home.routes';
-import { ChartRoutes } from './charts/chart.route';
+import { FleetEntryRoutes } from './fleet-entry/fleet-entry.route';
 import { BlankPageRoutes } from './blank-page/blankPage.routes';
-import { TableRoutes } from './tables/table.routes';
-import { FormRoutes } from './forms/forms.routes';
+import { PrimaryLiabilityRoutes } from './primary-liability/primary-liability.routes';
+import { PricingIndicationRoutes } from './pricing-indication/pricing-indication.routes';
 import { GridRoutes } from './grid/grid.routes';
 import { BSComponentRoutes } from './bs-component/bsComponent.routes';
-import { BSElementRoutes } from './bs-element/bsElement.routes';
-import { QuestRoutes } from './quest/quest.routes';
+import { InitialEligibilityRoutes } from './initial-eligibility/initial-eligibility.routes';
 
 import { DashboardComponent } from './index';
 
@@ -18,14 +17,13 @@ export const DashboardRoutes: Route[] = [
       component: DashboardComponent,
       children: [
         ...HomeRoutes,
-        ...QuestRoutes,
-        ...ChartRoutes,
+        ...FleetEntryRoutes,
         ...BSComponentRoutes,
-        ...TableRoutes,
+        ...PrimaryLiabilityRoutes,
         ...BlankPageRoutes,
-        ...FormRoutes,
+        ...PricingIndicationRoutes,
         ...GridRoutes,
-        ...BSElementRoutes
+        ...InitialEligibilityRoutes
       ]
     }
 ];

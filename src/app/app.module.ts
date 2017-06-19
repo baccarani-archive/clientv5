@@ -10,7 +10,8 @@ import { LoginModule } from './login/login.module';
 import { SignupModule } from './signup/signup.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
-import { BsElementService } from './dashboard/bs-element/bs-element.service';
+import { InitialEligibilityService } from './dashboard/initial-eligibility/initial-eligibility.service';
+import { DashboardService } from './dashboard/dashboard.service';
 
 
 
@@ -29,7 +30,7 @@ import { BsElementService } from './dashboard/bs-element/bs-element.service';
     DashboardModule,
     ReactiveFormsModule
   ],
-  providers: [BsElementService],
+  providers: [InitialEligibilityService, DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

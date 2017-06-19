@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BsElementService } from './bs-element.service';
-
+import { InitialEligibilityService } from './initial-eligibility.service';
+import { DashboardService } from './../dashboard.service';
 
 
 @Component({
-    selector: 'app-bs-element',
-    templateUrl: './bs-element.component.html'
+    selector: 'app-initial-eligibility',
+    templateUrl: './initial-eligibility.component.html',
+    providers: [DashboardService],
+
 })
 
-export class BSElementComponent {
+export class InitialEligibility implements OnInit {
 
     rForm: FormGroup;
     post: any;
@@ -49,7 +51,7 @@ export class BSElementComponent {
     heavyTrucks: number = 0;
     extraHeavyTrucks: number = 0;
     heavyTrucksTractors: number = 0;
-    extraHeavyTrucksTractors: number = 1;
+    extraHeavyTrucksTractors: number = 0;
 
     limitAL: string = '';
     premiumAL: string = '';
@@ -127,7 +129,7 @@ export class BSElementComponent {
     factor1x1P: number = null; //Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
     rate1x1P: number = null; //this.factor1x1P * (this.oneMPremium / this.totalAdj);
 
-    constructor(private fb: FormBuilder, private phaseOneService: BsElementService) {
+    constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService, private data: DashboardService) {
 
         this.rForm = fb.group({
 
@@ -323,6 +325,10 @@ export class BSElementComponent {
 
     }
 
+    ngOnInit() {
+        this.data.currentPrivatePassenger.subscribe(privatePassenger => this.privatePassenger = privatePassenger)
+        this.data.currentExtraHeavyTrucksTractors.subscribe(extraHeavyTrucksTractors => this.extraHeavyTrucksTractors = extraHeavyTrucksTractors)
+    }
 
 
 }
