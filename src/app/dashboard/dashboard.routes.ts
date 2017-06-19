@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 
-import { HomeRoutes } from './home/home.routes';
+import { HomeRoutes } from './home-page/home.routes';
 import { FleetEntryRoutes } from './fleet-entry/fleet-entry.route';
-import { BlankPageRoutes } from './blank-page/blankPage.routes';
+import { BlankPageRoutes } from './blank-page/blank-page.routes';
 import { PrimaryLiabilityRoutes } from './primary-liability/primary-liability.routes';
 import { PricingIndicationRoutes } from './pricing-indication/pricing-indication.routes';
 import { InitialEligibilityRoutes } from './initial-eligibility/initial-eligibility.routes';

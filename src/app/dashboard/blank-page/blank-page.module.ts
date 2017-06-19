@@ -1,7 +1,7 @@
 import { RouterModule} from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { BlankPageComponent } from './blankPage.component';
+import { BlankPageComponent } from './blank-page.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';

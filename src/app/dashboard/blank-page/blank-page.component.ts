@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-blank-page',
-    templateUrl: './blankPage.component.html'
+    templateUrl: './blank-page.component.html'
 })
 
 export class BlankPageComponent {

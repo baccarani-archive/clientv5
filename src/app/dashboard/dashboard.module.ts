@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 import { Ng2BootstrapModule } from 'ng2-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { HomeModule } from './home/home.module';
+import { HomeModule } from './home-page/home.module';
 import { FleetEntryModule } from './fleet-entry/fleet-entry.module';
-import { BlankPageModule } from './blank-page/blankPage.module';
+import { BlankPageModule } from './blank-page/blank-page.module';
 import { PrimaryLiabilityModule } from './primary-liability/primary-liability.module';
 import { PricingIndicationModule } from './pricing-indication/pricing-indication.module';
 import { InitialEligibilityModule } from './initial-eligibility/initial-eligibility.module';
