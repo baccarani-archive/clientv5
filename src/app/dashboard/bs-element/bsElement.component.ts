@@ -24,15 +24,15 @@ export class BSElementComponent {
     dot1: string = '';
     effDate: Date = null;
     expDate: Date = null;
-    safetyRating: string = '';
+    safetyRating: string = null;
     yearInBus: number = null;
-    isDrivingExperience: string = '';
-    primaryALLimit: string = '';
-    primaryCGLimit: string = '';
+    isDrivingExperience: string = null;
+    primaryALLimit: number = null;
+    primaryCGLimit: number = null;
     truckersOnly: string = '';
-    primaryELLimit: string = '';
-    isProvidedCommodities: string = '';
-    isUnschedVehicleAuth: string = '';
+    primaryELLimit: number = null;
+    isProvidedCommodities: string = null;
+    isUnschedVehicleAuth: string = null;
     projectedGrossSales: string = '';
     projectedMileage: string = '';
 
