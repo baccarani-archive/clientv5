@@ -9,6 +9,6 @@ describe('sbadmin-ng2 App', function() {
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Quest');
+    expect(page.getParagraphText()).toEqual('QUEST');
   });
 });

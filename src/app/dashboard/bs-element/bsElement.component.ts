@@ -43,16 +43,13 @@ export class BSElementComponent {
     totalPercent: string = '';
     */
 
-    privatePassenger: number = 10;
+    privatePassenger: number = 0;
     lightTrucks: number = 0;
     mediumTrucks: number = 0;
     heavyTrucks: number = 0;
     extraHeavyTrucks: number = 0;
     heavyTrucksTractors: number = 0;
-    extraHeavyTrucksTractors: number = 0;
-    trailers: number = 0;
-
-    totalAdj: number = 0;
+    extraHeavyTrucksTractors: number = 1;
 
     limitAL: string = '';
     premiumAL: string = '';
@@ -73,10 +70,13 @@ export class BSElementComponent {
 
 
     //Rating Parameters
-    noOfPU = this.privatePassenger + this.lightTrucks + this.mediumTrucks + this.heavyTrucks + this.extraHeavyTrucks + this.heavyTrucksTractors + this.extraHeavyTrucksTractors + this.trailers;
+    noOfPU: number = null; //this.privatePassenger + this.lightTrucks + this.mediumTrucks + this.heavyTrucks + this.extraHeavyTrucks + this.heavyTrucksTractors + this.extraHeavyTrucksTractors;
+    totalAdj: number = null; //this.privatePassenger * 0.25 + this.lightTrucks * 0.37 + this.mediumTrucks * 0.45 + this.heavyTrucks * 0.95 + this.extraHeavyTrucks * 1.00 + this.heavyTrucksTractors * 0.95 + this.extraHeavyTrucksTractors * 1.00;
 
-    intercept: number = null;
-    logUnit: number = Math.log(this.noOfPU);
+    intercept1: number = null;
+    intercept2: number = null; //COMING FROM CELL E9
+    logUnit: number = null; //Math.log(this.noOfPU);
+
     isLogUnit: boolean = this.logUnit >= 5000;
     if(isLogUnit) {
         this.logUnit = 5000;
@@ -91,24 +91,41 @@ export class BSElementComponent {
     priorInspCoef: number = null;
     priorCrashCoef: number = null;
 
-    //Primary $1M Premium Rating Formula
-    baseLC = Math.exp(this.intercept + ((Math.log1p(this.logISORate) * this.logISORateCoef)));
-    sizeAdj = Math.exp(Math.log(this.noOfPU) * this.logUnitCoef);
-    mileageAdj = Math.exp(this.logMile * this.logMileCoef);
-    violFactor = Math.exp(this.priorViolCoef);
-    inspFactor = Math.exp(this.priorInspCoef);
-    crashFactor = Math.exp(this.priorCrashCoef);
     //Placeholder
     targetLR: number = 0.6;
-    //Placeholder
     ALAEPerc: number = 1.02;
-    LCM = 1 / (this.targetLR * this.ALAEPerc);
+
+    //Primary $1M Premium Rating Formula
+    baseLC = null; //Math.exp(this.intercept1 + ((Math.log1p(this.logISORate) * this.logISORateCoef)));
+    sizeAdj = null; //Math.exp(Math.log(this.noOfPU) * this.logUnitCoef);
+    mileageAdj = null; //Math.exp(this.logMile * this.logMileCoef);
+    violFactor = null; //Math.exp(this.priorViolCoef);
+    inspFactor = null; //Math.exp(this.priorInspCoef);
+    crashFactor = null; //Math.exp(this.priorCrashCoef);
+    LCM = null; //1 / this.targetLR * this.ALAEPerc;
+
     //Placeholder
-    Emod = 1;
-    oneMRate = this.baseLC * this.sizeAdj * this.mileageAdj * this.violFactor * this.inspFactor * this.crashFactor * this.LCM * this.Emod;
-    oneMPremium = 0;
+    Emod = null; //1;
+    oneMRate = null; //this.baseLC * this.sizeAdj * this.mileageAdj * this.violFactor * this.inspFactor * this.crashFactor * this.LCM * this.Emod;
+    adjExpo = null; //this.totalAdj
+    oneMPremium = null; //this.oneMRate * this.totalAdj;
 
+    //Placeholder
+    cargoCoef: number = null;
+    LOG_AVGGWT1: number = null;
+    //LOG_AVGGWT2: number = null;
+    popDensity: number = null;
+    //POPDENSITY_COUNTY_ADJ_INSP: number = null;
+    //POPDENSITY_COUNTY_ADJ_INSP_SQRT: number = null;
 
+    //1x1 Factor Calculation
+    baseFatality: number = null; //Math.exp(this.intercept2);
+    cargoFactor: number = null; //Math.exp(this.cargoCoef);
+    weightFactor: number = null; //Math.exp(this.LOG_AVGGWT1 * LOG_AVGGWT2);
+    popDenFactor: number = null; //Math.POPDENSITY * POPDENSITY_COUNTY_ADJ_INSP * POPDENSITY^2 * POPDENSITY_COUNTY_ADJ_INSP_SQRT;
+    fatalCrash: number = null; //this.baseFatality * this.cargoFactor * this.weightFactor * this.popDenFactor;
+    factor1x1P: number = null; //Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
+    rate1x1P: number = null; //this.factor1x1P * (this.oneMPremium / this.totalAdj);
 
     constructor(private fb: FormBuilder, private phaseOneService: BsElementService) {
 
@@ -136,12 +153,6 @@ export class BSElementComponent {
             'projectedGrossSales': [null, Validators.required],
             'projectedMileage': [null, Validators.required],
 
-            /* CARGO
-            'cargoEntries': [null],
-            'individualPercent': [null],
-            'totalPercent': [null],
-            */
-
             'privatePassenger': [null, Validators.required],
             'lightTrucks': [null, Validators.required],
             'mediumTrucks': [null, Validators.required],
@@ -150,8 +161,6 @@ export class BSElementComponent {
             'heavyTrucksTractors': [null, Validators.required],
             'extraHeavyTrucksTractors': [null, Validators.required],
             'trailers': [null, Validators.required],
-
-            'totalAdj': [null],
 
             'limitAL': [null, Validators.required],
             'premiumAL': [null, Validators.required],
@@ -170,7 +179,10 @@ export class BSElementComponent {
             'riskPremuimOne': [null],
             'riskPremiumTwo': [null],
 
-            'intercept': [null],
+            'noOfPU': [null],
+            'totalAdj': [null],
+
+            'intercept1': [null],
             'logUnit': [null],
             'logUnitCoef': [null],
             'logMile': [null],
@@ -181,20 +193,37 @@ export class BSElementComponent {
             'priorInspCoef': [null],
             'priorCrashCoef': [null],
 
+            'cargoCoef': [null],
+            'LOG_AVGGWT1': [null],
+            //'LOG_AVGGWT2': [null],
+            'popDensity': [null],
+            //'POPDENSITY_COUNTY_ADJ_INSP': [null],
+            //'POPDENSITY_COUNTY_ADJ_INSP_SQRT': [null],
+
             'baseLC': [null],
             'sizeAdj': [null],
             'mileageAdj': [null],
             'violFactor': [null],
             'inspFactor': [null],
-            'crashFactor': [null]
-            
+            'crashFactor': [null],
+            'LCM': [null],
+            'Emod': [null],
+            'oneMRate': [null],
+            'adjExpo': [null],
+            'oneMPremium': [null],
 
-
+            'baseFatality': [null],
+            'cargoFactor': [null],
+            'weightFactor': [null],
+            'popDenFactor': [null],
+            'fatalCrash': [null],
+            'factor1x1P': [null],
+            'rate1x1P': [null],
 
         });
 
-        /* Pricing Engine */
-        function adjPU(pp, lt, mt, ht, eht, htt, ehtt: number): number {
+        /* Pricing Engine -- DOES THIS DO ANYTHING */
+        /*function adjPU(pp, lt, mt, ht, eht, htt, ehtt: number): number {
             var privatePassengerAdj = pp * 0.25;
             var lightTrucksAdj = lt * 0.37;
             var mediumTrucksAdj = mt * 0.45;
@@ -206,12 +235,11 @@ export class BSElementComponent {
             var adjTotal = privatePassengerAdj + lightTrucksAdj + mediumTrucksAdj + heavyTrucksAdj + extraHeavyTrucksAdj + heavyTrucksTractorsAdj + extraHeavyTrucksTractorsAdj;
 
             return adjTotal;
-        }
+        }*/
 
-        this.oneMPremium = this.oneMRate * this.totalAdj;
         console.log("Rating Parameters");
         console.log("# of PU " + this.noOfPU);
-        console.log("Intercept Coef " + this.intercept);
+        console.log("Intercept Coef " + this.intercept1);
         console.log("LogUnit " + this.logUnit);
         console.log("LogUnit_Coef " + this.logUnitCoef);
         console.log("LogMile " + this.logMile);
@@ -232,6 +260,7 @@ export class BSElementComponent {
         console.log("Crash Factor " + this.crashFactor);
         console.log("LCM " + this.LCM);
         console.log("Emod " + this.Emod);
+
         console.log("1M Rate " + this.oneMRate);
         console.log("1M Premium " + this.oneMPremium);
     }
@@ -251,7 +280,7 @@ export class BSElementComponent {
                 this.hasDOTRevoked = response.initialEligibility.hasDOTRevoked;
                 this.garbageHaul = response.initialEligibility.garbageHaul;
 
-                this.intercept = response.TRANS_LC_201704.intercept;
+                this.intercept1 = response.TRANS_LC_201704.intercept1;
                 this.logUnitCoef = response.TRANS_LC_201704.logUnitCoef;
                 this.logMile = response.TRANS_LC_201704.logMile;
                 this.logMileCoef = response.TRANS_LC_201704.logMileCoef;
@@ -260,8 +289,34 @@ export class BSElementComponent {
                 this.priorViolCoef = response.TRANS_LC_201704.priorViolCoef;
                 this.priorInspCoef = response.TRANS_LC_201704.priorInspCoef;
                 this.priorCrashCoef = response.TRANS_LC_201704.priorCrashCoef;
-                // this.cargoCoef = response.TRANS_LC_201704.cargoCoef;
-                // this.popDensity = response.TRANS_LC_201704.popDensity;
+                this.cargoCoef = response.TRANS_LC_201704.cargoCoef;
+                this.popDensity = response.TRANS_LC_201704.popDensity;
+                this.LOG_AVGGWT1 = response.TRANS_LC_201704.LOG_AVGGWT1;
+
+                this.noOfPU = this.privatePassenger + this.lightTrucks + this.mediumTrucks + this.heavyTrucks + this.extraHeavyTrucks + this.heavyTrucksTractors + this.extraHeavyTrucksTractors;
+                this.totalAdj = this.privatePassenger * 0.25 + this.lightTrucks * 0.37 + this.mediumTrucks * 0.45 + this.heavyTrucks * 0.95 + this.extraHeavyTrucks * 1.00 + this.heavyTrucksTractors * 0.95 + this.extraHeavyTrucksTractors * 1.00;
+                this.adjExpo = this.totalAdj
+                this.logUnit = Math.log(this.noOfPU);
+
+                this.baseLC = Math.exp(this.intercept1 + ((Math.log1p(this.logISORate) * this.logISORateCoef)));
+                this.sizeAdj = Math.exp(Math.log(this.noOfPU) * this.logUnitCoef);
+                this.mileageAdj = Math.exp(this.logMile * this.logMileCoef);
+                this.violFactor = Math.exp(this.priorViolCoef);
+                this.inspFactor = Math.exp(this.priorInspCoef);
+                this.crashFactor = Math.exp(this.priorCrashCoef);
+                this.LCM = 1 / this.targetLR * this.ALAEPerc;
+                this.Emod = 1;
+                this.oneMRate = this.baseLC * this.sizeAdj * this.mileageAdj * this.violFactor * this.inspFactor * this.crashFactor * this.LCM * this.Emod;
+                this.adjExpo = this.totalAdj
+                this.oneMPremium = this.oneMRate * this.totalAdj;
+
+                //this.baseFatality = Math.exp(this.intercept2);
+                this.cargoFactor = Math.exp(this.cargoCoef);
+                //this.weightFactor = Math.exp(this.LOG_AVGGWT1 * LOG_AVGGWT2);
+                //this.popDenFactor = Math.POPDENSITY * POPDENSITY_COUNTY_ADJ_INSP * POPDENSITY^2 * POPDENSITY_COUNTY_ADJ_INSP_SQRT;
+                //this.fatalCrash = this.baseFatality * this.cargoFactor * this.weightFactor * this.popDenFactor;
+                //this.factor1x1P = Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
+                //this.rate1x1P = this.factor1x1P * (this.oneMPremium / this.totalAdj);
             }
         );
         console.log("data here:" + data);

@@ -2,10 +2,10 @@
   <!-- Page Heading -->
   <div class="row">
     <div class="col-lg-12">
-      <h2 class="page-header"><i class="fa fa-cloud" style="color:#FF8C00"></i> Quest</h2>
+      <h2 class="page-header"><i class="fa fa-cloud" style="color:#FF8C00"></i> QUEST</h2>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <i class="fa fa-cloud" style="color:#FF8C00"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard/blankpage']">Quest</a>
+          <i class="fa fa-cloud" style="color:#FF8C00"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard/blankpage']">QUEST</a>
         </li>
         <li class="breadcrumb-item active"><i class="fa fa-file"></i> Initial Eligibility</li>
       </ol>
@@ -120,10 +120,10 @@
             value="no">No<br>
           <!--<p>{{isUnschedVehicleAuth}}</p>-->
 
-
-
         </fieldset>
 
+        <button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid">Next</button>
+        <button type="reset" class="btn btn-secondary">Save</button>
 
       </div>
 
@@ -155,8 +155,20 @@
         </fieldset>
 
         <fieldset class="form-group">
+          <label class="form-control-label">noOfPU:</label>
+          <input type="text" class="form-control" formControlName="noOfPU" [(ngModel)]="noOfPU">
+
+          <br>
+          <label class="form-control-label">totalAdj:</label>
+          <input type="text" class="form-control" formControlName="totalAdj" [(ngModel)]="totalAdj">
+
+          <br>
           <label class="form-control-label">Intercept:</label>
-          <input type="text" class="form-control" formControlName="intercept" [(ngModel)]="intercept">
+          <input type="text" class="form-control" formControlName="intercept1" [(ngModel)]="intercept1">
+
+          <br>
+          <label class="form-control-label">logUnit:</label>
+          <input type="text" class="form-control" formControlName="logUnit" [(ngModel)]="logUnit">
 
           <br>
           <label class="form-control-label">logUnitCoef:</label>
@@ -192,10 +204,7 @@
         </fieldset>
 
         <fieldset class="form-group">
-          <label class="form-control-label">logUnit:</label>
-          <input type="text" class="form-control" formControlName="logUnit" [(ngModel)]="logUnit">
 
-          <br>
           <label class="form-control-label">baseLC:</label>
           <input type="text" class="form-control" formControlName="baseLC" [(ngModel)]="baseLC">
 
@@ -219,14 +228,55 @@
           <label class="form-control-label">crashFactor:</label>
           <input type="text" class="form-control" formControlName="crashFactor" [(ngModel)]="crashFactor">
 
+          <br>
+          <label class="form-control-label">LCM:</label>
+          <input type="text" class="form-control" formControlName="LCM" [(ngModel)]="LCM">
 
+          <br>
+          <label class="form-control-label">Emod:</label>
+          <input type="text" class="form-control" formControlName="Emod" [(ngModel)]="Emod">
 
-          
+          <br>
+          <label class="form-control-label">oneMRate:</label>
+          <input type="text" class="form-control" formControlName="oneMRate" [(ngModel)]="oneMRate">
 
+          <br>
+          <label class="form-control-label">adjExpo:</label>
+          <input type="text" class="form-control" formControlName="adjExpo" [(ngModel)]="adjExpo">
 
+          <br>
+          <label class="form-control-label">oneMPremium:</label>
+          <input type="text" class="form-control" formControlName="oneMPremium" [(ngModel)]="oneMPremium">
         </fieldset>
 
+        <fieldset class="form-group">
+          <label class="form-control-label">baseFatality:</label>
+          <input type="text" class="form-control" formControlName="baseFatality" [(ngModel)]="baseFatality">
 
+          <br>
+          <label class="form-control-label">cargoFactor:</label>
+          <input type="text" class="form-control" formControlName="cargoFactor" [(ngModel)]="cargoFactor">
+
+          <br>
+          <label class="form-control-label">weightFactor:</label>
+          <input type="text" class="form-control" formControlName="weightFactor" [(ngModel)]="weightFactor">
+
+          <br>
+          <label class="form-control-label">popDenFactor:</label>
+          <input type="text" class="form-control" formControlName="popDenFactor" [(ngModel)]="popDenFactor">
+
+          <br>
+          <label class="form-control-label">fatalCrash:</label>
+          <input type="text" class="form-control" formControlName="fatalCrash" [(ngModel)]="fatalCrash">
+
+          <br>
+          <label class="form-control-label">factor1x1P:</label>
+          <input type="text" class="form-control" formControlName="factor1x1P" [(ngModel)]="factor1x1P">
+
+          <br>
+          <label class="form-control-label">rate1x1P:</label>
+          <input type="text" class="form-control" formControlName="rate1x1P" [(ngModel)]="rate1x1P">
+        </fieldset>
 
 
 
@@ -234,8 +284,8 @@
 
     </div>
 
-    <button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid">Next</button>
-    <button type="reset" class="btn btn-secondary">Save</button>
+    <!--<button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid">Next</button>-->
+    <!--<button type="reset" class="btn btn-secondary">Save</button>-->
 
   </form>
 
