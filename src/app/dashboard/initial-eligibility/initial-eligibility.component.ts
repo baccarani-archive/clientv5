@@ -129,7 +129,18 @@ export class InitialEligibility implements OnInit {
     factor1x1P: number = null; //Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
     rate1x1P: number = null; //this.factor1x1P * (this.oneMPremium / this.totalAdj);
 
+<<<<<<< HEAD
+    notEligibleSR: Boolean = false;
+    notEligibleYIB: Boolean = false;
+    notEligibleSPCH: Boolean = false;
+    notEligibleUV: Boolean = false;
+    notEligibleAL: Boolean = true;
+    notEligibleCGL: Boolean = true;
+    notEligibleEL: Boolean = true;
+
+=======
     notEligible: Boolean = false;
+>>>>>>> 0096c752bb7557c2762c75b1be26d1efbe0fa59a
 
     constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService, private data: DashboardService) {
 
@@ -303,9 +314,68 @@ export class InitialEligibility implements OnInit {
         this.data.currentExtraHeavyTrucksTractors.subscribe(extraHeavyTrucksTractors => this.extraHeavyTrucksTractors = extraHeavyTrucksTractors)
     }
 
-    isEligible(notEligible: Boolean) {
-        this.notEligible = notEligible;
-        return this.notEligible;
+    isEligibleSR(notEligible: Boolean) {
+
+        this.notEligibleSR = notEligible;
+        return this.notEligibleSR;
+
+    }
+
+    isEligibleYIB(notEligible: Boolean) {
+
+        this.notEligibleYIB = notEligible;
+        return this.notEligibleYIB;
+
+    }
+
+    isEligibleSPCH(notEligible: Boolean) {
+
+        this.notEligibleSPCH = notEligible;
+        return this.notEligibleSPCH;
+
+    }
+
+    isEligibleUV(notEligible: Boolean) {
+
+        this.notEligibleUV = notEligible;
+        return this.notEligibleUV;
+
+    }
+
+    rangeLimitAL() {
+
+        if (this.primaryALLimit >= 1000000 && this.primaryALLimit <= 2000000) {
+            this.notEligibleAL = false;
+            return this.notEligibleAL;
+        } else {
+            this.notEligibleAL = true;
+            return this.notEligibleAL;
+        }
+
+    }
+
+    rangeLimitEL() {
+
+        if (this.primaryELLimit >= 1000000 && this.primaryELLimit <= 2000000) {
+            this.notEligibleEL = false;
+            return this.notEligibleEL;
+        } else {
+            this.notEligibleEL = true;
+            return this.notEligibleEL;
+        }
+
+    }
+
+    rangeLimitCGL(notEligible: Boolean) {
+
+        if (this.primaryCGLimit >= 1000000 && this.primaryCGLimit <= 2000000) {
+            this.notEligibleCGL = false;
+            return this.notEligibleCGL;
+        } else {
+            this.notEligibleCGL = true;
+            return this.notEligibleCGL;
+        }
+
     }
 
 }
