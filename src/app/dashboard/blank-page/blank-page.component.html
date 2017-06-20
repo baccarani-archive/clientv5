@@ -1,4 +1,3 @@
-<!--
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-12">
@@ -11,7 +10,7 @@
     </div>
   </div>
 </div>
--->
+
 
 
 <!--
@@ -37,8 +36,8 @@
 -->
 
 <form [formGroup]="rForm">
-
   <div class="col-lg-12">
+
     <!--LEFT-->
     <div class="col-lg-6">
       <!--INITIAL ELIGIBILITY-->
@@ -53,7 +52,8 @@
 
                 <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
                   <label class="form-control-label" for="inputError">1st DOT #:</label>
-                  <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)">
+                  <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)" (change)="onQuest_T01_FatalityCoef($event)">
+                  <input type="text" class="form-control form-control-danger" formControlName="intercept2" [(ngModel)]="intercept2" (change)="onQuest_T01_FatalityCoef($event)">
                 </div>
                 <!--<input type="text" value="{{dot1}}">-->
 
@@ -204,11 +204,13 @@
 
 
                 <br><label>Heavy Trucks/Tractors:</label>
-                <input type="number" class="form-control" formControlName="heavyTrucksTractors" min="0" [(ngModel)]="heavyTrucksTractors" (change)="onDot1Change($event)">
+                <input type="number" class="form-control" formControlName="heavyTrucksTractors" min="0" [(ngModel)]="heavyTrucksTractors"
+                  (change)="onDot1Change($event)">
 
 
                 <br><label>Extra Heavy Trucks/Tractors:</label>
-                <input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0" [(ngModel)]="extraHeavyTrucksTractors" (change)="onDot1Change($event)">
+                <input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0" [(ngModel)]="extraHeavyTrucksTractors"
+                  (change)="onDot1Change($event)">
 
               </fieldset>
             </div>
@@ -310,162 +312,169 @@
 
       <button type="submit" class="btn btn-secondary">Request To Bind</button>
     </div>
+
     <!--RIGHT-->
     <div class="col-lg-6">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header card-default">
+              Pricing Engine
+            </div>
+            <div class="card-block bg-white">
+              <fieldset class="form-group">
+                <label class="form-control-label">Name Of Applicant:</label>
+                <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
 
-      <fieldset class="form-group">
-        <label class="form-control-label">Name Of Applicant:</label>
-        <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
+                <br>
+                <label class="form-control-label">State:</label>
+                <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
 
-        <br>
-        <label class="form-control-label">State:</label>
-        <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
+                <br>
+                <label class="form-control-label">ZIP:</label>
+                <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
 
-        <br>
-        <label class="form-control-label">ZIP:</label>
-        <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
+                <br>
+                <label class="form-control-label">Vehicle Type:</label>
+                <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
 
-        <br>
-        <label class="form-control-label">Vehicle Type:</label>
-        <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
+                <br>
+                <label class="form-control-label">DOT Revoked:</label>
+                <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
 
-        <br>
-        <label class="form-control-label">DOT Revoked:</label>
-        <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
+                <br>
+                <label class="form-control-label">Garbage Hauled:</label>
+                <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
+              </fieldset>
 
-        <br>
-        <label class="form-control-label">Garbage Hauled:</label>
-        <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
-      </fieldset>
+              <fieldset class="form-group">
+                <label class="form-control-label">noOfPU:</label>
+                <input type="text" class="form-control" formControlName="noOfPU" [(ngModel)]="noOfPU">
 
-      <fieldset class="form-group">
-        <label class="form-control-label">noOfPU:</label>
-        <input type="text" class="form-control" formControlName="noOfPU" [(ngModel)]="noOfPU">
+                <br>
+                <label class="form-control-label">totalAdj:</label>
+                <input type="text" class="form-control" formControlName="totalAdj" [(ngModel)]="totalAdj">
 
-        <br>
-        <label class="form-control-label">totalAdj:</label>
-        <input type="text" class="form-control" formControlName="totalAdj" [(ngModel)]="totalAdj">
+                <br>
+                <label class="form-control-label">Intercept:</label>
+                <input type="text" class="form-control" formControlName="intercept1" [(ngModel)]="intercept1">
 
-        <br>
-        <label class="form-control-label">Intercept:</label>
-        <input type="text" class="form-control" formControlName="intercept1" [(ngModel)]="intercept1">
+                <br>
+                <label class="form-control-label">logUnit:</label>
+                <input type="text" class="form-control" formControlName="logUnit" [(ngModel)]="logUnit">
 
-        <br>
-        <label class="form-control-label">logUnit:</label>
-        <input type="text" class="form-control" formControlName="logUnit" [(ngModel)]="logUnit">
+                <br>
+                <label class="form-control-label">logUnitCoef:</label>
+                <input type="text" class="form-control" formControlName="logUnitCoef" [(ngModel)]="logUnitCoef">
 
-        <br>
-        <label class="form-control-label">logUnitCoef:</label>
-        <input type="text" class="form-control" formControlName="logUnitCoef" [(ngModel)]="logUnitCoef">
+                <br>
+                <label class="form-control-label">logMile:</label>
+                <input type="text" class="form-control" formControlName="logMile" [(ngModel)]="logMile">
 
-        <br>
-        <label class="form-control-label">logMile:</label>
-        <input type="text" class="form-control" formControlName="logMile" [(ngModel)]="logMile">
+                <br>
+                <label class="form-control-label">logMileCoef:</label>
+                <input type="text" class="form-control" formControlName="logMileCoef" [(ngModel)]="logMileCoef">
 
-        <br>
-        <label class="form-control-label">logMileCoef:</label>
-        <input type="text" class="form-control" formControlName="logMileCoef" [(ngModel)]="logMileCoef">
+                <br>
+                <label class="form-control-label">logISORate:</label>
+                <input type="text" class="form-control" formControlName="logISORate" [(ngModel)]="logISORate">
 
-        <br>
-        <label class="form-control-label">logISORate:</label>
-        <input type="text" class="form-control" formControlName="logISORate" [(ngModel)]="logISORate">
+                <br>
+                <label class="form-control-label">logISORateCoef:</label>
+                <input type="text" class="form-control" formControlName="logISORateCoef" [(ngModel)]="logISORateCoef">
 
-        <br>
-        <label class="form-control-label">logISORateCoef:</label>
-        <input type="text" class="form-control" formControlName="logISORateCoef" [(ngModel)]="logISORateCoef">
+                <br>
+                <label class="form-control-label">priorViolCoef:</label>
+                <input type="text" class="form-control" formControlName="priorViolCoef" [(ngModel)]="priorViolCoef">
 
-        <br>
-        <label class="form-control-label">priorViolCoef:</label>
-        <input type="text" class="form-control" formControlName="priorViolCoef" [(ngModel)]="priorViolCoef">
+                <br>
+                <label class="form-control-label">priorInspCoef:</label>
+                <input type="text" class="form-control" formControlName="priorInspCoef" [(ngModel)]="priorInspCoef">
 
-        <br>
-        <label class="form-control-label">priorInspCoef:</label>
-        <input type="text" class="form-control" formControlName="priorInspCoef" [(ngModel)]="priorInspCoef">
+                <br>
+                <label class="form-control-label">priorCrashCoef:</label>
+                <input type="text" class="form-control" formControlName="priorCrashCoef" [(ngModel)]="priorCrashCoef">
+              </fieldset>
 
-        <br>
-        <label class="form-control-label">priorCrashCoef:</label>
-        <input type="text" class="form-control" formControlName="priorCrashCoef" [(ngModel)]="priorCrashCoef">
-      </fieldset>
+              <fieldset class="form-group">
 
-      <fieldset class="form-group">
+                <label class="form-control-label">baseLC:</label>
+                <input type="text" class="form-control" formControlName="baseLC" [(ngModel)]="baseLC">
 
-        <label class="form-control-label">baseLC:</label>
-        <input type="text" class="form-control" formControlName="baseLC" [(ngModel)]="baseLC">
+                <br>
+                <label class="form-control-label">sizeAdj:</label>
+                <input type="text" class="form-control" formControlName="sizeAdj" [(ngModel)]="sizeAdj">
 
-        <br>
-        <label class="form-control-label">sizeAdj:</label>
-        <input type="text" class="form-control" formControlName="sizeAdj" [(ngModel)]="sizeAdj">
+                <br>
+                <label class="form-control-label">mileageAdj:</label>
+                <input type="text" class="form-control" formControlName="mileageAdj" [(ngModel)]="mileageAdj">
 
-        <br>
-        <label class="form-control-label">mileageAdj:</label>
-        <input type="text" class="form-control" formControlName="mileageAdj" [(ngModel)]="mileageAdj">
+                <br>
+                <label class="form-control-label">violFactor:</label>
+                <input type="text" class="form-control" formControlName="violFactor" [(ngModel)]="violFactor">
 
-        <br>
-        <label class="form-control-label">violFactor:</label>
-        <input type="text" class="form-control" formControlName="violFactor" [(ngModel)]="violFactor">
+                <br>
+                <label class="form-control-label">inspFactor:</label>
+                <input type="text" class="form-control" formControlName="inspFactor" [(ngModel)]="inspFactor">
 
-        <br>
-        <label class="form-control-label">inspFactor:</label>
-        <input type="text" class="form-control" formControlName="inspFactor" [(ngModel)]="inspFactor">
+                <br>
+                <label class="form-control-label">crashFactor:</label>
+                <input type="text" class="form-control" formControlName="crashFactor" [(ngModel)]="crashFactor">
 
-        <br>
-        <label class="form-control-label">crashFactor:</label>
-        <input type="text" class="form-control" formControlName="crashFactor" [(ngModel)]="crashFactor">
+                <br>
+                <label class="form-control-label">LCM:</label>
+                <input type="text" class="form-control" formControlName="LCM" [(ngModel)]="LCM">
 
-        <br>
-        <label class="form-control-label">LCM:</label>
-        <input type="text" class="form-control" formControlName="LCM" [(ngModel)]="LCM">
+                <br>
+                <label class="form-control-label">Emod:</label>
+                <input type="text" class="form-control" formControlName="Emod" [(ngModel)]="Emod">
 
-        <br>
-        <label class="form-control-label">Emod:</label>
-        <input type="text" class="form-control" formControlName="Emod" [(ngModel)]="Emod">
+                <br>
+                <label class="form-control-label">oneMRate:</label>
+                <input type="text" class="form-control" formControlName="oneMRate" [(ngModel)]="oneMRate">
 
-        <br>
-        <label class="form-control-label">oneMRate:</label>
-        <input type="text" class="form-control" formControlName="oneMRate" [(ngModel)]="oneMRate">
+                <br>
+                <label class="form-control-label">adjExpo:</label>
+                <input type="text" class="form-control" formControlName="adjExpo" [(ngModel)]="adjExpo">
 
-        <br>
-        <label class="form-control-label">adjExpo:</label>
-        <input type="text" class="form-control" formControlName="adjExpo" [(ngModel)]="adjExpo">
+                <br>
+                <label class="form-control-label">oneMPremium:</label>
+                <input type="text" class="form-control" formControlName="oneMPremium" [(ngModel)]="oneMPremium">
+              </fieldset>
 
-        <br>
-        <label class="form-control-label">oneMPremium:</label>
-        <input type="text" class="form-control" formControlName="oneMPremium" [(ngModel)]="oneMPremium">
-      </fieldset>
+              <fieldset class="form-group">
+                <label class="form-control-label">baseFatality:</label>
+                <input type="text" class="form-control" formControlName="baseFatality" [(ngModel)]="baseFatality">
 
-      <fieldset class="form-group">
-        <label class="form-control-label">baseFatality:</label>
-        <input type="text" class="form-control" formControlName="baseFatality" [(ngModel)]="baseFatality">
+                <br>
+                <label class="form-control-label">cargoFactor:</label>
+                <input type="text" class="form-control" formControlName="cargoFactor" [(ngModel)]="cargoFactor">
 
-        <br>
-        <label class="form-control-label">cargoFactor:</label>
-        <input type="text" class="form-control" formControlName="cargoFactor" [(ngModel)]="cargoFactor">
+                <br>
+                <label class="form-control-label">weightFactor:</label>
+                <input type="text" class="form-control" formControlName="weightFactor" [(ngModel)]="weightFactor">
 
-        <br>
-        <label class="form-control-label">weightFactor:</label>
-        <input type="text" class="form-control" formControlName="weightFactor" [(ngModel)]="weightFactor">
+                <br>
+                <label class="form-control-label">popDenFactor:</label>
+                <input type="text" class="form-control" formControlName="popDenFactor" [(ngModel)]="popDenFactor">
 
-        <br>
-        <label class="form-control-label">popDenFactor:</label>
-        <input type="text" class="form-control" formControlName="popDenFactor" [(ngModel)]="popDenFactor">
+                <br>
+                <label class="form-control-label">fatalCrash:</label>
+                <input type="text" class="form-control" formControlName="fatalCrash" [(ngModel)]="fatalCrash">
 
-        <br>
-        <label class="form-control-label">fatalCrash:</label>
-        <input type="text" class="form-control" formControlName="fatalCrash" [(ngModel)]="fatalCrash">
+                <br>
+                <label class="form-control-label">factor1x1P:</label>
+                <input type="text" class="form-control" formControlName="factor1x1P" [(ngModel)]="factor1x1P">
 
-        <br>
-        <label class="form-control-label">factor1x1P:</label>
-        <input type="text" class="form-control" formControlName="factor1x1P" [(ngModel)]="factor1x1P">
-
-        <br>
-        <label class="form-control-label">rate1x1P:</label>
-        <input type="text" class="form-control" formControlName="rate1x1P" [(ngModel)]="rate1x1P">
-      </fieldset>
-
-
-
+                <br>
+                <label class="form-control-label">rate1x1P:</label>
+                <input type="text" class="form-control" formControlName="rate1x1P" [(ngModel)]="rate1x1P">
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
-
 </form>

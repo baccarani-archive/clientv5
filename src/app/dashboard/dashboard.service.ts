@@ -5,7 +5,8 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class InitialEligibilityService {
 
-  private loginUrl = 'http://localhost:8080/getDOTData';
+  private DOTData = 'http://localhost:8080/getDOTData';
+  private Quest_T01_FatalityCoef = 'http://localhost:8080/getQuest_T01_FatalityCoef';
 
   constructor(private http: Http) { }
 
@@ -13,7 +14,16 @@ export class InitialEligibilityService {
     const bodyString = JSON.stringify({ 'dotNum': dotNum }); // Stringify payload
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ 'headers': headers });
-    return this.http.post(this.loginUrl, bodyString, options)
+    return this.http.post(this.DOTData, bodyString, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getQuest_T01_FatalityCoef(T01_Version: number): Observable<any> {
+    const bodyString = JSON.stringify({ 'T01_Version': T01_Version }); // Stringify payload
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ 'headers': headers });
+    return this.http.post(this.Quest_T01_FatalityCoef, bodyString, options)
       .map(this.extractData)
       .catch(this.handleError);
   }

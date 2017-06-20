@@ -172,6 +172,7 @@ export class BlankPageComponent implements OnInit {
             'totalAdj': [null],
 
             'intercept1': [null],
+            'intercept2': [null],
             'logUnit': [null],
             'logUnitCoef': [null],
             'logMile': [null],
@@ -309,6 +310,19 @@ export class BlankPageComponent implements OnInit {
             }
         );
         console.log("data here:" + data);
+    }
+
+    onQuest_T01_FatalityCoef(event: any) {
+        //alert("dot 2 value is: "+this.dot2);
+        let data = this.phaseOneService.getQuest_T01_FatalityCoef(1);
+        data.subscribe(
+            data => {
+                console.log("data:" + data);
+                let response = JSON.parse(data);
+                this.intercept2 = response.QUEST_T01.intercept2;
+            }
+        );
+        console.log("data here:" + this.intercept2);
     }
 
     ngOnInit() {
