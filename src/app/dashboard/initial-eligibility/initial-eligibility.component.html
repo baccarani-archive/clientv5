@@ -59,9 +59,8 @@
             value="Unsatisfactory">Unsatisfactory<br>
           <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
             value="NotRated">Not Rated
-          <br>
-          <br>
-          <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">Ineligible due to ___</div>
+          <br><br>
+          <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">INELIGIBLE DUE TO: ___</div>
           <!--<p>{{safetyRating}}</p>-->
           <!--<p>{{notEligibleSR}}</p>-->
 
@@ -81,7 +80,7 @@
             <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(true)"
               name="isDrivingExperience" value="no">No<br>
             <br>
-            <div class="alert" [hidden]="isDrivingExperience === 'yes' || isDrivingExperience === null">Ineligible due to ___</div>
+            <div class="alert" [hidden]="isDrivingExperience === 'yes' || isDrivingExperience === null">INELIGIBLE DUE TO: Drivers With Less Than 5 Years Of Similar Experience</div>
           </div>
           <!--<p>{{isDrivingExperience}}</p>-->
           <!--<p>{{notEligibleYIB}}</p>-->
@@ -113,12 +112,13 @@
           <!--Truckes Only-->
           <div>
             <label class="form-control-label">CGL Class 99793 (Truckers) Only: </label><br>
-            <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" value=yes>Yes<br>
-            <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" value=no>No<br>
+            <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(false)" value=yes>Yes<br>
+            <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(true)" value=no>No<br>
             <br>
           </div>
-          <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Ineligible due to ___</div>
+          <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Referral To Small Fleet Team Required Due To: CGL Exposure Other Than Class Code 99793 (Truckers)</div>
           <!--<p>{{truckersOnly}}</p>-->
+          <!--<p>{{notEligibleTO}}</p>-->
 
           <!--Primary EL-->
           <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryELLimit'].valid && rForm.controls['primaryELLimit'].touched}">
@@ -139,7 +139,7 @@
           <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" (change)="isEligibleSPCH(false)"
             name="isProvidedCommodities" value=no>No<br>
           <br>
-          <div class="alert" [hidden]="isProvidedCommodities === 'no' || isProvidedCommodities === null">Ineligible due to ___</div>
+          <div class="alert" [hidden]="isProvidedCommodities === 'no' || isProvidedCommodities === null">INELIGIBLE DUE TO: Services Provided/ Commodities Hauled</div>
           <!--<p>{{isProvidedCommodities}}</p>-->
           <!--<p>{{notEligibleSPCH}}</p>-->
 
@@ -151,13 +151,13 @@
           <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = false" formControlName="isUnschedVehicleAuth" (change)="isEligibleUV(false)"
             name="isUnschedVehicleAuth" value="no">No<br>
           <br>
-          <div class="alert" [hidden]="isUnschedVehicleAuth === 'no' || isUnschedVehicleAuth === null">Ineligible due to ___</div>
+          <div class="alert" [hidden]="isUnschedVehicleAuth === 'no' || isUnschedVehicleAuth === null">Referral To Small Fleet Team Required Due To: Unscheduled Vehicles Operated Under The Applicant's Authority</div>
           <!--<p>{{isUnschedVehicleAuth}}</p>-->
           <!--<p>{{notEligibleUV}}</p>-->
 
         </fieldset>
 
-        <button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid || notEligible === true">Next</button>
+        <button type="submit" class="btn btn-secondary" [disabled]="(!rForm.valid && notEligible === true)">Next</button><!--!rForm.valid && notEligible === true-->
         <button type="reset" class="btn btn-secondary">Save</button>
         <p>{{notEligible}}</p>
 

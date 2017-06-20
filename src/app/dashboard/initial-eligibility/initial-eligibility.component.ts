@@ -133,6 +133,7 @@ export class InitialEligibility implements OnInit {
     notEligibleSR: Boolean = false;
     notEligibleYIB: Boolean = false;
     notEligibleSPCH: Boolean = false;
+    notEligibleTO: Boolean = false;
     notEligibleUV: Boolean = false;
     notEligibleAL: Boolean = true;
     notEligibleCGL: Boolean = true;
@@ -157,10 +158,10 @@ export class InitialEligibility implements OnInit {
             'safetyRating': [null, Validators.required],
             'yearInBus': [null, Validators.required],
             'isDrivingExperience': [null, Validators.required],
-            'primaryALLimit': [null, Validators.compose([Validators.required, Validators.minLength(7)])],
-            'primaryCGLimit': [null, Validators.compose([Validators.required, Validators.minLength(7)])],
+            'primaryALLimit': [null, Validators.required],
+            'primaryCGLimit': [null, Validators.required],
             'truckersOnly': [null, Validators.required],
-            'primaryELLimit': [null, Validators.compose([Validators.required, Validators.minLength(7)])],
+            'primaryELLimit': [null, Validators.required],
             'isProvidedCommodities': [null, Validators.required],
             'isUnschedVehicleAuth': [null, Validators.required],
 
@@ -328,6 +329,14 @@ export class InitialEligibility implements OnInit {
 
     }
 
+    isEligibleTO(notEligible: Boolean) {
+
+        this.notEligibleTO = notEligible;
+        this.isEligible();
+        return this.notEligibleTO;
+
+    }
+
     isEligibleSPCH(notEligible: Boolean) {
 
         this.notEligibleSPCH = notEligible;
@@ -387,7 +396,7 @@ export class InitialEligibility implements OnInit {
     }
 
     isEligible() {
-        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false){
+        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false && this.notEligibleTO === false){
             this.notEligible = false;
             return this.notEligible;
         } else {
