@@ -315,13 +315,15 @@ export class InitialEligibility implements OnInit {
     isEligibleSR(notEligible: Boolean) {
 
         this.notEligibleSR = notEligible;
+        this.isEligible();
         return this.notEligibleSR;
-
+        
     }
 
     isEligibleYIB(notEligible: Boolean) {
 
         this.notEligibleYIB = notEligible;
+        this.isEligible();
         return this.notEligibleYIB;
 
     }
@@ -329,6 +331,7 @@ export class InitialEligibility implements OnInit {
     isEligibleSPCH(notEligible: Boolean) {
 
         this.notEligibleSPCH = notEligible;
+        this.isEligible();
         return this.notEligibleSPCH;
 
     }
@@ -336,6 +339,7 @@ export class InitialEligibility implements OnInit {
     isEligibleUV(notEligible: Boolean) {
 
         this.notEligibleUV = notEligible;
+        this.isEligible();
         return this.notEligibleUV;
 
     }
@@ -344,9 +348,11 @@ export class InitialEligibility implements OnInit {
 
         if (this.primaryALLimit >= 1000000 && this.primaryALLimit <= 2000000) {
             this.notEligibleAL = false;
+            this.isEligible();
             return this.notEligibleAL;
         } else {
             this.notEligibleAL = true;
+            this.isEligible();
             return this.notEligibleAL;
         }
 
@@ -356,9 +362,11 @@ export class InitialEligibility implements OnInit {
 
         if (this.primaryELLimit >= 1000000 && this.primaryELLimit <= 2000000) {
             this.notEligibleEL = false;
+            this.isEligible();
             return this.notEligibleEL;
         } else {
             this.notEligibleEL = true;
+            this.isEligible();
             return this.notEligibleEL;
         }
 
@@ -368,9 +376,11 @@ export class InitialEligibility implements OnInit {
 
         if (this.primaryCGLimit >= 1000000 && this.primaryCGLimit <= 2000000) {
             this.notEligibleCGL = false;
+            this.isEligible();
             return this.notEligibleCGL;
         } else {
             this.notEligibleCGL = true;
+            this.isEligible();
             return this.notEligibleCGL;
         }
 
