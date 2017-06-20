@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InitialEligibilityService } from './initial-eligibility.service';
-import { DashboardService } from './../dashboard.service';
 import { Dashboard } from './../dashboard.interface';
 
 
@@ -9,7 +8,6 @@ import { Dashboard } from './../dashboard.interface';
 
     selector: 'app-initial-eligibility',
     templateUrl: './initial-eligibility.component.html',
-    providers: [DashboardService],
     styleUrls: ['./initial-eligibility.component.css']
 
 })
@@ -140,7 +138,7 @@ export class InitialEligibility implements OnInit {
     notEligible: Boolean = true;
 
 
-    constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService, private data: DashboardService) {
+    constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService ) {
 
         this.rForm = fb.group({
 
@@ -308,8 +306,8 @@ export class InitialEligibility implements OnInit {
     }
 
     ngOnInit() {
-        this.data.currentPrivatePassenger.subscribe(privatePassenger => this.privatePassenger = privatePassenger)
-        this.data.currentExtraHeavyTrucksTractors.subscribe(extraHeavyTrucksTractors => this.extraHeavyTrucksTractors = extraHeavyTrucksTractors)
+        //this.data.currentPrivatePassenger.subscribe(privatePassenger => this.privatePassenger = privatePassenger)
+        //this.data.currentExtraHeavyTrucksTractors.subscribe(extraHeavyTrucksTractors => this.extraHeavyTrucksTractors = extraHeavyTrucksTractors)
     }
 
     isEligibleSR(notEligible: Boolean) {

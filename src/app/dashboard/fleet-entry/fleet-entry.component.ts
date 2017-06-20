@@ -1,12 +1,12 @@
 
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DashboardService } from './../dashboard.service';
+
 
 @Component({
     selector: 'app-fleet-entry',
     templateUrl: 'fleet-entry.component.html',
-    providers: [DashboardService],
+
 })
 
 export class FleetEntryComponent implements OnInit {
@@ -24,7 +24,7 @@ export class FleetEntryComponent implements OnInit {
 
     message: string;
 
-    constructor(private fb: FormBuilder, private data: DashboardService) {
+    constructor(private fb: FormBuilder) {
 
         this.rForm = fb.group({
             'privatePassenger': [null],
@@ -39,13 +39,9 @@ export class FleetEntryComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.data.currentPrivatePassenger.subscribe(privatePassenger => this.privatePassenger = privatePassenger),
-        this.data.currentExtraHeavyTrucksTractors.subscribe(extraHeavyTrucksTractors => this.extraHeavyTrucksTractors = extraHeavyTrucksTractors)
+
     }
 
-    newExtraHeavyTrucksTractors() {
-        this.data.changeExtraHeavyTrucksTractors(1);
-    }
 
 }
 
