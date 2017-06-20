@@ -47,13 +47,15 @@
 
 
 					<br><label>Extra Heavy Trucks/Tractors:</label>
-					<input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0" [(ngModel)]="extraHeavyTrucksTractors" (input)="newExtraHeavyTrucksTractors()">
+					<input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0">
 
 				</fieldset>
+
+				<button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid"a href="Javascript:void(0)" [routerLink]="['/dashboard/primaryliability']">Next</button>
+				<button type="reset" class="btn btn-secondary">Save</button>
 			</div>
 		</div>
-		<button type="submit" class="btn btn-secondary">Next</button>
-		<button type="reset" class="btn btn-secondary">Save</button>
+
 	</form>
 
 </div>
