@@ -112,13 +112,13 @@ export class BlankPageComponent implements OnInit {
     //Placeholder
     cargoCoef: number = null;
     LOG_AVGGWT1: number = null;
-    //LOG_AVGGWT2: number = null;
+    LOG_AVGGWT2: number = null;
     popDensity: number = null;
-    //POPDENSITY_COUNTY_ADJ_INSP: number = null;
-    //POPDENSITY_COUNTY_ADJ_INSP_SQRT: number = null;
+    POPDENSITY_COUNTY_ADJ_INSP: number = null;
+    POPDENSITY_COUNTY_ADJ_INSP_SQRT: number = null;
 
     //1x1 Factor Calculation
-    baseFatality: number = null; //Math.exp(this.intercept2);
+    baseFatality: number = null //Math.exp(this.intercept2);
     cargoFactor: number = null; //Math.exp(this.cargoCoef);
     weightFactor: number = null; //Math.exp(this.LOG_AVGGWT1 * LOG_AVGGWT2);
     popDenFactor: number = null; //Math.POPDENSITY * POPDENSITY_COUNTY_ADJ_INSP * POPDENSITY^2 * POPDENSITY_COUNTY_ADJ_INSP_SQRT;
@@ -185,10 +185,10 @@ export class BlankPageComponent implements OnInit {
 
             'cargoCoef': [null],
             'LOG_AVGGWT1': [null],
-            //'LOG_AVGGWT2': [null],
+            'LOG_AVGGWT2': [null],
             'popDensity': [null],
-            //'POPDENSITY_COUNTY_ADJ_INSP': [null],
-            //'POPDENSITY_COUNTY_ADJ_INSP_SQRT': [null],
+            'POPDENSITY_COUNTY_ADJ_INSP': [null],
+            'POPDENSITY_COUNTY_ADJ_INSP_SQRT': [null],
 
             'baseLC': [null],
             'sizeAdj': [null],
@@ -300,13 +300,13 @@ export class BlankPageComponent implements OnInit {
                 this.adjExpo = this.totalAdj
                 this.oneMPremium = this.oneMRate * this.totalAdj;
 
-                //this.baseFatality = Math.exp(this.intercept2);
+                this.baseFatality = Math.exp(this.intercept2) * 100;
                 this.cargoFactor = Math.exp(this.cargoCoef);
-                //this.weightFactor = Math.exp(this.LOG_AVGGWT1 * LOG_AVGGWT2);
-                //this.popDenFactor = Math.POPDENSITY * POPDENSITY_COUNTY_ADJ_INSP * POPDENSITY^2 * POPDENSITY_COUNTY_ADJ_INSP_SQRT;
-                //this.fatalCrash = this.baseFatality * this.cargoFactor * this.weightFactor * this.popDenFactor;
-                //this.factor1x1P = Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
-                //this.rate1x1P = this.factor1x1P * (this.oneMPremium / this.totalAdj);
+                this.weightFactor = Math.exp(this.LOG_AVGGWT1 * this.LOG_AVGGWT2);
+                this.popDenFactor = Math.exp(this.popDensity * this.POPDENSITY_COUNTY_ADJ_INSP * (this.popDensity * this.popDensity) * this.POPDENSITY_COUNTY_ADJ_INSP_SQRT);
+                this.fatalCrash = this.baseFatality * this.cargoFactor * this.weightFactor * this.popDenFactor;
+                this.factor1x1P = Math.max(100 * (0.17), 100 * (0.17 * (this.fatalCrash / 3.6)));
+                this.rate1x1P = (this.factor1x1P / 100) * (this.oneMPremium / this.totalAdj);
             }
         );
         console.log("data here:" + data);
@@ -320,9 +320,12 @@ export class BlankPageComponent implements OnInit {
                 console.log("data:" + data);
                 let response = JSON.parse(data);
                 this.intercept2 = response.QUEST_T01.intercept2;
+                this.LOG_AVGGWT2 = response.QUEST_T01.LOG_AVGGWT2;
+                this.POPDENSITY_COUNTY_ADJ_INSP = response.QUEST_T01.POPDENSITY_COUNTY_ADJ_INSP;
+                this.POPDENSITY_COUNTY_ADJ_INSP_SQRT = response.QUEST_T01.POPDENSITY_COUNTY_ADJ_INSP_SQRT;
             }
         );
-        console.log("data here:" + this.intercept2);
+        console.log("data here:" + data);
     }
 
     ngOnInit() {
