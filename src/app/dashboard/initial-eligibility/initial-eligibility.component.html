@@ -48,15 +48,14 @@
 
           <br>
           <label>Safety Rating:</label><br>
-          <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" value="Satisfactory">Satisfactory<br>
-          <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" value="Conditional">Conditional<br>
-          <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" value="Unsatisfactory">Unsatisfactory<br>
-          <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" value="NotRated">Not
+          <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change) ="isEligible(false)" value="Satisfactory">Satisfactory<br>
+          <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change) ="isEligible(false)" value="Conditional">Conditional<br>
+          <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change) ="isEligible(true)" value="Unsatisfactory">Unsatisfactory<br>
+          <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change) ="isEligible(true)" value="NotRated">Not
           Rated
           <br>
           <br><div class="alert" style="background-color: red" [hidden] = "safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">Ineligible due to ___</div>
           <!--<p>{{safetyRating}}</p>-->
-          
 
           <br>
           <div [ngClass]="{'form-group has-danger' : !rForm.controls['yearInBus'].valid && rForm.controls['yearInBus'].touched}">
@@ -68,8 +67,8 @@
           <br>
           <div [hidden]="yearInBus > 3 || yearInBus === null">
             <label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label><br>
-            <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" name="isDrivingExperience" value="yes">Yes<br>
-            <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" name="isDrivingExperience" value="no">No<br>
+            <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change) ="isEligible(false)" name="isDrivingExperience" value="yes">Yes<br>
+            <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change) ="isEligible(true)" name="isDrivingExperience" value="no">No<br>
             <br><div class="alert" style="background-color: red" [hidden] = "isDrivingExperience === 'yes' || isDrivingExperience === null">Ineligible due to ___</div>
           </div>
           <!--<p>{{isDrivingExperience}}</p>-->
@@ -107,25 +106,25 @@
 
           <br>
           <label>Any Of The Following Services Provided Or Commodities Hauled:</label><br>
-          <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" name="isProvidedCommodities"
+          <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" (change) ="isEligible(true)" name="isProvidedCommodities"
             value=yes>Yes<br>
-          <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" name="isProvidedCommodities"
+          <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" (change) ="isEligible(false)" name="isProvidedCommodities"
             value=no>No<br>
           <br><div class="alert" style="background-color: red" [hidden] = "isProvidedCommodities === 'no' || isProvidedCommodities === null">Ineligible due to ___</div>
           <!--<p>{{isProvidedCommodities}}</p>-->
 
           <br>
           <label>Unscheduled Vehicles Operated Under The Applicant's Authority:</label><br>
-          <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = true" formControlName="isUnschedVehicleAuth" name="isUnschedVehicleAuth"
+          <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = true" formControlName="isUnschedVehicleAuth" (change) ="isEligible(true)" name="isUnschedVehicleAuth"
             value="yes">Yes<br>
-          <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = false" formControlName="isUnschedVehicleAuth" name="isUnschedVehicleAuth"
+          <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = false" formControlName="isUnschedVehicleAuth" (change) ="isEligible(false)" name="isUnschedVehicleAuth"
             value="no">No<br>
           <br><div class="alert" style="background-color: red" [hidden] = "isUnschedVehicleAuth === 'no' || isUnschedVehicleAuth === null">Ineligible due to ___</div>
           <!--<p>{{isUnschedVehicleAuth}}</p>-->
 
         </fieldset>
 
-        <button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid">Next</button>
+        <button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid || notEligible === true">Next</button>
         <button type="reset" class="btn btn-secondary">Save</button>
 
       </div>

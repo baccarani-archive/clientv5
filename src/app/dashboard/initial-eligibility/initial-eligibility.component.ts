@@ -131,6 +131,8 @@ export class InitialEligibility implements OnInit {
     factor1x1P: number = null; //Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
     rate1x1P: number = null; //this.factor1x1P * (this.oneMPremium / this.totalAdj);
 
+    notEligible: Boolean = false; 
+
     constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService, private data: DashboardService) {
 
         this.rForm = fb.group({
@@ -331,5 +333,9 @@ export class InitialEligibility implements OnInit {
         this.data.currentExtraHeavyTrucksTractors.subscribe(extraHeavyTrucksTractors => this.extraHeavyTrucksTractors = extraHeavyTrucksTractors)
     }
 
+    isEligible(notEligible: Boolean) {
+        this.notEligible = notEligible;
+        return this.notEligible;
+    }
 
 }
