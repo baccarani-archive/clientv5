@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InitialEligibilityService } from './initial-eligibility.service';
 import { DashboardService } from './../dashboard.service';
+import { Dashboard } from './../dashboard.interface';
 
 
 @Component({
