@@ -32,7 +32,7 @@ export class InitialEligibility implements OnInit {
     isDrivingExperience: string = null;
     primaryALLimit: number = null;
     primaryCGLimit: number = null;
-    truckersOnly: string = '';
+    truckersOnly: string = null;
     primaryELLimit: number = null;
     isProvidedCommodities: string = null;
     isUnschedVehicleAuth: string = null;
@@ -128,7 +128,6 @@ export class InitialEligibility implements OnInit {
     factor1x1P: number = null; //Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
     rate1x1P: number = null; //this.factor1x1P * (this.oneMPremium / this.totalAdj);
 
-<<<<<<< HEAD
     notEligibleSR: Boolean = false;
     notEligibleYIB: Boolean = false;
     notEligibleSPCH: Boolean = false;
@@ -136,10 +135,8 @@ export class InitialEligibility implements OnInit {
     notEligibleAL: Boolean = true;
     notEligibleCGL: Boolean = true;
     notEligibleEL: Boolean = true;
+    notEligible: Boolean = true;
 
-=======
-    notEligible: Boolean = false;
->>>>>>> 0096c752bb7557c2762c75b1be26d1efbe0fa59a
 
     constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService, private data: DashboardService) {
 
@@ -365,7 +362,7 @@ export class InitialEligibility implements OnInit {
 
     }
 
-    rangeLimitCGL(notEligible: Boolean) {
+    rangeLimitCGL() {
 
         if (this.primaryCGLimit >= 1000000 && this.primaryCGLimit <= 2000000) {
             this.notEligibleCGL = false;
@@ -375,6 +372,16 @@ export class InitialEligibility implements OnInit {
             return this.notEligibleCGL;
         }
 
+    }
+
+    isEligible() {
+        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false){
+            this.notEligible = false;
+            return this.notEligible;
+        } else {
+            this.notEligible = true;
+            return this.notEligible;
+        }
     }
 
 }
