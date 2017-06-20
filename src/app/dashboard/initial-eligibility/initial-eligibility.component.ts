@@ -16,6 +16,7 @@ import { Dashboard } from './../dashboard.interface';
 
 export class InitialEligibility implements OnInit {
 
+
     rForm: FormGroup;
 
     applicantName: string = '';
@@ -129,7 +130,6 @@ export class InitialEligibility implements OnInit {
     factor1x1P: number = null; //Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
     rate1x1P: number = null; //this.factor1x1P * (this.oneMPremium / this.totalAdj);
 
-<<<<<<< HEAD
     notEligibleSR: Boolean = false;
     notEligibleYIB: Boolean = false;
     notEligibleSPCH: Boolean = false;
@@ -138,9 +138,6 @@ export class InitialEligibility implements OnInit {
     notEligibleCGL: Boolean = true;
     notEligibleEL: Boolean = true;
 
-=======
-    notEligible: Boolean = false;
->>>>>>> 0096c752bb7557c2762c75b1be26d1efbe0fa59a
 
     constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService, private data: DashboardService) {
 

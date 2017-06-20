@@ -11,13 +11,5 @@ export interface Dashboard {
     primaryELLimit: number;
     isProvidedCommodities: string;
     isUnschedVehicleAuth: string;
-    applicantName: string;
-    stateCode: string;
-    zip: string;
-    vehicleType: string;
-    hasDOTRevoked: string;
-    garbageHaul: string;
 }
 
-export interface InitialEligibility {
-}

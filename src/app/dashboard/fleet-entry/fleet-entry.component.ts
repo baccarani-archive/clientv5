@@ -27,13 +27,13 @@ export class FleetEntryComponent implements OnInit {
     constructor(private fb: FormBuilder, private data: DashboardService) {
 
         this.rForm = fb.group({
-            'privatePassenger': [null, Validators.required],
-            'lightTrucks': [null, Validators.required],
-            'mediumTrucks': [null, Validators.required],
-            'heavyTrucks': [null, Validators.required],
-            'extraHeavyTrucks': [null, Validators.required],
-            'heavyTrucksTractors': [null, Validators.required],
-            'extraHeavyTrucksTractors': [null, Validators.required],
+            'privatePassenger': [null],
+            'lightTrucks': [null],
+            'mediumTrucks': [null],
+            'heavyTrucks': [null],
+            'extraHeavyTrucks': [null],
+            'heavyTrucksTractors': [null],
+            'extraHeavyTrucksTractors': [null],
         });
 
     }
