@@ -39,13 +39,13 @@
 <form [formGroup]="rForm">
 
   <div class="col-lg-12">
-
+    <!--LEFT-->
     <div class="col-lg-6">
-
+      <!--INITIAL ELIGIBILITY-->
       <div class="row">
         <div class="col-sm-12">
-          <div class="card card-warning card-inverse mb-12">
-            <div class="card-header card-warning">
+          <div class="card">
+            <div class="card-header card-default">
               Initial Eligibility
             </div>
             <div class="card-block bg-white">
@@ -177,38 +177,38 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <div class="card card-warning card-inverse mb-12">
-            <div class="card-header card-warning">
+          <div class="card">
+            <div class="card-header card-default">
               Fleet Entry
             </div>
             <div class="card-block bg-white">
               <fieldset class="form-group">
 
                 <label>Private Passenger:</label>
-                <input type="number" class="form-control" formControlName="privatePassenger" min="0">
+                <input type="number" class="form-control" formControlName="privatePassenger" min="0" [(ngModel)]="privatePassenger" (change)="onDot1Change($event)">
 
                 <br><label>Light Trucks:</label>
-                <input type="number" class="form-control" formControlName="lightTrucks" min="0">
+                <input type="number" class="form-control" formControlName="lightTrucks" min="0" [(ngModel)]="lightTrucks" (change)="onDot1Change($event)">
 
 
                 <br><label>Medium Trucks:</label>
-                <input type="number" class="form-control" formControlName="mediumTrucks" min="0">
+                <input type="number" class="form-control" formControlName="mediumTrucks" min="0" [(ngModel)]="mediumTrucks" (change)="onDot1Change($event)">
 
 
                 <br><label>Heavy Trucks:</label>
-                <input type="number" class="form-control" formControlName="heavyTrucks" min="0">
+                <input type="number" class="form-control" formControlName="heavyTrucks" min="0" [(ngModel)]="heavyTrucks" (change)="onDot1Change($event)">
 
 
                 <br><label>Extra Heavy Trucks:</label>
-                <input type="number" class="form-control" formControlName="extraHeavyTrucks" min="0">
+                <input type="number" class="form-control" formControlName="extraHeavyTrucks" min="0" [(ngModel)]="extraHeavyTrucks" (change)="onDot1Change($event)">
 
 
                 <br><label>Heavy Trucks/Tractors:</label>
-                <input type="number" class="form-control" formControlName="heavyTrucksTractors" min="0">
+                <input type="number" class="form-control" formControlName="heavyTrucksTractors" min="0" [(ngModel)]="heavyTrucksTractors" (change)="onDot1Change($event)">
 
 
                 <br><label>Extra Heavy Trucks/Tractors:</label>
-                <input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0">
+                <input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0" [(ngModel)]="extraHeavyTrucksTractors" (change)="onDot1Change($event)">
 
               </fieldset>
             </div>
@@ -217,14 +217,14 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <div class="card card-warning card-inverse mb-12">
-            <div class="card-header card-warning">
+          <div class="card">
+            <div class="card-header card-default">
               Primary Liability
             </div>
             <div class="card-block bg-white">
               <div class="row">
                 <div class="col-sm-12">
-                  <div class="card card-warning card-inverse mb-12">
+                  <div class="card">
                     <div class="card-header card-default">
                       Primary Automobile Liability
                     </div>
@@ -236,7 +236,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <div class="card card-warning card-inverse mb-12">
+                  <div class="card">
                     <div class="card-header card-default">
                       Primary General Liability
                     </div>
@@ -248,7 +248,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <div class="card card-warning card-inverse mb-12">
+                  <div class="card">
                     <div class="card-header card-default">
                       Large Losses
                     </div>
@@ -264,8 +264,8 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <div class="card card-warning card-inverse mb-12">
-            <div class="card-header card-warning">
+          <div class="card">
+            <div class="card-header card-default">
               Pricing Indication
             </div>
             <div class="card-block bg-white">
@@ -310,6 +310,7 @@
 
       <button type="submit" class="btn btn-secondary">Request To Bind</button>
     </div>
+    <!--RIGHT-->
     <div class="col-lg-6">
 
       <fieldset class="form-group">
