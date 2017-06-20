@@ -16,7 +16,6 @@ import { DashboardService } from './../dashboard.service';
 export class InitialEligibility implements OnInit {
 
     rForm: FormGroup;
-    post: any;
 
     applicantName: string = '';
     stateCode: string = '';
@@ -37,8 +36,6 @@ export class InitialEligibility implements OnInit {
     primaryELLimit: number = null;
     isProvidedCommodities: string = null;
     isUnschedVehicleAuth: string = null;
-    projectedGrossSales: string = '';
-    projectedMileage: string = '';
 
     /* CARGO
     cargoLength: string = '';
@@ -131,59 +128,31 @@ export class InitialEligibility implements OnInit {
     factor1x1P: number = null; //Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
     rate1x1P: number = null; //this.factor1x1P * (this.oneMPremium / this.totalAdj);
 
-    notEligible: Boolean = false; 
+    notEligible: Boolean = false;
 
     constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService, private data: DashboardService) {
 
         this.rForm = fb.group({
 
-            'applicantName': [null, Validators.required],
-            'stateCode': [null, Validators.required],
-            'zip': [null, Validators.required],
-            'vehicleType': [null, Validators.required],
-            'hasDOTRevoked': [null, Validators.required],
-            'garbageHaul': [null, Validators.required],
+            'applicantName': [null],
+            'stateCode': [null],
+            'zip': [null],
+            'vehicleType': [null],
+            'hasDOTRevoked': [null],
+            'garbageHaul': [null],
 
             'dot1': [null, Validators.required],
             'effDate': [null, Validators.required],
             'expDate': [null, Validators.required],
-            'safetyRating': [null],
+            'safetyRating': [null, Validators.required],
             'yearInBus': [null, Validators.required],
-            'isDrivingExperience': [null],
+            'isDrivingExperience': [null, Validators.required],
             'primaryALLimit': [null, Validators.compose([Validators.required, Validators.minLength(7)])],
             'primaryCGLimit': [null, Validators.compose([Validators.required, Validators.minLength(7)])],
             'truckersOnly': [null, Validators.required],
             'primaryELLimit': [null, Validators.compose([Validators.required, Validators.minLength(7)])],
-            'isProvidedCommodities': [null],
-            'isUnschedVehicleAuth': [null],
-            'projectedGrossSales': [null, Validators.required],
-            'projectedMileage': [null, Validators.required],
-
-            'privatePassenger': [null, Validators.required],
-            'lightTrucks': [null, Validators.required],
-            'mediumTrucks': [null, Validators.required],
-            'heavyTrucks': [null, Validators.required],
-            'extraHeavyTrucks': [null, Validators.required],
-            'heavyTrucksTractors': [null, Validators.required],
-            'extraHeavyTrucksTractors': [null, Validators.required],
-            'trailers': [null, Validators.required],
-
-            'limitAL': [null, Validators.required],
-            'premiumAL': [null, Validators.required],
-            'noOfLossesAL': [null],
-            'lossesAL': [null],
-
-            'limitCGL': [null, Validators.required],
-            'premiumCGL': [null, Validators.required],
-            'noOfLossesCGL': [null],
-            'lossesCGL': [null],
-
-            'lrgLosses': [null],
-
-            'totalUnits': [null],
-            'underlying': [null],
-            'riskPremuimOne': [null],
-            'riskPremiumTwo': [null],
+            'isProvidedCommodities': [null, Validators.required],
+            'isUnschedVehicleAuth': [null, Validators.required],
 
             'noOfPU': [null],
             'totalAdj': [null],
