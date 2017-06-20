@@ -23,13 +23,8 @@
 			<div class="col-lg-6">
 				<fieldset class="form-group">
 
-					<br><label>Private Passenger:</label>
+					<label>Private Passenger:</label>
 					<input type="number" class="form-control" formControlName="privatePassenger" min="0" [(ngModel)]="privatePassenger">
-
-					<p>
-						{{privatePassenger}}
-					</p>
-
 
 					<br><label>Light Trucks:</label>
 					<input type="number" class="form-control" formControlName="lightTrucks" min="0">
@@ -53,10 +48,6 @@
 
 					<br><label>Extra Heavy Trucks/Tractors:</label>
 					<input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0" [(ngModel)]="extraHeavyTrucksTractors" (input)="newExtraHeavyTrucksTractors()">
-
-					<p>
-						{{extraHeavyTrucksTractors}}
-					</p>
 
 				</fieldset>
 			</div>
