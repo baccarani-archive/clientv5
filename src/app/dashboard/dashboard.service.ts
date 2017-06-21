@@ -7,6 +7,7 @@ export class InitialEligibilityService {
 
   private DOTData = 'http://localhost:8080/getDOTData';
   private Quest_T01_FatalityCoef = 'http://localhost:8080/getQuest_T01_FatalityCoef';
+    private Quest_T10_1x1Min = 'http://localhost:8080/getQuest_T10_1x1Min';
 
   constructor(private http: Http) { }
 
@@ -24,6 +25,15 @@ export class InitialEligibilityService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ 'headers': headers });
     return this.http.post(this.Quest_T01_FatalityCoef, bodyString, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+    getQuest_T10_1x1Min(T10_1x1Min: any): Observable<any> {
+    const bodyString = JSON.stringify({ 'T10_1x1Min': T10_1x1Min }); // Stringify payload
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ 'headers': headers });
+    return this.http.post(this.Quest_T10_1x1Min, bodyString, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
