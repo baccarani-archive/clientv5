@@ -131,10 +131,19 @@ export class BlankPageComponent implements OnInit {
     onex1P_WithoutMP: number = null;
     onex1P_WithMP: number = null;
     onex1P_Accumulation: number = null;
+
     onex1x1P_Percent: number = null;
     onex1x1P_WithoutMP: number = null;
     onex1x1P_WithMP: number = null;
     onex1x1P_Accumulation: number = null;
+
+    proRata: number = null;
+
+    onexPAnnual: number = null;
+    onexPProRated: number = null;
+
+    twoxPAnnual: number = null;
+    twoxPProRated: number = null;
 
     notEligibleSR: Boolean = false;
     notEligibleYIB: Boolean = false;
@@ -220,15 +229,23 @@ export class BlankPageComponent implements OnInit {
             'factor1x1P': [null],
             'rate1x1P': [null],
 
-            'excessOccLimit': [null],
             'onex1P_Percent': [null],
             'onex1P_WithoutMP': [null],
             'onex1P_WithMP': [null],
             'onex1P_Accumulation': [null],
+
             'onex1x1P_Percent': [null],
             'onex1x1P_WithoutMP': [null],
             'onex1x1P_WithMP': [null],
             'onex1x1P_Accumulation': [null],
+
+            'proRata': [null],
+
+            'onexPAnnual': [null],
+            'onexPProRated': [null],
+
+            'twoxPAnnual': [null],
+            'twoxPProRated': [null],
 
         });
 
@@ -330,7 +347,7 @@ export class BlankPageComponent implements OnInit {
                 this.fatalCrash = this.baseFatality * this.cargoFactor * this.weightFactor * this.popDenFactor;
                 this.factor1x1P = Math.max(100 * (0.17), 100 * (0.17 * (this.fatalCrash / 3.6)));
                 this.rate1x1P = (this.factor1x1P / 100) * (this.oneMPremium / this.totalAdj);
-             
+
                 this.onex1P_Percent = 1;
                 this.onex1P_WithoutMP = this.oneMPremium * (this.factor1x1P / 100);
 

@@ -165,20 +165,12 @@
     </div>
     <!-- /.col-sm-4 -->
     <div class="col-sm-3">
-      <div class="card card-primary card-inverse mb-3">
-        <div class="card-header card-primary">
-          Excess Layer Premium Calculation
+      <div class="card card-info card-inverse">
+        <div class="card-header card-info">
+          1 x 1P Layer
         </div>
         <div class="card-block bg-white">
           <fieldset class="form-group">
-            <label class="form-control-label">Excess Attachment:</label>
-            <input type="text" class="form-control" formControlName="primaryALLimit" [(ngModel)]="primaryALLimit">
-
-            <!--<br>
-                <label class="form-control-label">Excess Occ Limit:</label>
-                <input type="text" class="form-control" formControlName="excessOccLimit" [(ngModel)]="excessOccLimit">-->
-
-            <br>
             <label class="form-control-label">1x1P_%:</label>
             <input type="text" class="form-control" formControlName="onex1P_Percent" [(ngModel)]="onex1P_Percent">
 
@@ -193,8 +185,15 @@
             <br>
             <label class="form-control-label">1x1P_Accumulation:</label>
             <input type="text" class="form-control" formControlName="onex1P_Accumulation" [(ngModel)]="onex1P_Accumulation">
-
-            <br>
+          </fieldset>
+        </div>
+      </div>
+      <div class="card card-info card-inverse">
+        <div class="card-header card-info">
+          1 x 1 x 1P Layer
+        </div>
+        <div class="card-block bg-white">
+          <fieldset class="form-group">
             <label class="form-control-label">1x1x1P_Percent:</label>
             <input type="text" class="form-control" formControlName="onex1x1P_Percent" [(ngModel)]="onex1x1P_Percent">
 
@@ -214,6 +213,59 @@
       </div>
     </div>
     <!-- /.col-sm-4 -->
+  </div>
+</form>
+
+<form [formGroup]="rForm">
+  <div class="row">
+    <!-- /.col-sm-4 -->
+    <div class="col-sm-3">
+      <div class="card card-primary card-inverse mb-3">
+        <div class="card-header card-primary">
+          Pro-Rata Factor
+        </div>
+        <div class="card-block bg-white">
+          <fieldset class="form-group">
+            <label class="form-control-label">Pro-Rata:</label>
+            <input type="text" class="form-control" formControlName="proRata" [(ngModel)]="proRata">
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <!-- /.col-sm-4 -->
+    <div class="col-sm-3">
+      <div class="card card-primary card-inverse mb-3">
+        <div class="card-header card-primary">
+          1xP
+        </div>
+        <div class="card-block bg-white">
+          <fieldset class="form-group">
+            <label class="form-control-label">Annual:</label>
+            <input type="text" class="form-control" formControlName="onexPAnnual" [(ngModel)]="onexPAnnual">
+            <br>
+            <label class="form-control-label">Pro-Rated:</label>
+            <input type="text" class="form-control" formControlName="onexPProRated" [(ngModel)]="onexPProRated">
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <!-- /.col-sm-4 -->
+    <div class="col-sm-3">
+      <div class="card card-primary card-inverse mb-3">
+        <div class="card-header card-primary">
+          2xP
+        </div>
+        <div class="card-block bg-white">
+          <fieldset class="form-group">
+            <label class="form-control-label">Annual:</label>
+            <input type="text" class="form-control" formControlName="twoxPAnnual" [(ngModel)]="twoxPAnnual">
+            <br>
+            <label class="form-control-label">Pro-Rated:</label>
+            <input type="text" class="form-control" formControlName="twoxPProRated" [(ngModel)]="twoxPProRated">
+          </fieldset>
+        </div>
+      </div>
+    </div>
   </div>
 </form>
 
