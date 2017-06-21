@@ -101,6 +101,8 @@ export class BlankPageComponent implements OnInit {
     inspFactor = null; //Math.exp(this.priorInspCoef);
     crashFactor = null; //Math.exp(this.priorCrashCoef);
     LCM = null; //1 / this.targetLR * this.ALAEPerc;
+    //Placeholder
+    adjYIB = 1;
 
     //Placeholder
     Emod = null; //1;
@@ -135,6 +137,22 @@ export class BlankPageComponent implements OnInit {
     onex1x1P_WithoutMP: number = null;
     onex1x1P_WithMP: number = null;
     onex1x1P_Accumulation: number = null;
+
+
+    //Data Point 2
+    unitLower: number = null;
+    unitUpper: number = null;
+    oneMLower: number = null;
+    oneMUpper: number = null;
+    weightLower: number = null;
+    weightUpper: number = null;
+    avgUpLow: number = null;
+    dataPoint2: number = null;
+    //End DP2
+
+    //Data Point 3
+    dataPoint3: number = null;
+    //End DP3
 
     proRata: number = null;
 
@@ -324,7 +342,7 @@ export class BlankPageComponent implements OnInit {
 
                 this.noOfPU = this.privatePassenger + this.lightTrucks + this.mediumTrucks + this.heavyTrucks + this.extraHeavyTrucks + this.heavyTrucksTractors + this.extraHeavyTrucksTractors;
                 this.totalAdj = this.privatePassenger * 0.25 + this.lightTrucks * 0.37 + this.mediumTrucks * 0.45 + this.heavyTrucks * 0.95 + this.extraHeavyTrucks * 1.00 + this.heavyTrucksTractors * 0.95 + this.extraHeavyTrucksTractors * 1.00;
-                this.adjExpo = this.totalAdj
+                this.adjExpo = this.totalAdj;
                 this.logUnit = Math.log(this.noOfPU);
 
                 this.baseLC = Math.exp(this.intercept1 + ((Math.log1p(this.logISORate) * this.logISORateCoef)));
@@ -346,6 +364,25 @@ export class BlankPageComponent implements OnInit {
                 this.fatalCrash = this.baseFatality * this.cargoFactor * this.weightFactor * this.popDenFactor;
                 this.factor1x1P = Math.max(100 * (0.17), 100 * (0.17 * (this.fatalCrash / 3.6)));
                 this.rate1x1P = (this.factor1x1P / 100) * (this.oneMPremium / this.totalAdj);
+
+                //Data Point 2
+                /*this.unitLower = response.TABLE.VARIABLE;
+                this.unitUpper = response.TABLE.VARIABLE;
+                this.oneMLower = response.TABLE.VARIABLE;
+                this.oneMUpper = response.TABLE.VARIABLE;*/
+                this.weightUpper = this.adjExpo - 1;
+                this.weightLower = 1 - this.weightUpper;
+                this.avgUpLow = (this.weightLower * this.oneMLower) + (this.weightUpper * this.oneMUpper);
+                if (this.unitLower >= 4) {
+                    this.dataPoint2 = this.adjYIB * 5000;
+                } else {
+                    this.dataPoint2 = this.adjYIB * this.avgUpLow;
+                }
+                //Data Point 3
+                this.dataPoint3 = this.dataPoint2 * (this.rate1x1P / 1350);
+
+                this.onex1P_WithMP = Math.max(this.onex1P_WithoutMP, this.dataPoint2, this.dataPoint3);
+                this.onex1x1P_WithMP = this.onex1P_WithMP * this.onex1x1P_Percent;
 
                 this.onex1P_Percent = 1;
                 this.onex1P_WithoutMP = this.oneMPremium * (this.factor1x1P / 100);

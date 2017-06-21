@@ -20,7 +20,6 @@ import { SidebarComponent } from '../shared/index';
 
 
 
-
 @NgModule({
   imports: [
     CommonModule,
