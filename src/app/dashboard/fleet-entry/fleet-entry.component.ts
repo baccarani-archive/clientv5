@@ -6,6 +6,7 @@ import { DashboardService } from './../dashboard.service';
 @Component({
     selector: 'app-fleet-entry',
     templateUrl: 'fleet-entry.component.html',
+    styleUrls: ['fleet-entry.component.css'],
     providers: [DashboardService],
 })
 
