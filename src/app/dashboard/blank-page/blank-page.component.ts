@@ -47,7 +47,7 @@ export class BlankPageComponent implements OnInit {
     heavyTrucks: number = 0;
     extraHeavyTrucks: number = 0;
     heavyTrucksTractors: number = 0;
-    extraHeavyTrucksTractors: number = 0;
+    extraHeavyTrucksTractors: number = 3;
 
     limitAL: string = '';
     premiumAL: string = '';
@@ -335,7 +335,6 @@ export class BlankPageComponent implements OnInit {
                 this.hasDOTRevoked = response.initialEligibility.hasDOTRevoked;
                 this.garbageHaul = response.initialEligibility.garbageHaul;
 
-                this.extraHeavyTrucksTractors = 1;
                 this.primaryALLimit = 1000000;
 
                 this.intercept1 = response.TRANS_LC_201704.intercept1;
@@ -371,17 +370,23 @@ export class BlankPageComponent implements OnInit {
                 this.baseFatality = Math.exp(this.intercept2) * 100;
                 this.cargoFactor = Math.exp(this.cargoCoef);
                 this.weightFactor = Math.exp(this.LOG_AVGGWT1 * this.LOG_AVGGWT2);
-                this.popDenFactor = Math.exp(this.popDensity * this.POPDENSITY_COUNTY_ADJ_INSP * (this.popDensity * this.popDensity) * this.POPDENSITY_COUNTY_ADJ_INSP_SQRT);
+                this.popDenFactor = Math.exp(this.popDensity * this.POPDENSITY_COUNTY_ADJ_INSP + Math.pow(this.popDensity, 2) * this.POPDENSITY_COUNTY_ADJ_INSP_SQRT);
                 this.fatalCrash = this.baseFatality * this.cargoFactor * this.weightFactor * this.popDenFactor;
                 this.factor1x1P = Math.max(100 * (0.17), 100 * (0.17 * (this.fatalCrash / 3.6)));
                 this.rate1x1P = (this.factor1x1P / 100) * (this.oneMPremium / this.totalAdj);
+
+                //Data Point 1
+                //this.onex1P_WithoutMP = this.oneMPremium * (this.factor1x1P / 100);
+                this.onex1P_WithoutMP = this.rate1x1P * this.noOfPU;
+                this.onex1x1P_Percent = 0.61;
+                this.onex1x1P_WithoutMP = this.onex1P_WithoutMP * this.onex1x1P_Percent;
 
                 //Data Point 2
                 /*this.unitLower = response.TABLE.VARIABLE;
                 this.unitUpper = response.TABLE.VARIABLE;
                 this.oneMLower = response.TABLE.VARIABLE;
                 this.oneMUpper = response.TABLE.VARIABLE;*/
-                this.weightUpper = this.adjExpo - 1;
+                this.weightUpper = this.adjExpo - Math.ceil(this.adjExpo);
                 this.weightLower = 1 - this.weightUpper;
                 this.avgUpLow = (this.weightLower * this.oneMLower) + (this.weightUpper * this.oneMUpper);
                 if (this.unitLower >= 4) {
@@ -392,15 +397,15 @@ export class BlankPageComponent implements OnInit {
                 //Data Point 3
                 this.dataPoint3 = this.dataPoint2 * (this.rate1x1P / 1350);
 
+
                 this.onex1P_WithMP = Math.max(this.onex1P_WithoutMP, this.dataPoint2, this.dataPoint3);
-                this.onex1x1P_Percent = 0.61;
+
                 this.onex1x1P_WithMP = Math.max(this.onex1P_WithMP * this.onex1x1P_Percent, 1500);
 
                 this.onex1P_Percent = 1;
-                this.onex1P_WithoutMP = this.oneMPremium * (this.factor1x1P / 100);
 
-                this.onex1x1P_Percent = 0.61;
-                this.onex1x1P_WithoutMP = this.onex1P_WithoutMP * this.onex1x1P_Percent;
+
+
 
                 this.onex1P_Accumulation = this.onex1P_WithMP;
                 this.onex1x1P_Accumulation = this.onex1P_Accumulation + this.onex1x1P_WithMP;
@@ -437,25 +442,24 @@ export class BlankPageComponent implements OnInit {
 
     onQuest_T10_1x1Min(event: any) {
         //alert("dot 2 value is: "+this.dot2);
-        this.extraHeavyTrucksTractors = 1;
-        let valUpper = Math.ceil(this.privatePassenger * 0.25 + this.lightTrucks * 0.37 + this.mediumTrucks * 0.45 + this.heavyTrucks * 0.95 + this.extraHeavyTrucks * 1.00 + this.heavyTrucksTractors * 0.95 + this.extraHeavyTrucksTractors * 1.00);
-        let dataUpper = this.phaseOneService.getQuest_T10_1x1Min(valUpper);
-        dataUpper.subscribe(
-            dataUpper => {
-                console.log("data:" + dataUpper);
-                let response = JSON.parse(dataUpper);
-                this.unitUpper = response.QUEST_T10.units;
-                this.oneMUpper = response.QUEST_T10.oneMillion;
-            }
-        );
-        let valLower = valUpper - 1;
-        let dataLower = this.phaseOneService.getQuest_T10_1x1Min(valLower);
+        let valLower = Math.floor(this.privatePassenger * 0.25 + this.lightTrucks * 0.37 + this.mediumTrucks * 0.45 + this.heavyTrucks * 0.95 + this.extraHeavyTrucks * 1.00 + this.heavyTrucksTractors * 0.95 + this.extraHeavyTrucksTractors * 1.00);
+        let dataLower = this.phaseOneService.getQuest_T10_1x1Min(Math.min(valLower, 4));
         dataLower.subscribe(
             dataLower => {
                 console.log("data:" + dataLower);
                 let response = JSON.parse(dataLower);
                 this.unitLower = response.QUEST_T10.units;
                 this.oneMLower = response.QUEST_T10.oneMillion;
+            }
+        );
+        let valUpper = valLower + 1;
+        let dataUpper = this.phaseOneService.getQuest_T10_1x1Min(Math.min(valUpper, 4));
+        dataUpper.subscribe(
+            dataUpper => {
+                console.log("data:" + dataUpper);
+                let response = JSON.parse(dataUpper);
+                this.unitUpper = response.QUEST_T10.units;
+                this.oneMUpper = response.QUEST_T10.oneMillion;
             }
         );
         console.log("data here:" + dataUpper + dataLower);
