@@ -1,0 +1,63 @@
+<div class="container-fluid">
+	<!-- Page Heading -->
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header"><i class="fa fa-cloud" style="color:#FF8C00"></i> QUEST</h2>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<i class="fa fa-cloud" style="color:#FF8C00"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard/blankpage']">QUEST</a>
+				</li>
+				<li class="breadcrumb-item active"><i class="fa fa-file"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard/initialeligibility']">Initial Eligibility</a></li>
+				<li class="breadcrumb-item active"><i class="fa fa-file"></i> Fleet Entry</li>
+			</ol>
+		</div>
+	</div>
+	<!-- /.row -->
+
+	<form [formGroup]="rForm">
+
+		<h4>Fleet Entry</h4>
+		<br>
+
+		<div class="col-lg-6">
+			<div class="col-lg-6">
+				<fieldset class="form-group">
+
+					<div class="align-input">
+						<label>Private Passenger:</label>
+						<input type="number" class="form-control" formControlName="privatePassenger" min="0" [(ngModel)]="privatePassenger">
+					</div>
+
+					<br><label>Light Trucks:</label>
+					<input type="number" class="form-control" formControlName="lightTrucks" min="0">
+
+
+					<br><label>Medium Trucks:</label>
+					<input type="number" class="form-control" formControlName="mediumTrucks" min="0">
+
+
+					<br><label>Heavy Trucks:</label>
+					<input type="number" class="form-control" formControlName="heavyTrucks" min="0">
+
+
+					<br><label>Extra Heavy Trucks:</label>
+					<input type="number" class="form-control" formControlName="extraHeavyTrucks" min="0">
+
+
+					<br><label>Heavy Trucks/Tractors:</label>
+					<input type="number" class="form-control" formControlName="heavyTrucksTractors" min="0">
+
+
+					<br><label>Extra Heavy Trucks/Tractors:</label>
+					<input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0">
+
+				</fieldset>
+
+				<button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid" a href="Javascript:void(0)" [routerLink]="['/dashboard/primaryliability']">Next</button>
+				<button type="reset" class="btn btn-secondary">Save</button>
+			</div>
+		</div>
+
+	</form>
+
+</div>
