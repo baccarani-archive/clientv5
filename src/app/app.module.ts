@@ -11,7 +11,6 @@ import { SignupModule } from './signup/signup.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
 import { InitialEligibilityService } from './dashboard/initial-eligibility/initial-eligibility.service';
-import { DashboardService } from './dashboard/dashboard.service';
 
 
 
@@ -30,7 +29,7 @@ import { DashboardService } from './dashboard/dashboard.service';
     DashboardModule,
     ReactiveFormsModule
   ],
-  providers: [InitialEligibilityService, DashboardService],
+  providers: [InitialEligibilityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

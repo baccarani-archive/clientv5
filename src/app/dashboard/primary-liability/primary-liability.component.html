@@ -18,11 +18,11 @@
 	<form role="form">
 		<h4>Primary Liability</h4>
 		<br>
-
+		<div>
 			<div class="col-xl-6 col-lg-12">
 				<h5>Primary Automobile Liability</h5>
 
-				<div class="card card-block">
+				<div>
 					<div class="col-lg-6">
 						<input type="number" ng-model="noOfYearsAL" placeholder="# of Years" class="form-control">
 						<input type="number" ng-model="noOfClaimsAL" placeholder="# of Claims" class="form-control"><br>
@@ -142,7 +142,7 @@
 				</div>
 
 			</div>
-			
+
 			<div class="col-xl-12 col-lg-12">
 				<br>
 				<h5>Large Losses</h5>
@@ -202,6 +202,7 @@
 				</div>
 
 			</div>
+		</div>
 		<button type="submit" class="btn btn-secondary" a href="Javascript:void(0)" [routerLink]="['/dashboard/pricingindication']">Next</button>
 		<button type="reset" class="btn btn-secondary">Save</button>
 	</form>
