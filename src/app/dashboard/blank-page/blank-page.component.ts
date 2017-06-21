@@ -12,7 +12,6 @@ import { InitialEligibilityService } from './../dashboard.service';
 
 export class BlankPageComponent implements OnInit {
 
-
     rForm: FormGroup;
 
     applicantName: string = '';

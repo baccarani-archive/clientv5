@@ -1,0 +1,7 @@
+.align-input label{
+    float:left;
+}
+
+.align-input input{
+    float:right;
+}

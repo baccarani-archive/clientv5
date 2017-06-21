@@ -6,7 +6,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
     selector: 'app-fleet-entry',
     templateUrl: 'fleet-entry.component.html',
+<<<<<<< HEAD
+    styleUrls: ['fleet-entry.component.css'],
+    providers: [DashboardService],
+=======
 
+>>>>>>> 5632e8f9f012c5e315b4d7a62322a1f2bba0b98d
 })
 
 export class FleetEntryComponent implements OnInit {
