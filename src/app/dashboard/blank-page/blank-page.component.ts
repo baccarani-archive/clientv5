@@ -125,6 +125,12 @@ export class BlankPageComponent implements OnInit {
     factor1x1P: number = null; //Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
     rate1x1P: number = null; //this.factor1x1P * (this.oneMPremium / this.totalAdj);
 
+    /*Calculation for withMP*/
+    units: number = null;
+    unitsLower: number = null;
+    unitsUpper: number = null;
+    oneMillion: number = null;
+
     /*excessOccLimit: number = null;*/
     onex1P_Percent: number = null;
     onex1P_WithoutMP: number = null;
@@ -371,6 +377,21 @@ export class BlankPageComponent implements OnInit {
             }
         );
         console.log("data here:" + data);
+    }
+
+    onQuest_T10_1x1Min(event: any) {
+        //alert("dot 2 value is: "+this.dot2);
+        let val = this.totalAdj;
+        let data = this.phaseOneService.getQuest_T10_1x1Min(val);
+        data.subscribe(
+            data => {
+                console.log("data:" + data);
+                let response = JSON.parse(data);
+                this.units = response.QUEST_T10.units;
+                this.oneMillion = response.QUEST_T10.oneMillion;
+            }
+        );
+        console.log("totalAdj: " + val);
     }
 
     ngOnInit() {
