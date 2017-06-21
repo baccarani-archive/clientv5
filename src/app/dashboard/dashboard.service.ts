@@ -19,7 +19,7 @@ export class InitialEligibilityService {
       .catch(this.handleError);
   }
 
-  getQuest_T01_FatalityCoef(T01_Version: number): Observable<any> {
+  getQuest_T01_FatalityCoef(T01_Version: any): Observable<any> {
     const bodyString = JSON.stringify({ 'T01_Version': T01_Version }); // Stringify payload
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ 'headers': headers });

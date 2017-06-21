@@ -48,7 +48,7 @@ export class BlankPageComponent implements OnInit {
     heavyTrucks: number = 0;
     extraHeavyTrucks: number = 0;
     heavyTrucksTractors: number = 0;
-    extraHeavyTrucksTractors: number = 1;
+    extraHeavyTrucksTractors: number = 0;
 
     limitAL: string = '';
     premiumAL: string = '';
@@ -125,6 +125,16 @@ export class BlankPageComponent implements OnInit {
     fatalCrash: number = null; //this.baseFatality * this.cargoFactor * this.weightFactor * this.popDenFactor;
     factor1x1P: number = null; //Math.max(0.17, 0.17 * (this.fatalCrash / 3.6));
     rate1x1P: number = null; //this.factor1x1P * (this.oneMPremium / this.totalAdj);
+
+    /*excessOccLimit: number = null;*/
+    onex1P_Percent: number = null;
+    onex1P_WithoutMP: number = null;
+    onex1P_WithMP: number = null;
+    onex1P_Accumulation: number = null;
+    onex1x1P_Percent: number = null;
+    onex1x1P_WithoutMP: number = null;
+    onex1x1P_WithMP: number = null;
+    onex1x1P_Accumulation: number = null;
 
     notEligibleSR: Boolean = false;
     notEligibleYIB: Boolean = false;
@@ -210,6 +220,16 @@ export class BlankPageComponent implements OnInit {
             'factor1x1P': [null],
             'rate1x1P': [null],
 
+            'excessOccLimit': [null],
+            'onex1P_Percent': [null],
+            'onex1P_WithoutMP': [null],
+            'onex1P_WithMP': [null],
+            'onex1P_Accumulation': [null],
+            'onex1x1P_Percent': [null],
+            'onex1x1P_WithoutMP': [null],
+            'onex1x1P_WithMP': [null],
+            'onex1x1P_Accumulation': [null],
+
         });
 
         /* Pricing Engine -- DOES THIS DO ANYTHING */
@@ -270,6 +290,9 @@ export class BlankPageComponent implements OnInit {
                 this.hasDOTRevoked = response.initialEligibility.hasDOTRevoked;
                 this.garbageHaul = response.initialEligibility.garbageHaul;
 
+                this.extraHeavyTrucksTractors = 1;
+                this.primaryALLimit = 1000000;
+
                 this.intercept1 = response.TRANS_LC_201704.intercept1;
                 this.logUnitCoef = response.TRANS_LC_201704.logUnitCoef;
                 this.logMile = response.TRANS_LC_201704.logMile;
@@ -307,6 +330,12 @@ export class BlankPageComponent implements OnInit {
                 this.fatalCrash = this.baseFatality * this.cargoFactor * this.weightFactor * this.popDenFactor;
                 this.factor1x1P = Math.max(100 * (0.17), 100 * (0.17 * (this.fatalCrash / 3.6)));
                 this.rate1x1P = (this.factor1x1P / 100) * (this.oneMPremium / this.totalAdj);
+             
+                this.onex1P_Percent = 1;
+                this.onex1P_WithoutMP = this.oneMPremium * (this.factor1x1P / 100);
+
+                this.onex1x1P_Percent = 0.61;
+                this.onex1x1P_WithoutMP = this.onex1P_WithoutMP * this.onex1x1P_Percent;
             }
         );
         console.log("data here:" + data);
@@ -314,7 +343,7 @@ export class BlankPageComponent implements OnInit {
 
     onQuest_T01_FatalityCoef(event: any) {
         //alert("dot 2 value is: "+this.dot2);
-        let data = this.phaseOneService.getQuest_T01_FatalityCoef(1);
+        let data = this.phaseOneService.getQuest_T01_FatalityCoef('1');
         data.subscribe(
             data => {
                 console.log("data:" + data);

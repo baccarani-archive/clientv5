@@ -26,7 +26,7 @@
         <fieldset class="form-group">
           <!--DOT-->
           <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
-            <label class="form-control-label" for="inputError">1st DOT #:</label>
+            <label class="form-control-label" for="inputError">U.S. DOT#:</label>
             <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)"
               autofocus>
           </div>
@@ -190,7 +190,7 @@
           <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
         </fieldset>
 
-        <fieldset class="form-group">
+<!--        <fieldset class="form-group">
           <label class="form-control-label">noOfPU:</label>
           <input type="text" class="form-control" formControlName="noOfPU" [(ngModel)]="noOfPU">
 
@@ -312,7 +312,7 @@
           <br>
           <label class="form-control-label">rate1x1P:</label>
           <input type="text" class="form-control" formControlName="rate1x1P" [(ngModel)]="rate1x1P">
-        </fieldset>
+        </fieldset>-->
 
 
 
