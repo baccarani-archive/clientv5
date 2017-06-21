@@ -252,6 +252,11 @@ export class BlankPageComponent implements OnInit {
             'factor1x1P': [null],
             'rate1x1P': [null],
 
+            'unitUpper': [null],
+            'oneMUpper': [null],
+            'unitLower': [null],
+            'oneMLower': [null],
+
             'onex1P_Percent': [null],
             'onex1P_WithoutMP': [null],
             'onex1P_WithMP': [null],
@@ -388,13 +393,27 @@ export class BlankPageComponent implements OnInit {
                 this.dataPoint3 = this.dataPoint2 * (this.rate1x1P / 1350);
 
                 this.onex1P_WithMP = Math.max(this.onex1P_WithoutMP, this.dataPoint2, this.dataPoint3);
-                this.onex1x1P_WithMP = this.onex1P_WithMP * this.onex1x1P_Percent;
+                this.onex1x1P_Percent = 0.61;
+                this.onex1x1P_WithMP = Math.max(this.onex1P_WithMP * this.onex1x1P_Percent, 1500);
 
                 this.onex1P_Percent = 1;
                 this.onex1P_WithoutMP = this.oneMPremium * (this.factor1x1P / 100);
 
                 this.onex1x1P_Percent = 0.61;
                 this.onex1x1P_WithoutMP = this.onex1P_WithoutMP * this.onex1x1P_Percent;
+
+                this.onex1P_Accumulation = this.onex1P_WithMP;
+                this.onex1x1P_Accumulation = this.onex1P_Accumulation + this.onex1x1P_WithMP;
+
+                this.proRata = 1;
+
+                this.onexPAnnual = this.onex1P_Accumulation;
+                this.twoxPAnnual = this.onex1x1P_Accumulation;
+
+                this.onexPProRated = this.onexPAnnual * this.proRata;
+                this.twoxPProRated = this.twoxPAnnual * this.proRata;
+
+
             }
         );
         console.log("data here:" + data);
@@ -418,17 +437,28 @@ export class BlankPageComponent implements OnInit {
 
     onQuest_T10_1x1Min(event: any) {
         //alert("dot 2 value is: "+this.dot2);
-        let val = this.totalAdj;
-        let data = this.phaseOneService.getQuest_T10_1x1Min(val);
-        data.subscribe(
-            data => {
-                console.log("data:" + data);
-                let response = JSON.parse(data);
-                this.units = response.QUEST_T10.units;
-                this.oneMillion = response.QUEST_T10.oneMillion;
+        this.extraHeavyTrucksTractors = 1;
+        let valUpper = Math.ceil(this.privatePassenger * 0.25 + this.lightTrucks * 0.37 + this.mediumTrucks * 0.45 + this.heavyTrucks * 0.95 + this.extraHeavyTrucks * 1.00 + this.heavyTrucksTractors * 0.95 + this.extraHeavyTrucksTractors * 1.00);
+        let dataUpper = this.phaseOneService.getQuest_T10_1x1Min(valUpper);
+        dataUpper.subscribe(
+            dataUpper => {
+                console.log("data:" + dataUpper);
+                let response = JSON.parse(dataUpper);
+                this.unitUpper = response.QUEST_T10.units;
+                this.oneMUpper = response.QUEST_T10.oneMillion;
             }
         );
-        console.log("totalAdj: " + val);
+        let valLower = valUpper - 1;
+        let dataLower = this.phaseOneService.getQuest_T10_1x1Min(valLower);
+        dataLower.subscribe(
+            dataLower => {
+                console.log("data:" + dataLower);
+                let response = JSON.parse(dataLower);
+                this.unitLower = response.QUEST_T10.units;
+                this.oneMLower = response.QUEST_T10.oneMillion;
+            }
+        );
+        console.log("data here:" + dataUpper + dataLower);
     }
 
     ngOnInit() {
