@@ -21,9 +21,10 @@ export class BlankPageComponent implements OnInit {
     hasDOTRevoked: string = '';
     garbageHaul: string = '';
 
-    dot1: string = '';
+    dot1: any = '';
     effDate;
     expDate;
+
     safetyRating: string = null;
     yearInBus: number = null;
     isDrivingExperience: string = null;
@@ -33,6 +34,7 @@ export class BlankPageComponent implements OnInit {
     primaryELLimit: number = null;
     isProvidedCommodities: string = null;
     isUnschedVehicleAuth: string = null;
+
 
     /* CARGO
     cargoLength: string = '';
@@ -431,10 +433,7 @@ export class BlankPageComponent implements OnInit {
         console.log("totalAdj: " + val);
     }
 
-    ngOnInit() {
-        //this.data.currentPrivatePassenger.subscribe(privatePassenger => this.privatePassenger = privatePassenger)
-        //this.data.currentExtraHeavyTrucksTractors.subscribe(extraHeavyTrucksTractors => this.extraHeavyTrucksTractors = extraHeavyTrucksTractors)
-    }
+    ngOnInit() { }
 
 
 
@@ -443,8 +442,13 @@ export class BlankPageComponent implements OnInit {
     newExpDate() {
         this.expDate = new Date(this.effDate);
         this.expDate.setFullYear(this.expDate.getFullYear() + 1);
+<<<<<<< HEAD
         this.expDate = ("0" + (this.expDate.getMonth() + 1)).slice(-2) + "/" + ("0" + this.expDate.getDate()).slice(-2) + "/" + this.expDate.getFullYear();
+=======
+        this.expDate = this.expDate.getMonth() + 1 + "/" + this.expDate.getDate() + "/" + this.expDate.getFullYear();
+>>>>>>> ee67c9b8af9675a19ff0224c81bbeffa98e4f921
     }
+
 
     isEligibleSR(notEligible: Boolean) {
 

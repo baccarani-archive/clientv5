@@ -9,7 +9,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "root": "src",
       "outDir": "dist",
-      "assets": ["assets"],
+      "assets": [
+        "assets"
+      ],
       "index": "index.html",
       "main": "main.ts",
       "test": "test.ts",
@@ -26,10 +28,10 @@
         "../node_modules/bootstrap/dist/js/bootstrap.js",
         "../node_modules/highcharts/highcharts.js"
       ],
- 	 "environmentSource": "environments/environment.ts",
-	 "environments": {
-	   "dev": "environments/environment.ts",
-       "prod": "environments/environment.prod.ts"
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
       }
     }
   ],
@@ -50,4 +52,3 @@
     "prefixInterfaces": false
   }
 }
-
