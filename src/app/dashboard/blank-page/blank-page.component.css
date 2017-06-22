@@ -52,6 +52,7 @@ max-width:none;
 
 .horizList-outer { 
     overflow-x: scroll; 
+    overflow-y: hidden;
     height: 83px;
 }
 .horizList-inner { 

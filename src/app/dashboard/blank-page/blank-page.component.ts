@@ -436,10 +436,14 @@ export class BlankPageComponent implements OnInit {
         //this.data.currentExtraHeavyTrucksTractors.subscribe(extraHeavyTrucksTractors => this.extraHeavyTrucksTractors = extraHeavyTrucksTractors)
     }
 
+
+
+
+
     newExpDate() {
         this.expDate = new Date(this.effDate);
         this.expDate.setFullYear(this.expDate.getFullYear() + 1);
-        this.expDate = this.expDate.getFullYear()  + "-" + ("0" + (this.expDate.getMonth() + 1)).slice(-2) + "-" + (this.expDate.getDate() + 1);
+        this.expDate = ("0" + (this.expDate.getMonth() + 1)).slice(-2) + "/" + ("0" + this.expDate.getDate()).slice(-2) + "/" + this.expDate.getFullYear();
     }
 
     isEligibleSR(notEligible: Boolean) {

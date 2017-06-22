@@ -304,14 +304,14 @@
                 <br>
                 <div [ngClass]="{'form-group has-danger' : !rForm.controls['effDate'].valid && rForm.controls['effDate'].touched}">
                   <label class="form-control-label" for="inputError">Effective Date:</label>
-                  <input type="date" class="form-control form-control-danger" formControlName="effDate" [(ngModel)]="effDate" (change)="newExpDate()">
+                  <input type="text" class="form-control form-control-danger" formControlName="effDate" [(ngModel)]="effDate" (change)="newExpDate()" maxlength="10">
                 </div>
                 <!--<p>{{effDate}}</p>-->
 
                 <br>
                 <div [ngClass]="{'form-group has-danger' : !rForm.controls['expDate'].valid && rForm.controls['expDate'].touched}">
                   <label class="form-control-label" for="inputError">Expiration Date:</label>
-                  <input type="date" class="form-control form-control-danger" formControlName="expDate" [(ngModel)]="expDate" >
+                  <input type="text" class="form-control form-control-danger" formControlName="expDate" [(ngModel)]="expDate" maxlength="10">
                 </div>
                 <!--<p>{{expDate}}</p>-->
 
