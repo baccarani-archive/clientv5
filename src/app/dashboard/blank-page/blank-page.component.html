@@ -12,6 +12,42 @@
         </div>
       </div>
     </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-block">
+          <label class="form-control-label">Name Of Applicant:</label>
+          <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
+        </div>
+        <div class="card-block">
+          <label class="form-control-label">State:</label>
+          <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-block">
+          <label class="form-control-label">ZIP:</label>
+          <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
+        </div>
+        <div class="card-block">
+          <label class="form-control-label">Vehicle Type:</label>
+          <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-block">
+          <label class="form-control-label">DOT Revoked:</label>
+          <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
+        </div>
+        <div class="card-block">
+          <label class="form-control-label">Garbage Hauled:</label>
+          <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row">
     <div class="col-sm-3">
@@ -273,7 +309,7 @@
 
 <hr>
 
-<!--HEADER -->
+<!--FORM HEADER-->
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-12">
@@ -282,7 +318,7 @@
   </div>
 </div>
 
-<!--FORM-->
+<!--FORM BODY-->
 <form [formGroup]="rForm">
   <div class="col-lg-12">
     <div class="col-lg-3"></div>
@@ -300,8 +336,7 @@
 
                 <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
                   <label class="form-control-label" for="inputError">U.S DOT#:</label>
-                  <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)"
-                    (change)="onQuest_T01_FatalityCoef($event)">
+                  <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1">
                 </div>
                 <!--<input type="text" value="{{dot1}}">-->
 
@@ -436,29 +471,27 @@
                 <input type="number" class="form-control" formControlName="privatePassenger" min="0" [(ngModel)]="privatePassenger" (change)="onDot1Change($event)">
 
                 <br><label>Light Trucks:</label>
-                <input type="number" class="form-control" formControlName="lightTrucks" min="0" [(ngModel)]="lightTrucks" (change)="onDot1Change($event)">
+                <input type="number" class="form-control" formControlName="lightTrucks" min="0" [(ngModel)]="lightTrucks">
 
 
                 <br><label>Medium Trucks:</label>
-                <input type="number" class="form-control" formControlName="mediumTrucks" min="0" [(ngModel)]="mediumTrucks" (change)="onDot1Change($event)">
+                <input type="number" class="form-control" formControlName="mediumTrucks" min="0" [(ngModel)]="mediumTrucks">
 
 
                 <br><label>Heavy Trucks:</label>
-                <input type="number" class="form-control" formControlName="heavyTrucks" min="0" [(ngModel)]="heavyTrucks" (change)="onDot1Change($event)">
+                <input type="number" class="form-control" formControlName="heavyTrucks" min="0" [(ngModel)]="heavyTrucks">
 
 
                 <br><label>Extra Heavy Trucks:</label>
-                <input type="number" class="form-control" formControlName="extraHeavyTrucks" min="0" [(ngModel)]="extraHeavyTrucks" (change)="onDot1Change($event)">
+                <input type="number" class="form-control" formControlName="extraHeavyTrucks" min="0" [(ngModel)]="extraHeavyTrucks">
 
 
                 <br><label>Heavy Trucks/Tractors:</label>
-                <input type="number" class="form-control" formControlName="heavyTrucksTractors" min="0" [(ngModel)]="heavyTrucksTractors"
-                  (change)="onDot1Change($event)">
+                <input type="number" class="form-control" formControlName="heavyTrucksTractors" min="0" [(ngModel)]="heavyTrucksTractors">
 
 
                 <br><label>Extra Heavy Trucks/Tractors:</label>
-                <input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0" [(ngModel)]="extraHeavyTrucksTractors"
-                  (change)="onDot1Change($event)">
+                <input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0" [(ngModel)]="extraHeavyTrucksTractors">
 
               </fieldset>
             </div>
@@ -475,35 +508,26 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="card mb-3">
-                    <div class="card-header card-default">
+                    <div class="card-block">
                       Primary Automobile Liability
                     </div>
-                    <div class="card-block">
-                      Card content
-                    </div>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12">
                   <div class="card mb-3">
-                    <div class="card-header card-default">
+                    <div class="card-block">
                       Primary General Liability
                     </div>
-                    <div class="card-block">
-                      Card content
-                    </div>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12">
                   <div class="card mb-3">
-                    <div class="card-header card-default">
-                      Large Losses
-                    </div>
                     <div class="card-block">
-                      Card content
+                      Large Losses
                     </div>
                   </div>
                 </div>
@@ -527,24 +551,20 @@
                       <table class="table">
                         <thead class="thead-default">
                           <tr>
-                            <th>Total Units</th>
-                            <th>Underlying</th>
-                            <th>Excess Limit</th>
-                            <th>Risk Premium</th>
+                            <th style="text-align: center">Excess Limit</th>
+                            <th style="text-align: center">Risk Premium</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td><input class="form-control"></td>
-                            <td><input class="form-control"></td>
-                            <td><input class="form-control"></td>
-                            <td><input class="form-control"></td>
+                            <td><input class="form-control" value="$1,000,000" readonly style="text-align: center"></td>
+                            <td><input class="form-control" formControlName="onexPProRated" [(ngModel)]="onexPProRated" readonly
+                                style="text-align: center"></td>
                           </tr>
                           <tr>
-                            <td><input class="form-control"></td>
-                            <td><input class="form-control"></td>
-                            <td><input class="form-control"></td>
-                            <td><input class="form-control"></td>
+                            <td><input class="form-control" value="$2,000,000" readonly style="text-align: center"></td>
+                            <td><input class="form-control" formControlName="twoxPProRated" [(ngModel)]="twoxPProRated" readonly
+                                style="text-align: center"></td>
                           </tr>
                         </tbody>
                       </table>
@@ -557,7 +577,9 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-secondary">Generate Quote</button>
+      <button type="button" class="btn btn-secondary" (click)="onDot1Change($event)" (click)="onQuest_T01_FatalityCoef($event)"
+        (click)="onQuest_T10_1x1Min($event)">Generate Quote</button>
+      <button type="submit" class="btn btn-secondary">Save</button>
     </div>
     <!--RIGHT-->
     <!--    <div class="col-lg-6">

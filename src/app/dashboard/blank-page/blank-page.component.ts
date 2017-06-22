@@ -21,7 +21,7 @@ export class BlankPageComponent implements OnInit {
     hasDOTRevoked: string = '';
     garbageHaul: string = '';
 
-    dot1: string = '';
+    dot1: any = '';
     effDate: Date = null;
     expDate: Date = null;
     safetyRating: string = null;
@@ -47,7 +47,7 @@ export class BlankPageComponent implements OnInit {
     heavyTrucks: number = 0;
     extraHeavyTrucks: number = 0;
     heavyTrucksTractors: number = 0;
-    extraHeavyTrucksTractors: number = 3;
+    extraHeavyTrucksTractors: number = 0;
 
     limitAL: string = '';
     premiumAL: string = '';
@@ -292,37 +292,38 @@ export class BlankPageComponent implements OnInit {
             return adjTotal;
         }*/
 
-        console.log("Rating Parameters");
-        console.log("# of PU " + this.noOfPU);
-        console.log("Intercept Coef " + this.intercept1);
-        console.log("LogUnit " + this.logUnit);
-        console.log("LogUnit_Coef " + this.logUnitCoef);
-        console.log("LogMile " + this.logMile);
-        console.log("LogMile_Coef " + this.logMileCoef);
-        console.log("LogISORate " + this.logISORate);
-        console.log("logISORate_Coef " + this.logISORateCoef);
-        console.log("priorViolation_Coef " + this.priorViolCoef);
-        console.log("priorInspection_Coef " + this.priorInspCoef);
-        console.log("priorCrash_Coef " + this.priorCrashCoef);
-
-        console.log(" ");
-        console.log("Premuim Formula");
-        console.log("Base LC " + this.baseLC);
-        console.log("Size Adj. " + this.sizeAdj);
-        console.log("Mileage Adj. " + this.mileageAdj);
-        console.log("Viol. Factor " + this.violFactor);
-        console.log("Insp. Factor " + this.inspFactor);
-        console.log("Crash Factor " + this.crashFactor);
-        console.log("LCM " + this.LCM);
-        console.log("Emod " + this.Emod);
-
-        console.log("1M Rate " + this.oneMRate);
-        console.log("1M Premium " + this.oneMPremium);
+        /*        console.log("Rating Parameters");
+                console.log("# of PU " + this.noOfPU);
+                console.log("Intercept Coef " + this.intercept1);
+                console.log("LogUnit " + this.logUnit);
+                console.log("LogUnit_Coef " + this.logUnitCoef);
+                console.log("LogMile " + this.logMile);
+                console.log("LogMile_Coef " + this.logMileCoef);
+                console.log("LogISORate " + this.logISORate);
+                console.log("logISORate_Coef " + this.logISORateCoef);
+                console.log("priorViolation_Coef " + this.priorViolCoef);
+                console.log("priorInspection_Coef " + this.priorInspCoef);
+                console.log("priorCrash_Coef " + this.priorCrashCoef);
+        
+                console.log(" ");
+                console.log("Premuim Formula");
+                console.log("Base LC " + this.baseLC);
+                console.log("Size Adj. " + this.sizeAdj);
+                console.log("Mileage Adj. " + this.mileageAdj);
+                console.log("Viol. Factor " + this.violFactor);
+                console.log("Insp. Factor " + this.inspFactor);
+                console.log("Crash Factor " + this.crashFactor);
+                console.log("LCM " + this.LCM);
+                console.log("Emod " + this.Emod);
+        
+                console.log("1M Rate " + this.oneMRate);
+                console.log("1M Premium " + this.oneMPremium);*/
     }
 
     onDot1Change(event: any) {
         //alert("dot 2 value is: "+this.dot2);
-        let val = event.target.value;
+        /*let val = event.target.value;*/
+        let val = this.dot1
         let data = this.phaseOneService.getDOTData(val);
         data.subscribe(
             data => {
@@ -334,6 +335,11 @@ export class BlankPageComponent implements OnInit {
                 this.vehicleType = response.initialEligibility.vehicleType;
                 this.hasDOTRevoked = response.initialEligibility.hasDOTRevoked;
                 this.garbageHaul = response.initialEligibility.garbageHaul;
+                if (this.garbageHaul = "null") {
+                    this.garbageHaul = "NaN";
+                } else {
+                    this.garbageHaul = this.garbageHaul;
+                }
 
                 this.primaryALLimit = 1000000;
 

@@ -22,37 +22,31 @@
 		<div class="col-lg-6">
 			<div class="col-lg-6">
 				<fieldset class="form-group">
-
-					<div class="align-input">
 						<label>Private Passenger:</label>
-						<input type="number" class="form-control" formControlName="privatePassenger" min="0" [(ngModel)]="privatePassenger">
-					</div>
+						<input type="number" class="form-control" formControlName="privatePassenger" min="0">
 
-					<p> {{privatePassenger}} </p>
-
-					<br><label>Light Trucks:</label>
-					<input type="number" class="form-control" formControlName="lightTrucks" min="0">
+						<br><label>Light Trucks:</label>
+						<input type="number" class="form-control" formControlName="lightTrucks" min="0">
 
 
-					<br><label>Medium Trucks:</label>
-					<input type="number" class="form-control" formControlName="mediumTrucks" min="0">
+						<br><label>Medium Trucks:</label>
+						<input type="number" class="form-control" formControlName="mediumTrucks" min="0">
 
 
-					<br><label>Heavy Trucks:</label>
-					<input type="number" class="form-control" formControlName="heavyTrucks" min="0">
+						<br><label>Heavy Trucks:</label>
+						<input type="number" class="form-control" formControlName="heavyTrucks" min="0">
 
 
-					<br><label>Extra Heavy Trucks:</label>
-					<input type="number" class="form-control" formControlName="extraHeavyTrucks" min="0">
+						<br><label>Extra Heavy Trucks:</label>
+						<input type="number" class="form-control" formControlName="extraHeavyTrucks" min="0">
 
 
-					<br><label>Heavy Trucks/Tractors:</label>
-					<input type="number" class="form-control" formControlName="heavyTrucksTractors" min="0">
+						<br><label>Heavy Trucks/Tractors:</label>
+						<input type="number" class="form-control" formControlName="heavyTrucksTractors" min="0">
 
 
-					<br><label>Extra Heavy Trucks/Tractors:</label>
-					<input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0">
-
+						<br><label>Extra Heavy Trucks/Tractors:</label>
+						<input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0">
 				</fieldset>
 
 				<button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid" a href="Javascript:void(0)" [routerLink]="['/dashboard/primaryliability']">Next</button>
