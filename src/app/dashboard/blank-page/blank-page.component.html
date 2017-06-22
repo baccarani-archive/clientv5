@@ -323,7 +323,7 @@
                 <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
                   value="NotRated">Not Rated
                 <br>
-                <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">Ineligible due to ___</div>
+                <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">INELIGIBLE DUE TO: ___</div>
                 <!--<p>{{safetyRating}}</p>-->
                 <!--<p>{{notEligibleSR}}</p>-->
                 <br>
@@ -331,16 +331,16 @@
                   <label class="form-control-label" for="inputError">Years in Business:</label>
                   <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus">
                 </div>
-               
+
                 <!--<p>{{yearInBus}}</p>-->
                 <div [hidden]="yearInBus > 3 || yearInBus === null">
-                   <br>
+                  <br>
                   <label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label><br>
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(false)"
                     name="isDrivingExperience" value="yes">Yes<br>
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(true)"
                     name="isDrivingExperience" value="no">No<br>
-                  <div class="alert" [hidden]="isDrivingExperience === 'yes' || isDrivingExperience === null">Ineligible due to ___</div>
+                  <div class="alert" [hidden]="isDrivingExperience === 'yes' || isDrivingExperience === null">INELIGIBLE DUE TO: Drivers With Less Than 5 Years Of Similar Experience</div>
                 </div>
                 <!--<p>{{isDrivingExperience}}</p>-->
                 <!--<p>{{notEligibleYIB}}</p>-->
@@ -372,11 +372,13 @@
                 <div class="alert" [hidden]="primaryELLimit >= 1000000 && primaryELLimit <= 2000000 || primaryELLimit === null">Please Enter an Amount Between $1000000 and $2000000</div>
                 <!--<p>{{primaryELLimit}}</p>-->
                 <!--<p>{{notEligibleEL}}</p>-->
-                <br>
-                <label>CGL Class 99793 (Truckers) Only: </label><br>
-                <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" value=yes>Yes<br>
-                <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" value=no>No<br>
-                <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Ineligible due to ___</div>
+
+                <div>
+                  <label>CGL Class 99793 (Truckers) Only: </label><br>
+                  <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" value=yes>Yes<br>
+                  <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" value=no>No<br>
+                </div>
+                <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Referral To Small Fleet Team Required Due To: CGL Exposure Other Than Class Code 99793 (Truckers)</div>
                 <!--<p>{{truckersOnly}}</p>-->
 
                 <br>
@@ -401,7 +403,7 @@
                   name="isProvidedCommodities" value=yes>Yes<br>
                 <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" (change)="isEligibleSPCH(false)"
                   name="isProvidedCommodities" value=no>No<br>
-                <div class="alert" [hidden]="isProvidedCommodities === 'no' || isProvidedCommodities === null">Ineligible due to ___</div>
+                <div class="alert" [hidden]="isProvidedCommodities === 'no' || isProvidedCommodities === null">INELIGIBLE DUE TO: Services Provided/ Commodities Hauled</div>
                 <!--<p>{{isProvidedCommodities}}</p>-->
                 <!--<p>{{notEligibleSPCH}}</p>-->
 
@@ -412,7 +414,7 @@
                   name="isUnschedVehicleAuth" value="yes">Yes<br>
                 <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = false" formControlName="isUnschedVehicleAuth" (change)="isEligibleUV(false)"
                   name="isUnschedVehicleAuth" value="no">No<br>
-                <div class="alert" [hidden]="isUnschedVehicleAuth === 'no' || isUnschedVehicleAuth === null">Ineligible due to ___</div>
+                <div class="alert" [hidden]="isUnschedVehicleAuth === 'no' || isUnschedVehicleAuth === null">Referral To Small Fleet Team Required Due To: Unscheduled Vehicles Operated Under The Applicant's Authority</div>
                 <!--<p>{{isUnschedVehicleAuth}}</p>-->
                 <!--<p>{{notEligibleUV}}</p>-->
               </fieldset>
@@ -528,7 +530,8 @@
         </div>
       </div>
       <button type="button" class="btn btn-secondary" (click)="onDot1Change($event)" (click)="onQuest_T01_FatalityCoef($event)"
-        (click)="onQuest_T10_1x1Min($event)">Generate Quote</button> <!--[disabled]="!rForm.valid && notEligible === true"-->
+        (click)="onQuest_T10_1x1Min($event)">Generate Quote</button>
+      <!--[disabled]="!rForm.valid && notEligible === true"-->
       <button type="submit" class="btn btn-secondary">Save</button>
     </div>
   </div>
