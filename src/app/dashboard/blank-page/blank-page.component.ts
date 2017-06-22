@@ -41,13 +41,13 @@ export class BlankPageComponent implements OnInit {
     totalPercent: string = '';
     */
 
-    privatePassenger: number = 0;
-    lightTrucks: number = 0;
-    mediumTrucks: number = 0;
-    heavyTrucks: number = 0;
-    extraHeavyTrucks: number = 0;
-    heavyTrucksTractors: number = 0;
-    extraHeavyTrucksTractors: number = 0;
+    privatePassenger: any = '' ;
+    lightTrucks: any = '' ;
+    mediumTrucks: any = '' ;
+    heavyTrucks: any = '' ;
+    extraHeavyTrucks: any = '' ;
+    heavyTrucksTractors: any = '' ;
+    extraHeavyTrucksTractors: any = '' ;
 
     limitAL: string = '';
     premiumAL: string = '';
