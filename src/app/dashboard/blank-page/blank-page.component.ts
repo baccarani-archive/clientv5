@@ -21,7 +21,7 @@ export class BlankPageComponent implements OnInit {
     hasDOTRevoked: string = '';
     garbageHaul: string = '';
 
-    dot1: any = '';
+    dot1: string = '';
     effDate: Date = null;
     expDate: Date = null;
     safetyRating: string = null;
@@ -41,13 +41,13 @@ export class BlankPageComponent implements OnInit {
     totalPercent: string = '';
     */
 
-    privatePassenger: any = '' ;
-    lightTrucks: any = '' ;
-    mediumTrucks: any = '' ;
-    heavyTrucks: any = '' ;
-    extraHeavyTrucks: any = '' ;
-    heavyTrucksTractors: any = '' ;
-    extraHeavyTrucksTractors: any = '' ;
+    privatePassenger: number = 0;
+    lightTrucks: number = 0;
+    mediumTrucks: number = 0;
+    heavyTrucks: number = 0;
+    extraHeavyTrucks: number = 0;
+    heavyTrucksTractors: number = 0;
+    extraHeavyTrucksTractors: number = 0;
 
     limitAL: string = '';
     premiumAL: string = '';
@@ -252,11 +252,6 @@ export class BlankPageComponent implements OnInit {
             'factor1x1P': [null],
             'rate1x1P': [null],
 
-            'unitUpper': [null],
-            'oneMUpper': [null],
-            'unitLower': [null],
-            'oneMLower': [null],
-
             'onex1P_Percent': [null],
             'onex1P_WithoutMP': [null],
             'onex1P_WithMP': [null],
@@ -292,38 +287,37 @@ export class BlankPageComponent implements OnInit {
             return adjTotal;
         }*/
 
-        /*        console.log("Rating Parameters");
-                console.log("# of PU " + this.noOfPU);
-                console.log("Intercept Coef " + this.intercept1);
-                console.log("LogUnit " + this.logUnit);
-                console.log("LogUnit_Coef " + this.logUnitCoef);
-                console.log("LogMile " + this.logMile);
-                console.log("LogMile_Coef " + this.logMileCoef);
-                console.log("LogISORate " + this.logISORate);
-                console.log("logISORate_Coef " + this.logISORateCoef);
-                console.log("priorViolation_Coef " + this.priorViolCoef);
-                console.log("priorInspection_Coef " + this.priorInspCoef);
-                console.log("priorCrash_Coef " + this.priorCrashCoef);
-        
-                console.log(" ");
-                console.log("Premuim Formula");
-                console.log("Base LC " + this.baseLC);
-                console.log("Size Adj. " + this.sizeAdj);
-                console.log("Mileage Adj. " + this.mileageAdj);
-                console.log("Viol. Factor " + this.violFactor);
-                console.log("Insp. Factor " + this.inspFactor);
-                console.log("Crash Factor " + this.crashFactor);
-                console.log("LCM " + this.LCM);
-                console.log("Emod " + this.Emod);
-        
-                console.log("1M Rate " + this.oneMRate);
-                console.log("1M Premium " + this.oneMPremium);*/
+        console.log("Rating Parameters");
+        console.log("# of PU " + this.noOfPU);
+        console.log("Intercept Coef " + this.intercept1);
+        console.log("LogUnit " + this.logUnit);
+        console.log("LogUnit_Coef " + this.logUnitCoef);
+        console.log("LogMile " + this.logMile);
+        console.log("LogMile_Coef " + this.logMileCoef);
+        console.log("LogISORate " + this.logISORate);
+        console.log("logISORate_Coef " + this.logISORateCoef);
+        console.log("priorViolation_Coef " + this.priorViolCoef);
+        console.log("priorInspection_Coef " + this.priorInspCoef);
+        console.log("priorCrash_Coef " + this.priorCrashCoef);
+
+        console.log(" ");
+        console.log("Premuim Formula");
+        console.log("Base LC " + this.baseLC);
+        console.log("Size Adj. " + this.sizeAdj);
+        console.log("Mileage Adj. " + this.mileageAdj);
+        console.log("Viol. Factor " + this.violFactor);
+        console.log("Insp. Factor " + this.inspFactor);
+        console.log("Crash Factor " + this.crashFactor);
+        console.log("LCM " + this.LCM);
+        console.log("Emod " + this.Emod);
+
+        console.log("1M Rate " + this.oneMRate);
+        console.log("1M Premium " + this.oneMPremium);
     }
 
     onDot1Change(event: any) {
         //alert("dot 2 value is: "+this.dot2);
-        /*let val = event.target.value;*/
-        let val = this.dot1
+        let val = event.target.value;
         let data = this.phaseOneService.getDOTData(val);
         data.subscribe(
             data => {
@@ -335,12 +329,8 @@ export class BlankPageComponent implements OnInit {
                 this.vehicleType = response.initialEligibility.vehicleType;
                 this.hasDOTRevoked = response.initialEligibility.hasDOTRevoked;
                 this.garbageHaul = response.initialEligibility.garbageHaul;
-                if (this.garbageHaul = "null") {
-                    this.garbageHaul = "NaN";
-                } else {
-                    this.garbageHaul = this.garbageHaul;
-                }
 
+                this.extraHeavyTrucksTractors = 1;
                 this.primaryALLimit = 1000000;
 
                 this.intercept1 = response.TRANS_LC_201704.intercept1;
@@ -376,23 +366,17 @@ export class BlankPageComponent implements OnInit {
                 this.baseFatality = Math.exp(this.intercept2) * 100;
                 this.cargoFactor = Math.exp(this.cargoCoef);
                 this.weightFactor = Math.exp(this.LOG_AVGGWT1 * this.LOG_AVGGWT2);
-                this.popDenFactor = Math.exp(this.popDensity * this.POPDENSITY_COUNTY_ADJ_INSP + Math.pow(this.popDensity, 2) * this.POPDENSITY_COUNTY_ADJ_INSP_SQRT);
+                this.popDenFactor = Math.exp(this.popDensity * this.POPDENSITY_COUNTY_ADJ_INSP * (this.popDensity * this.popDensity) * this.POPDENSITY_COUNTY_ADJ_INSP_SQRT);
                 this.fatalCrash = this.baseFatality * this.cargoFactor * this.weightFactor * this.popDenFactor;
                 this.factor1x1P = Math.max(100 * (0.17), 100 * (0.17 * (this.fatalCrash / 3.6)));
                 this.rate1x1P = (this.factor1x1P / 100) * (this.oneMPremium / this.totalAdj);
-
-                //Data Point 1
-                //this.onex1P_WithoutMP = this.oneMPremium * (this.factor1x1P / 100);
-                this.onex1P_WithoutMP = this.rate1x1P * this.noOfPU;
-                this.onex1x1P_Percent = 0.61;
-                this.onex1x1P_WithoutMP = this.onex1P_WithoutMP * this.onex1x1P_Percent;
 
                 //Data Point 2
                 /*this.unitLower = response.TABLE.VARIABLE;
                 this.unitUpper = response.TABLE.VARIABLE;
                 this.oneMLower = response.TABLE.VARIABLE;
                 this.oneMUpper = response.TABLE.VARIABLE;*/
-                this.weightUpper = this.adjExpo - Math.ceil(this.adjExpo);
+                this.weightUpper = this.adjExpo - 1;
                 this.weightLower = 1 - this.weightUpper;
                 this.avgUpLow = (this.weightLower * this.oneMLower) + (this.weightUpper * this.oneMUpper);
                 if (this.unitLower >= 4) {
@@ -403,28 +387,14 @@ export class BlankPageComponent implements OnInit {
                 //Data Point 3
                 this.dataPoint3 = this.dataPoint2 * (this.rate1x1P / 1350);
 
-
                 this.onex1P_WithMP = Math.max(this.onex1P_WithoutMP, this.dataPoint2, this.dataPoint3);
-
-                this.onex1x1P_WithMP = Math.max(this.onex1P_WithMP * this.onex1x1P_Percent, 1500);
+                this.onex1x1P_WithMP = this.onex1P_WithMP * this.onex1x1P_Percent;
 
                 this.onex1P_Percent = 1;
+                this.onex1P_WithoutMP = this.oneMPremium * (this.factor1x1P / 100);
 
-
-
-
-                this.onex1P_Accumulation = this.onex1P_WithMP;
-                this.onex1x1P_Accumulation = this.onex1P_Accumulation + this.onex1x1P_WithMP;
-
-                this.proRata = 1;
-
-                this.onexPAnnual = this.onex1P_Accumulation;
-                this.twoxPAnnual = this.onex1x1P_Accumulation;
-
-                this.onexPProRated = this.onexPAnnual * this.proRata;
-                this.twoxPProRated = this.twoxPAnnual * this.proRata;
-
-
+                this.onex1x1P_Percent = 0.61;
+                this.onex1x1P_WithoutMP = this.onex1P_WithoutMP * this.onex1x1P_Percent;
             }
         );
         console.log("data here:" + data);
@@ -448,27 +418,17 @@ export class BlankPageComponent implements OnInit {
 
     onQuest_T10_1x1Min(event: any) {
         //alert("dot 2 value is: "+this.dot2);
-        let valLower = Math.floor(this.privatePassenger * 0.25 + this.lightTrucks * 0.37 + this.mediumTrucks * 0.45 + this.heavyTrucks * 0.95 + this.extraHeavyTrucks * 1.00 + this.heavyTrucksTractors * 0.95 + this.extraHeavyTrucksTractors * 1.00);
-        let dataLower = this.phaseOneService.getQuest_T10_1x1Min(Math.min(valLower, 4));
-        dataLower.subscribe(
-            dataLower => {
-                console.log("data:" + dataLower);
-                let response = JSON.parse(dataLower);
-                this.unitLower = response.QUEST_T10.units;
-                this.oneMLower = response.QUEST_T10.oneMillion;
+        let val = this.totalAdj;
+        let data = this.phaseOneService.getQuest_T10_1x1Min(val);
+        data.subscribe(
+            data => {
+                console.log("data:" + data);
+                let response = JSON.parse(data);
+                this.units = response.QUEST_T10.units;
+                this.oneMillion = response.QUEST_T10.oneMillion;
             }
         );
-        let valUpper = valLower + 1;
-        let dataUpper = this.phaseOneService.getQuest_T10_1x1Min(Math.min(valUpper, 4));
-        dataUpper.subscribe(
-            dataUpper => {
-                console.log("data:" + dataUpper);
-                let response = JSON.parse(dataUpper);
-                this.unitUpper = response.QUEST_T10.units;
-                this.oneMUpper = response.QUEST_T10.oneMillion;
-            }
-        );
-        console.log("data here:" + dataUpper + dataLower);
+        console.log("totalAdj: " + val);
     }
 
     ngOnInit() {
