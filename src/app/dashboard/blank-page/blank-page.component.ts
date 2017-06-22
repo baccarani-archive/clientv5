@@ -68,7 +68,7 @@ export class BlankPageComponent implements OnInit {
 
 
     //Rating Parameters
-    noOfPU: number = null; //this.privatePassenger + this.lightTrucks + this.mediumTrucks + this.heavyTrucks + this.extraHeavyTrucks + this.heavyTrucksTractors + this.extraHeavyTrucksTractors;
+    noOfPU = this.privatePassenger + this.lightTrucks + this.mediumTrucks + this.heavyTrucks + this.extraHeavyTrucks + this.heavyTrucksTractors + this.extraHeavyTrucksTractors;
     totalAdj: number = null; //this.privatePassenger * 0.25 + this.lightTrucks * 0.37 + this.mediumTrucks * 0.45 + this.heavyTrucks * 0.95 + this.extraHeavyTrucks * 1.00 + this.heavyTrucksTractors * 0.95 + this.extraHeavyTrucksTractors * 1.00;
 
     intercept1: number = null;
@@ -195,10 +195,10 @@ export class BlankPageComponent implements OnInit {
             'safetyRating': [null, Validators.required],
             'yearInBus': [null, Validators.required],
             'isDrivingExperience': [null, Validators.required],
-            'primaryALLimit': [null, Validators.compose([Validators.required, Validators.minLength(7)])],
-            'primaryCGLimit': [null, Validators.compose([Validators.required, Validators.minLength(7)])],
+            'primaryALLimit': [null, Validators.required],
+            'primaryCGLimit': [null, Validators.required],
             'truckersOnly': [null, Validators.required],
-            'primaryELLimit': [null, Validators.compose([Validators.required, Validators.minLength(7)])],
+            'primaryELLimit': [null, Validators.required],
             'isProvidedCommodities': [null, Validators.required],
             'isUnschedVehicleAuth': [null, Validators.required],
 
@@ -501,7 +501,7 @@ export class BlankPageComponent implements OnInit {
     }
 
     isEligible() {
-        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false) {
+        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false && this.noOfPU <=5) {
             this.notEligible = false;
             return this.notEligible;
         } else {

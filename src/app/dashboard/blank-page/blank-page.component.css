@@ -49,3 +49,19 @@ max-width:none;
        transform: translateY(0);
   }
 }
+
+.horizList-outer { 
+    overflow-x: scroll; 
+    height: 83px;
+}
+.horizList-inner { 
+    width: 10000px; 
+}
+
+.list {
+    font-size: 12px;
+   font-style:italic;
+   /*display:inline-block;*/
+   float:left; 
+   margin-right: 100px;
+}
