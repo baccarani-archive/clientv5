@@ -24,7 +24,6 @@ export class BlankPageComponent implements OnInit {
     dot1: any = '';
     effDate;
     expDate;
-
     safetyRating: string = null;
     yearInBus: number = null;
     isDrivingExperience: string = null;
