@@ -171,6 +171,7 @@ export class BlankPageComponent implements OnInit {
     twoxPProRated: number = null;
 
     notEligibleSR: Boolean = false;
+    notEligibleTO: Boolean = false;
     notEligibleYIB: Boolean = false;
     notEligibleSPCH: Boolean = false;
     notEligibleUV: Boolean = false;
@@ -442,11 +443,7 @@ export class BlankPageComponent implements OnInit {
     newExpDate() {
         this.expDate = new Date(this.effDate);
         this.expDate.setFullYear(this.expDate.getFullYear() + 1);
-<<<<<<< HEAD
-        this.expDate = ("0" + (this.expDate.getMonth() + 1)).slice(-2) + "/" + ("0" + this.expDate.getDate()).slice(-2) + "/" + this.expDate.getFullYear();
-=======
         this.expDate = this.expDate.getMonth() + 1 + "/" + this.expDate.getDate() + "/" + this.expDate.getFullYear();
->>>>>>> ee67c9b8af9675a19ff0224c81bbeffa98e4f921
     }
 
 
@@ -454,6 +451,13 @@ export class BlankPageComponent implements OnInit {
 
         this.notEligibleSR = notEligible;
         return this.notEligibleSR;
+
+    }
+
+    isEligibleTO(notEligible: Boolean) {
+
+        this.notEligibleTO = notEligible;
+        return this.notEligibleTO;
 
     }
 
@@ -515,7 +519,7 @@ export class BlankPageComponent implements OnInit {
     }
 
     isEligible() {
-        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false /*&& this.noOfPU <=5*/) {
+        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false && this.notEligibleTO === false /*&& this.noOfPU <=5*/) {
             this.notEligible = false;
             return this.notEligible;
         } else {
