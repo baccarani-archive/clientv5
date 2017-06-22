@@ -317,18 +317,25 @@
 
                 <br>
                 <label>Safety Rating:</label><br>
+                <label class="radio-inline">
                 <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(false)"
                   value="Satisfactory">Satisfactory<br>
+                </label>
+                <label class="radio-inline">
                 <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(false)"
                   value="Conditional">Conditional<br>
+                  </label>
+                <label class="radio-inline">
                 <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
                   value="Unsatisfactory">Unsatisfactory<br>
+                  </label>
+                <label class="radio-inline">
                 <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
                   value="NotRated">Not Rated
-                <br>
-                <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">INELIGIBLE DUE TO: ___</div>
+                </label>
+                <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">INELIGIBLE DUE TO: ___</div><br>
                 <!--<p>{{safetyRating}}</p>-->
-                <p>{{notEligibleSR}}</p>
+                <!--<p>{{notEligibleSR}}</p>-->
 
                 <br>
                 <div [ngClass]="{'form-group has-danger' : !rForm.controls['yearInBus'].valid && rForm.controls['yearInBus'].touched}">
@@ -340,10 +347,14 @@
                 <div [hidden]="yearInBus > 3 || yearInBus === null">
                   <br>
                   <label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label><br>
+                  <label class="radio-inline">
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(false)"
                     name="isDrivingExperience" value="yes">Yes<br>
+                  </label>
+                    <label class="radio-inline">
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(true)"
-                    name="isDrivingExperience" value="no">No<br>
+                    name="isDrivingExperience" value="no">No
+                    </label>
                   <div class="alert" [hidden]="isDrivingExperience === 'yes' || isDrivingExperience === null">INELIGIBLE DUE TO: Drivers With Less Than 5 Years Of Similar Experience</div>
                 </div>
                 <!--<p>{{isDrivingExperience}}</p>-->
@@ -391,7 +402,7 @@
                 <!--<p>{{truckersOnly}}</p>-->
 
                 <br>
-                <label>Any Of The Following Services Provided Or Commodities Hauled:</label><br>
+                <label>Any Of The Below Services Provided Or Commodities Hauled:</label><br>
                 <div class="horizList-outer form-control">
                   <div class="horizList-inner">
                     <p class="list">Passenger<br> Transit</p>

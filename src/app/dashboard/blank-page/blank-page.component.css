@@ -52,16 +52,17 @@ max-width:none;
 
 .horizList-outer { 
     overflow-x: scroll; 
-    height: 83px;
+    overflow-y: hidden; 
+    height: 75px;
 }
 .horizList-inner { 
     width: 10000px; 
 }
 
 .list {
-    font-size: 12px;
+    font-size: 14px;
    font-style:italic;
    /*display:inline-block;*/
    float:left; 
-   margin-right: 100px;
+   margin-right: 75px;
 }
