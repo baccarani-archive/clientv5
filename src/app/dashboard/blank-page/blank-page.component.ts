@@ -22,8 +22,8 @@ export class BlankPageComponent implements OnInit {
     garbageHaul: string = '';
 
     dot1: string = '';
-    effDate: Date = null;
-    expDate: Date = null;
+    effDate;
+    expDate;
     safetyRating: string = null;
     yearInBus: number = null;
     isDrivingExperience: string = null;
@@ -436,6 +436,12 @@ export class BlankPageComponent implements OnInit {
         //this.data.currentExtraHeavyTrucksTractors.subscribe(extraHeavyTrucksTractors => this.extraHeavyTrucksTractors = extraHeavyTrucksTractors)
     }
 
+    newExpDate() {
+        this.expDate = new Date(this.effDate);
+        this.expDate.setFullYear(this.expDate.getFullYear() + 1);
+        this.expDate = this.expDate.getFullYear()  + "-" + ("0" + (this.expDate.getMonth() + 1)).slice(-2) + "-" + (this.expDate.getDate() + 1);
+    }
+
     isEligibleSR(notEligible: Boolean) {
 
         this.notEligibleSR = notEligible;
@@ -501,7 +507,7 @@ export class BlankPageComponent implements OnInit {
     }
 
     isEligible() {
-        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false && this.noOfPU <=5) {
+        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false /*&& this.noOfPU <=5*/) {
             this.notEligible = false;
             return this.notEligible;
         } else {
