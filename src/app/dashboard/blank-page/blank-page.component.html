@@ -430,7 +430,7 @@
                 <label class="radio-inline">
                 <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" (change)="isEligibleSPCH(false)"
                   name="isProvidedCommodities" (change)="isEligible()" value=no>No
-                  </label>
+                  </label><br>
                 <div class="alert" [hidden]="isProvidedCommodities === 'no' || isProvidedCommodities === null">INELIGIBLE DUE TO: Services Provided/ Commodities Hauled</div>
                 <!--<p>{{isProvidedCommodities}}</p>-->
                 <!--<p>{{notEligibleSPCH}}</p>-->
@@ -461,7 +461,7 @@
             </div>
             <div class="card-block bg-white">
               <div class="alert" [hidden]="noOfPU <= 5">Please Enter a Total # of Units No More Than 5</div>
-              <p> {{noOfPU}} </p>
+              <!--<p> {{noOfPU}} </p>-->
               <div class="row">
                 <div class="col-xl-12 col-lg-12">
                   <div class="card card-block">
