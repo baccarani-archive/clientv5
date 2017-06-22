@@ -351,9 +351,9 @@
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(false)"
                     name="isDrivingExperience" value="yes">Yes<br>
                   </label>
-                    <label class="radio-inline">
+                  <label class="radio-inline">
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(true)"
-                    name="isDrivingExperience" value="no">No
+                    name="isDrivingExperience" value="no">No<br>
                     </label>
                   <div class="alert" [hidden]="isDrivingExperience === 'yes' || isDrivingExperience === null">INELIGIBLE DUE TO: Drivers With Less Than 5 Years Of Similar Experience</div>
                 </div>
@@ -395,8 +395,12 @@
 
                 <div>
                   <label>CGL Class 99793 (Truckers) Only: </label><br>
+                  <label class="radio-inline">
                   <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" value=yes>Yes<br>
-                  <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" value=no>No<br>
+                  </label>
+                  <label class="radio-inline">
+                  <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" value=no>No
+                  </label>
                 </div>
                 <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Referral To Small Fleet Team Required Due To: CGL Exposure Other Than Class Code 99793 (Truckers)</div>
                 <!--<p>{{truckersOnly}}</p>-->
@@ -419,21 +423,28 @@
                   </div>
                 </div>
                 <br>
-
+                <label class="radio-inline">
                 <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" (change)="isEligibleSPCH(true)"
                   name="isProvidedCommodities" value=yes>Yes<br>
+                </label>
+                <label class="radio-inline">
                 <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" (change)="isEligibleSPCH(false)"
-                  name="isProvidedCommodities" value=no>No<br>
+                  name="isProvidedCommodities" value=no>No
+                  </label>
                 <div class="alert" [hidden]="isProvidedCommodities === 'no' || isProvidedCommodities === null">INELIGIBLE DUE TO: Services Provided/ Commodities Hauled</div>
                 <!--<p>{{isProvidedCommodities}}</p>-->
                 <p>{{notEligibleSPCH}}</p>
 
                 <br>
                 <label>Unscheduled Vehicles Operated Under The Applicant's Authority:</label><br>
+                <label class="radio-inline">
                 <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = true" formControlName="isUnschedVehicleAuth" (change)="isEligibleUV(true)"
                   name="isUnschedVehicleAuth" value="yes">Yes<br>
+                </label>
+                <label class="radio-inline">
                 <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = false" formControlName="isUnschedVehicleAuth" (change)="isEligibleUV(false)"
-                  name="isUnschedVehicleAuth" value="no">No<br>
+                  name="isUnschedVehicleAuth" value="no">No
+                  </label>
                 <div class="alert" [hidden]="isUnschedVehicleAuth === 'no' || isUnschedVehicleAuth === null">Referral To Small Fleet Team Required Due To: Unscheduled Vehicles Operated Under The Applicant's Authority</div>
                 <!--<p>{{isUnschedVehicleAuth}}</p>-->
                 <p>{{notEligibleUV}}</p>
@@ -442,7 +453,6 @@
           </div>
         </div>
       </div>
-
       <div class="row">
         <div class="col-sm-12">
           <div class="card card-primary card-inverse mb-3">
@@ -450,29 +460,65 @@
               Fleet Entry
             </div>
             <div class="card-block bg-white">
-              <fieldset class="form-group">
-                <label>Private Passenger:</label>
-                <input type="number" class="form-control" formControlName="privatePassenger" min="0" [(ngModel)]="privatePassenger" (change)="onDot1Change($event)">
-                <br><label>Light Trucks:</label>
-                <input type="number" class="form-control" formControlName="lightTrucks" min="0" [(ngModel)]="lightTrucks">
-                <br><label>Medium Trucks:</label>
-                <input type="number" class="form-control" formControlName="mediumTrucks" min="0" [(ngModel)]="mediumTrucks">
-                <br><label>Heavy Trucks:</label>
-                <input type="number" class="form-control" formControlName="heavyTrucks" min="0" [(ngModel)]="heavyTrucks">
-                <br><label>Extra Heavy Trucks:</label>
-                <input type="number" class="form-control" formControlName="extraHeavyTrucks" min="0" [(ngModel)]="extraHeavyTrucks">
-                <br><label>Heavy Trucks/Tractors:</label>
-                <input type="number" class="form-control" formControlName="heavyTrucksTractors" min="0" [(ngModel)]="heavyTrucksTractors">
-                <br><label>Extra Heavy Trucks/Tractors:</label>
-                <input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" min="0" [(ngModel)]="extraHeavyTrucksTractors">
-                <br>
-                <div class="alert" [hidden]="privatePassenger + lightTrucks + mediumTrucks + heavyTrucks + extraHeavyTrucks + heavyTrucksTractors + extraHeavyTrucksTractors <= 5">Please Enter a Total # of Units No More Than 5</div>
-              </fieldset>
+              <div class="alert" [hidden]="noOfPU <= 5">Please Enter a Total # of Units No More Than 5</div>
+              <p> {{noOfPU}} </p>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                  <div class="card card-block">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class="thead-neutral">
+                          <tr>
+                            <th style="text-align: center">Vehicle Type</th>
+                            <th style="text-align: center">Unit #</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><input class="form-control" value="Private Passenger" readonly style="text-align: center"></td>
+                            <td><input type="number" class="form-control" formControlName="privatePassenger" [(ngModel)]="privatePassenger"
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                          </tr>
+                          <tr>
+                            <td><input class="form-control" value="Light Trucks" readonly style="text-align: center"></td>
+                            <td><input type="number" class="form-control" formControlName="lightTrucks" [(ngModel)]="lightTrucks" style="text-align: center"
+                                (change)="isNoOfPUGreaterThan5()"></td>
+                          </tr>
+                          <tr>
+                            <td><input class="form-control" value="Medium Trucks" readonly style="text-align: center"></td>
+                            <td><input type="number" class="form-control" formControlName="mediumTrucks" [(ngModel)]="mediumTrucks" style="text-align: center"
+                                (change)="isNoOfPUGreaterThan5()"></td>
+                          </tr>
+                          <tr>
+                            <td><input class="form-control" value="Heavy Trucks" readonly style="text-align: center"></td>
+                            <td><input type="number" class="form-control" formControlName="heavyTrucks" [(ngModel)]="heavyTrucks" style="text-align: center"
+                                (change)="isNoOfPUGreaterThan5()"></td>
+                          </tr>
+                          <tr>
+                            <td><input class="form-control" value="Extra Heavy Trucks" readonly style="text-align: center"></td>
+                            <td><input type="number" class="form-control" formControlName="extraHeavyTrucks" [(ngModel)]="extraHeavyTrucks"
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                          </tr>
+                          <tr>
+                            <td><input class="form-control" value="Heavy Trucks / Tractors" readonly style="text-align: center"></td>
+                            <td><input type="number" class="form-control" formControlName="heavyTrucksTractors" [(ngModel)]="heavyTrucksTractors"
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                          </tr>
+                          <tr>
+                            <td><input class="form-control" value="Extra Heavy Trucks / Tractors" readonly style="text-align: center"></td>
+                            <td><input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" [(ngModel)]="extraHeavyTrucksTractors"
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
       <div class="row">
         <div class="col-sm-12">
           <div class="card card-primary card-inverse mb-3">

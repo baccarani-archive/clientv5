@@ -70,7 +70,7 @@ export class BlankPageComponent implements OnInit {
 
 
     //Rating Parameters
-    noOfPU = this.privatePassenger + this.lightTrucks + this.mediumTrucks + this.heavyTrucks + this.extraHeavyTrucks + this.heavyTrucksTractors + this.extraHeavyTrucksTractors;
+    noOfPU: number = 0;
     totalAdj: number = null; //this.privatePassenger * 0.25 + this.lightTrucks * 0.37 + this.mediumTrucks * 0.45 + this.heavyTrucks * 0.95 + this.extraHeavyTrucks * 1.00 + this.heavyTrucksTractors * 0.95 + this.extraHeavyTrucksTractors * 1.00;
 
     intercept1: number = null;
@@ -516,4 +516,7 @@ export class BlankPageComponent implements OnInit {
         }
     }
 
+    isNoOfPUGreaterThan5() {
+        this.noOfPU = this.privatePassenger + this.lightTrucks + this.mediumTrucks + this.heavyTrucks + this.extraHeavyTrucks + this.heavyTrucksTractors + this.extraHeavyTrucksTractors;
+    }
 }
