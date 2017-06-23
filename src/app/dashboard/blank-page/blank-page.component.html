@@ -370,7 +370,7 @@
             </div>
             <div class="card-block bg-white">
               <!--INITIAL ELIGIBILITY HEADER-->
-              <div class="row">
+              <div class="row" [hidden]="dot1 === ''">
                 <div class="col-sm-12">
                   <div class="card card-default card-default">
                     <div class="card-header card-default">
@@ -467,28 +467,29 @@
                               <label class="form-control-label" for="inputError">Years in Business:<br></label><br>
                   <div [ngClass]="{'form-group has-danger' : !rForm.controls['yearInBus'].valid && rForm.controls['yearInBus'].touched}">
                     <label>
-                              <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus">
+                              <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus" (input)="setDrivingValidator()">
+                              <!--(change)="setDrivingValidator()"-->
                               </label>
                   </div>
                   </label>
 
                 </div>
-
+                
                 <!--HIDDEN -- Years In Business-->
                 <div [hidden]="yearInBus > 3 || yearInBus === null">
                   <label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label><br>
                   <label class="radio-inline">
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(false)"
-                    name="isDrivingExperience" value="yes" (change)="isEligible()">Yes<br>
+                    name="isDrivingExperience" value="yes" (change)="isEligible()" ng-required="required">Yes<br>
                   </label>
                   <label class="radio-inline">
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(true)"
-                    name="isDrivingExperience" value="no" (change)="isEligible()">No
+                    name="isDrivingExperience" value="no" (change)="isEligible()" ng-required="required">No
                     </label>
                   <div class="alert" [hidden]="isDrivingExperience === 'yes' || isDrivingExperience === null">INELIGIBLE DUE TO: Drivers With Less Than 5 Years Of Similar Experience</div>
                 </div>
 
-
+           
 
                 <br>
                 <label>Safety Rating:</label><br>
@@ -902,7 +903,7 @@
       </div>
       <!--BUTTON-->
       <button type="button" class="btn btn-secondary" (click)="onDot1Change($event)" (click)="onQuest_T01_FatalityCoef($event)"
-        (click)="onQuest_T10_1x1Min($event)" [disabled]="(!rForm.valid || notEligible)">Generate Quote</button>
+        (click)="onQuest_T10_1x1Min($event)"  [disabled]="(!rForm.valid || notEligible)">Generate Quote</button>
       <button type="submit" class="btn btn-secondary">Save</button>
       <!--<p>{{notEligible}}</p>
       <p>{{!rForm.valid}}</p>-->

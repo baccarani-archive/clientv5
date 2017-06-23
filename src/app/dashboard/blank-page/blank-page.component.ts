@@ -27,7 +27,7 @@ export class BlankPageComponent implements OnInit {
     expDate;
     safetyRating: string = null;
     yearInBus: number = null;
-    isDrivingExperience: string = null;
+    isDrivingExperience: any = null;
     primaryALLimit: number = null;
     primaryCGLimit: number = null;
     truckersOnly: string = null;
@@ -180,6 +180,7 @@ export class BlankPageComponent implements OnInit {
     notEligibleEL: Boolean = true;*/
     notEligible: Boolean = true;
 
+<<<<<<< HEAD
     ALNoOfClaimsOver50K: number = null;
     GLNoOfClaimsOver50K: number = null;
 
@@ -187,6 +188,9 @@ export class BlankPageComponent implements OnInit {
     GLnewFields: any = ('');
 
 
+=======
+    
+>>>>>>> 341ae0baf680b10cdd46b5c725ede8950ff2a80b
     constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService) {
 
         this.rForm = fb.group({
@@ -203,7 +207,7 @@ export class BlankPageComponent implements OnInit {
             'expDate': [null, Validators.required],
             'safetyRating': [null, Validators.required],
             'yearInBus': [null, Validators.required],
-            'isDrivingExperience': [null, Validators.required],
+            'isDrivingExperience' : [null],
             /*'primaryALLimit': [null, Validators.required],
             'primaryCGLimit': [null, Validators.required],*/
             'truckersOnly': [null, Validators.required],
@@ -489,6 +493,19 @@ export class BlankPageComponent implements OnInit {
         this.expDate = this.expDate.getMonth() + 1 + "/" + this.expDate.getDate() + "/" + this.expDate.getFullYear();
     }
 
+    setDrivingValidator() {
+        
+        if (this.yearInBus <= 3) {
+            console.log("required");
+            this.rForm.get('isDrivingExperience').setValidators([Validators.required]);
+            this.isDrivingExperience = null;
+        } else {
+            console.log("not required");
+            this.rForm.get('isDrivingExperience').clearValidators();
+            this.isDrivingExperience = null;
+        }
+        
+    }
 
     isEligibleSR(notEligible: Boolean) {
 
