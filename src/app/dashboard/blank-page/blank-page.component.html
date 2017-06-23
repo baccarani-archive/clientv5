@@ -611,37 +611,37 @@
                           <tr>
                             <td><input class="form-control" value="Private Passenger" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="privatePassenger" [(ngModel)]="privatePassenger"
-                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Light Trucks" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="lightTrucks" [(ngModel)]="lightTrucks"
-                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Medium Trucks" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="mediumTrucks" [(ngModel)]="mediumTrucks"
-                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Heavy Trucks" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="heavyTrucks" [(ngModel)]="heavyTrucks"
-                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Extra Heavy Trucks" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="extraHeavyTrucks" [(ngModel)]="extraHeavyTrucks"
-                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Heavy Trucks / Tractors" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="heavyTrucksTractors" [(ngModel)]="heavyTrucksTractors"
-                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Extra Heavy Trucks / Tractors" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" [(ngModel)]="extraHeavyTrucksTractors"
-                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                         </tbody>
                       </table>
@@ -653,12 +653,12 @@
           </div>
         </div>
       </div>
-      <!--PRIMARY LIABILITY-->
+      <!--UNDERLYING POLICIES-->
       <div class="row">
         <div class="col-sm-12">
           <div class="card card-primary card-inverse mb-3">
             <div class="card-header card-primary">
-              Primary Liability
+              Underlying Policies
             </div>
             <div class="card-block bg-white">
               <!--PRIMARY AL-->
@@ -712,7 +712,7 @@
                               <div class="card mb-3">
                                 <div class="card-block">
                                   <label>
-                              <label class="form-control-label">Total Incurred Losses::<br></label><br>
+                              <label class="form-control-label">Total Incurred Losses:<br></label><br>
                                   <label>
                               <input type="text" class="form-control">
                               </label>
@@ -799,7 +799,7 @@
                               <div class="card mb-3">
                                 <div class="card-block">
                                   <label>
-                              <label class="form-control-label">Total Incurred Losses::<br></label><br>
+                              <label class="form-control-label">Total Incurred Losses:<br></label><br>
                                   <label>
                               <input type="text" class="form-control">
                               </label>
@@ -902,8 +902,8 @@
       <button type="button" class="btn btn-secondary" (click)="onDot1Change($event)" (click)="onQuest_T01_FatalityCoef($event)"
         (click)="onQuest_T10_1x1Min($event)" [disabled]="(!rForm.valid || notEligible)">Generate Quote</button>
       <button type="submit" class="btn btn-secondary">Save</button>
-      <p>{{notEligible}}</p>
-      <p>{{!rForm.valid}}</p>
+      <!--<p>{{notEligible}}</p>
+      <p>{{!rForm.valid}}</p>-->
     </div>
   </div>
 </form>

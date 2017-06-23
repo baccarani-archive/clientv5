@@ -174,9 +174,9 @@ export class BlankPageComponent implements OnInit {
     notEligibleYIB: Boolean = false;
     notEligibleSPCH: Boolean = false;
     notEligibleUV: Boolean = false;
-    notEligibleAL: Boolean = true;
+    /*notEligibleAL: Boolean = true;
     notEligibleCGL: Boolean = true;
-    notEligibleEL: Boolean = true;
+    notEligibleEL: Boolean = true;*/
     notEligible: Boolean = true;
 
 
@@ -197,10 +197,10 @@ export class BlankPageComponent implements OnInit {
             'safetyRating': [null, Validators.required],
             'yearInBus': [null, Validators.required],
             'isDrivingExperience': [null, Validators.required],
-            'primaryALLimit': [null, Validators.required],
-            'primaryCGLimit': [null, Validators.required],
+            /*'primaryALLimit': [null, Validators.required],
+            'primaryCGLimit': [null, Validators.required],*/
             'truckersOnly': [null, Validators.required],
-            'primaryELLimit': [null, Validators.required],
+            /*'primaryELLimit': [null, Validators.required],*/
             'isProvidedCommodities': [null, Validators.required],
             'isUnschedVehicleAuth': [null, Validators.required],
 
@@ -512,7 +512,7 @@ export class BlankPageComponent implements OnInit {
 
     }
 
-    rangeLimitAL() {
+    /*rangeLimitAL() {
 
         if (this.primaryALLimit >= 1000000 && this.primaryALLimit <= 2000000) {
             this.notEligibleAL = false;
@@ -546,7 +546,7 @@ export class BlankPageComponent implements OnInit {
             return this.notEligibleCGL;
         }
 
-    }
+    }*/
 
     isNoOfPUGreaterThan5() {
         this.noOfPU = this.privatePassenger + this.lightTrucks + this.mediumTrucks + this.heavyTrucks + this.extraHeavyTrucks + this.heavyTrucksTractors + this.extraHeavyTrucksTractors;
@@ -554,7 +554,7 @@ export class BlankPageComponent implements OnInit {
     }
 
     isEligible() {
-        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false && this.notEligibleTO === false && (this.noOfPU <= 5 && this.noOfPU >= 1)) {
+        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false /*&& this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false*/ && this.notEligibleTO === false && (this.noOfPU <= 5 && this.noOfPU >= 1)) {
             this.notEligible = false;
             return this.notEligible;
         } else {
