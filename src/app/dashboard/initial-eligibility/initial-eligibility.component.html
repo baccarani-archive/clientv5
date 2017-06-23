@@ -112,8 +112,10 @@
           <!--Truckes Only-->
           <div>
             <label class="form-control-label">CGL Class 99793 (Truckers) Only: </label><br>
-            <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(false)" value=yes>Yes<br>
-            <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(true)" value=no>No<br>
+            <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(false)"
+              value=yes>Yes<br>
+            <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(true)"
+              value=no>No<br>
             <br>
           </div>
           <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Referral To Small Fleet Team Required Due To: CGL Exposure Other Than Class Code 99793 (Truckers)</div>
@@ -157,9 +159,7 @@
 
         </fieldset>
 
-        <button type="submit" class="btn btn-secondary" a href="Javascript:void(0)" [routerLink]="['/dashboard/fleetentry']">Next</button><!--!rForm.valid && notEligible === true-->
-        <button type="reset" class="btn btn-secondary">Save</button>
-        <!--<p>{{notEligible}}</p>-->
+
 
       </div>
 
@@ -190,7 +190,7 @@
           <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
         </fieldset>
 
-<!--        <fieldset class="form-group">
+        <!--        <fieldset class="form-group">
           <label class="form-control-label">noOfPU:</label>
           <input type="text" class="form-control" formControlName="noOfPU" [(ngModel)]="noOfPU">
 
@@ -322,6 +322,11 @@
 
     <!--<button type="submit" class="btn btn-secondary" [disabled]="!rForm.valid">Next</button>-->
     <!--<button type="reset" class="btn btn-secondary">Save</button>-->
+
+    <button type="submit" class="btn btn-secondary" a href="Javascript:void(0)" [routerLink]="['/dashboard/fleetentry']">Next</button>
+    <!--!rForm.valid && notEligible === true-->
+    <button type="reset" class="btn btn-secondary">Save</button>
+    <!--<p>{{notEligible}}</p>-->
 
   </form>
 
