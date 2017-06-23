@@ -1,5 +1,6 @@
 <!--PRICING ENGINE-->
 <form [formGroup]="rForm">
+  <!--U.S. DOT#-->
   <div class="row">
     <div class="col-sm-3">
       <div class="card mb-3">
@@ -12,43 +13,118 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-3">
-      <div class="card mb-3">
-        <div class="card-block">
-          <label class="form-control-label">Name Of Applicant:</label>
-          <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
+  </div>
+  <!--Fleet Entry-->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card card-default card-default">
+        <div class="card-header card-default">
+          Fleet Entry
         </div>
-        <div class="card-block">
-          <label class="form-control-label">State:</label>
-          <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="card mb-3">
-        <div class="card-block">
-          <label class="form-control-label">ZIP:</label>
-          <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
-        </div>
-        <div class="card-block">
-          <label class="form-control-label">Vehicle Type:</label>
-          <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="card mb-3">
-        <div class="card-block">
-          <label class="form-control-label">DOT Revoked:</label>
-          <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
-        </div>
-        <div class="card-block">
-          <label class="form-control-label">Garbage Hauled:</label>
-          <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
+        <div class="card-block bg-white">
+          <fieldset class="form-group">
+            <div class="col-sm-3">
+              <div class="card mb-3">
+                <div class="card-block">
+                  <label class="form-control-label">Private Passenger:</label>
+                  <input type="number" class="form-control" formControlName="privatePassenger" [(ngModel)]="privatePassenger" style="text-align: center"
+                    (change)="isNoOfPUGreaterThan5()"> </div>
+                <div class="card-block">
+                  <label class="form-control-label">Light Trucks:</label>
+                  <input type="number" class="form-control" formControlName="lightTrucks" [(ngModel)]="lightTrucks" style="text-align: center"
+                    (change)="isNoOfPUGreaterThan5()">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card mb-3">
+                <div class="card-block">
+                  <label class="form-control-label">Medium Trucks:</label>
+                  <input type="number" class="form-control" formControlName="mediumTrucks" [(ngModel)]="mediumTrucks" style="text-align: center"
+                    (change)="isNoOfPUGreaterThan5()"> </div>
+                <div class="card-block">
+                  <label class="form-control-label">Heavy Trucks :</label>
+                  <input type="number" class="form-control" formControlName="heavyTrucks" [(ngModel)]="heavyTrucks" style="text-align: center"
+                    (change)="isNoOfPUGreaterThan5()"> </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card mb-3">
+                <div class="card-block">
+                  <label class="form-control-label">Extra Heavy Trucks:</label>
+                  <input type="number" class="form-control" formControlName="extraHeavyTrucks" [(ngModel)]="extraHeavyTrucks" style="text-align: center"
+                    (change)="isNoOfPUGreaterThan5()"> </div>
+                <div class="card-block">
+                  <label class="form-control-label">Heavy Trucks / Tractors :</label>
+                  <input type="number" class="form-control" formControlName="heavyTrucksTractors" [(ngModel)]="heavyTrucksTractors" style="text-align: center"
+                    (change)="isNoOfPUGreaterThan5()"> </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card mb-3">
+                <div class="card-block">
+                  <label class="form-control-label">Extra Heavy Trucks:</label>
+                  <input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" [(ngModel)]="extraHeavyTrucksTractors"
+                    style="text-align: center" (change)="isNoOfPUGreaterThan5()">
+                </div>
+              </div>
+            </div>
+          </fieldset>
         </div>
       </div>
     </div>
   </div>
+  <!--Applicant Information-->
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="card card-default card-default">
+        <div class="card-header card-default">
+          Applicant Information
+        </div>
+        <div class="card-block bg-white">
+          <fieldset class="form-group">
+            <div class="col-sm-4">
+              <div class="card mb-3">
+                <div class="card-block">
+                  <label class="form-control-label">Name Of Applicant:</label>
+                  <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
+                </div>
+                <div class="card-block">
+                  <label class="form-control-label">State:</label>
+                  <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card mb-3">
+                <div class="card-block">
+                  <label class="form-control-label">ZIP:</label>
+                  <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
+                </div>
+                <div class="card-block">
+                  <label class="form-control-label">Vehicle Type:</label>
+                  <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card mb-3">
+                <div class="card-block">
+                  <label class="form-control-label">DOT Revoked:</label>
+                  <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
+                </div>
+                <div class="card-block">
+                  <label class="form-control-label">Garbage Hauled:</label>
+                  <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Variables / Coefficient-->
   <div class="row">
     <div class="col-sm-3">
       <div class="card card-danger card-inverse">
@@ -293,80 +369,113 @@
               Initial Eligibility
             </div>
             <div class="card-block bg-white">
+              <!--INITIAL ELIGIBILITY HEADER-->
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card card-default card-default">
+                    <div class="card-header card-default">
+                      <span style="color:black">Applicant Information</span>
+                    </div>
+                    <div class="card-block bg-white">
+                      <fieldset class="form-group">
+                        <div class="col-sm-4">
+                          <div class="card mb-3">
+                            <div class="card-block">
+                              <label class="form-control-label">Name Of Applicant:</label>
+                              <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
+                            </div>
+                            <div class="card-block">
+                              <label class="form-control-label">State:</label>
+                              <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="card mb-3">
+                            <div class="card-block">
+                              <label class="form-control-label">ZIP:</label>
+                              <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
+                            </div>
+                            <div class="card-block">
+                              <label class="form-control-label">Vehicle Type:</label>
+                              <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="card mb-3">
+                            <div class="card-block">
+                              <label class="form-control-label">DOT Revoked:</label>
+                              <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
+                            </div>
+                            <div class="card-block">
+                              <label class="form-control-label">Garbage Hauled:</label>
+                              <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--INITIAL ELIGIBILITY BODY-->
               <fieldset class="form-group">
-                <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
-                  <label class="form-control-label" for="inputError">U.S DOT#:
-                          <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1">
-                          </label>
-                  <label class="form-control-label" style="margin-left: 50px;">Name Of Applicant:
-                  <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
+
+                <!--DOT#-->
+                <div>
+                  <label>
+                              <label class="form-control-label" for="inputError">U.S DOT#:<br></label><br>
+                  <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
+                    <label>
+                              <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1">
+                              </label>
+                  </div>
                   </label>
-                  <label class="form-control-label">State:
-                  <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
-                          </label>
-                </div>
-                <!--<input type="text" value="{{dot1}}">-->
 
-                <br>
-                <div [ngClass]="{'form-group has-danger' : !rForm.controls['effDate'].valid && rForm.controls['effDate'].touched}">
-                  <label class="form-control-label" for="inputError">Effective Date:
-                          <input id="date1" type="text" class="form-control form-control-danger" formControlName="effDate" [(ngModel)]="effDate" (change)="newExpDate($event)">
-                          </label>
-                  <label class="form-control-label" style="margin-left: 50px;">ZIP:
-                          <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
-                          </label>
-                  <label class="form-control-label">Vehicle Type:
-                  <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
-                          </label>
                 </div>
-                <!--<p>{{effDate}}</p>-->
 
-                <br>
-                <div [ngClass]="{'form-group has-danger' : !rForm.controls['expDate'].valid && rForm.controls['expDate'].touched}">
-                  <label class="form-control-label" for="inputError">Expiration Date:
-                          <input id="date2" type="text" class="form-control form-control-danger" formControlName="expDate" [(ngModel)]="expDate">
-                          </label>
-                  <label class="form-control-label" style="margin-left: 50px;">DOT Revoked:
-                          <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
-                          </label>
-                  <label class="form-control-label">Garbage Hauled:
-                  <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
-                          </label>
-                </div>
-                <!--<p>{{expDate}}</p>-->
-
-                <br>
-                <div [ngClass]="{'form-group has-danger' : !rForm.controls['yearInBus'].valid && rForm.controls['yearInBus'].touched}">
-                  <label class="form-control-label" for="inputError">Years in Business:
-                  <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus">
+                <!--Eff Date-->
+                <div>
+                  <label>
+                              <label class="form-control-label" for="inputError">Effective Date:<br></label><br>
+                  <div [ngClass]="{'form-group has-danger' : !rForm.controls['effDate'].valid && rForm.controls['effDate'].touched}">
+                    <label>
+                              <input id="date1" type="text" class="form-control form-control-danger" formControlName="effDate" [(ngModel)]="effDate" (change)="newExpDate($event)">
+                              </label>
+                  </div>
                   </label>
+
                 </div>
+
+                <!--Exp Date-->
+                <div>
+                  <label>
+                              <label class="form-control-label" for="inputError">Expiration Date:<br></label><br>
+                  <div [ngClass]="{'form-group has-danger' : !rForm.controls['expDate'].valid && rForm.controls['expDate'].touched}">
+                    <label>
+                              <input id="date2" type="text" class="form-control form-control-danger" formControlName="expDate" [(ngModel)]="expDate">
+                              </label>
+                  </div>
+                  </label>
+
+                </div>
+
+                <!--Years In Business-->
+                <div>
+                  <label>
+                              <label class="form-control-label" for="inputError">Years in Business:<br></label><br>
+                  <div [ngClass]="{'form-group has-danger' : !rForm.controls['yearInBus'].valid && rForm.controls['yearInBus'].touched}">
+                    <label>
+                              <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus">
+                              </label>
+                  </div>
+                  </label>
+
+                </div>
+
+                <!--HIDDEN -- Years In Business-->
                 <div [hidden]="yearInBus > 3 || yearInBus === null">
-                  <!--<p>{{yearInBus}}</p>-->
-
-                  <br>
-                  <label>Safety Rating:</label><br>
-                  <label class="radio-inline">
-                <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(false)"
-                  value="Satisfactory" (change)="isEligible()">Satisfactory<br>
-                </label>
-                  <label class="radio-inline">
-                <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(false)"
-                  value="Conditional" (change)="isEligible()">Conditional<br>
-                  </label>
-                  <label class="radio-inline">
-                <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
-                  value="Unsatisfactory" (change)="isEligible()">Unsatisfactory<br>
-                  </label>
-                  <label class="radio-inline">
-                <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
-                  value="NotRated" (change)="isEligible()">Not Rated
-                </label>
-                  <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">INELIGIBLE DUE TO: ___</div><br>
-                  <!--<p>{{safetyRating}}</p>-->
-                  <!--<p>{{notEligibleSR}}</p>-->
-
-                  <br><br>
                   <label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label><br>
                   <label class="radio-inline">
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(false)"
@@ -378,6 +487,32 @@
                     </label>
                   <div class="alert" [hidden]="isDrivingExperience === 'yes' || isDrivingExperience === null">INELIGIBLE DUE TO: Drivers With Less Than 5 Years Of Similar Experience</div>
                 </div>
+
+
+
+                <br>
+                <label>Safety Rating:</label><br>
+                <label class="radio-inline">
+                <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(false)"
+                  value="Satisfactory" (change)="isEligible()">Satisfactory<br>
+                </label>
+                <label class="radio-inline">
+                <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(false)"
+                  value="Conditional" (change)="isEligible()">Conditional<br>
+                  </label>
+                <label class="radio-inline">
+                <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
+                  value="Unsatisfactory" (change)="isEligible()">Unsatisfactory<br>
+                  </label>
+                <label class="radio-inline">
+                <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
+                  value="NotRated" (change)="isEligible()">Not Rated
+                </label>
+                <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">INELIGIBLE DUE TO: ___</div><br>
+                <!--<p>{{safetyRating}}</p>-->
+                <!--<p>{{notEligibleSR}}</p>-->
+
+
                 <!--<p>{{isDrivingExperience}}</p>-->
                 <!--<p>{{notEligibleYIB}}</p>-->
 
@@ -533,46 +668,65 @@
                   <div class="card mb-3">
                     <div class="card-block">
                       <div>
+                        <!--PRIMARY AL FORM-->
                         <fieldset>
-                          <label>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="card-header card-default">
+                                <span style="color:black"></span>
+                              </div>
+                              <div class="card mb-3">
+                                <div class="card-block">
+                                  <label>
                               <label class="form-control-label">Limit:<br></label><br>
-                          <label>
+                                  <label>
                               <input type="text" class="form-control">
                               </label>
-                          </label>
-                          <label style="margin-left: 210px;">
-                              <span><label class="form-control-label">Total Incurred Losses:<br></label><br></span>
-                          <label>
-                              <input type="text" class="form-control">
-                              </label>
-                          </label>
-                          <br>
-                          <label>
+                                  </label>
+                                  <label>
                               <label class="form-control-label">Premium:<br></label><br>
-                          <label>
+                                  <label>
                               <input type="text" class="form-control">
                               </label>
-                          </label>
-                          <label style="margin-left: 210px;">
-                              <span><label class="form-control-label"># Of Claims Over $50K:<br></label><br></span>
-                          <label>
+                                  </label>
+                                  <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
+                                  <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
+                                  <label>
                               <input type="text" class="form-control">
                               </label>
-                          </label>
-                          <br>
-                          <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
-                          <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
-                          <label>
+                                  <br>
+                                  <label class="form-control-label"># Of Claims:<br></label><br>
+                                  <label><span style="font-style: italic; font-size: 12px;">* (Excluded claims without loss payment)</span></label><br>
+                                  <label>
                               <input type="text" class="form-control">
                               </label>
-                          <br>
-                          <label class="form-control-label"># Of Claims:<br></label><br>
-                          <label><span style="font-style: italic; font-size: 12px;">* (Excluded claims without loss payment)</span></label><br>
-                          <label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="card-header card-default">
+                                <span style="color:black"></span>
+                              </div>
+                              <div class="card mb-3">
+                                <div class="card-block">
+                                  <label>
+                              <label class="form-control-label">Total Incurred Losses::<br></label><br>
+                                  <label>
                               <input type="text" class="form-control">
                               </label>
+                                  </label>
+                                  <label>
+                              <label class="form-control-label"># Of Claims Over $50K:<br></label><br>
+                                  <label>
+                              <input type="text" class="form-control">
+                              </label>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </fieldset>
-                        <br>
+                        <!--PRIMARY AL LARGE LOSSES-->
                         <fieldset>
                           <div class="row">
                             <div class="col-sm-12">
@@ -596,51 +750,70 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="card-header card-default">
-                    <span style="color:black">Primary Automobile Liability</span>
+                    <span style="color:black">Primary General Liability</span>
                   </div>
                   <div class="card mb-3">
                     <div class="card-block">
                       <div>
+                        <!--PRIMARY GL FORM-->
                         <fieldset>
-                          <label>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="card-header card-default">
+                                <span style="color:black"></span>
+                              </div>
+                              <div class="card mb-3">
+                                <div class="card-block">
+                                  <label>
                               <label class="form-control-label">Limit:<br></label><br>
-                          <label>
+                                  <label>
                               <input type="text" class="form-control">
                               </label>
-                          </label>
-                          <label style="margin-left: 210px;">
-                              <span><label class="form-control-label">Total Incurred Losses:<br></label><br></span>
-                          <label>
-                              <input type="text" class="form-control">
-                              </label>
-                          </label>
-                          <br>
-                          <label>
+                                  </label>
+                                  <label>
                               <label class="form-control-label">Premium:<br></label><br>
-                          <label>
+                                  <label>
                               <input type="text" class="form-control">
                               </label>
-                          </label>
-                          <label style="margin-left: 210px;">
-                              <span><label class="form-control-label"># Of Claims Over $50K:<br></label><br></span>
-                          <label>
+                                  </label>
+                                  <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
+                                  <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
+                                  <label>
                               <input type="text" class="form-control">
                               </label>
-                          </label>
-                          <br>
-                          <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
-                          <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
-                          <label>
+                                  <br>
+                                  <label class="form-control-label"># Of Claims:<br></label><br>
+                                  <label><span style="font-style: italic; font-size: 12px;">* (Excluded claims without loss payment)</span></label><br>
+                                  <label>
                               <input type="text" class="form-control">
                               </label>
-                          <br>
-                          <label class="form-control-label"># Of Claims:<br></label><br>
-                          <label><span style="font-style: italic; font-size: 12px;">* (Excluded claims without loss payment)</span></label><br>
-                          <label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="card-header card-default">
+                                <span style="color:black"></span>
+                              </div>
+                              <div class="card mb-3">
+                                <div class="card-block">
+                                  <label>
+                              <label class="form-control-label">Total Incurred Losses::<br></label><br>
+                                  <label>
                               <input type="text" class="form-control">
                               </label>
+                                  </label>
+                                  <label>
+                              <label class="form-control-label"># Of Claims Over $50K:<br></label><br>
+                                  <label>
+                              <input type="text" class="form-control">
+                              </label>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </fieldset>
-                        <br>
+                        <!--PRIMARY GL LARGE LOSSES-->
                         <fieldset>
                           <div class="row">
                             <div class="col-sm-12">
