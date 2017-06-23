@@ -477,37 +477,37 @@
                           <tr>
                             <td><input class="form-control" value="Private Passenger" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="privatePassenger" [(ngModel)]="privatePassenger"
-                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Light Trucks" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="lightTrucks" [(ngModel)]="lightTrucks" style="text-align: center"
-                                (change)="isNoOfPUGreaterThan5()"></td>
+                                (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Medium Trucks" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="mediumTrucks" [(ngModel)]="mediumTrucks" style="text-align: center"
-                                (change)="isNoOfPUGreaterThan5()"></td>
+                                (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Heavy Trucks" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="heavyTrucks" [(ngModel)]="heavyTrucks" style="text-align: center"
-                                (change)="isNoOfPUGreaterThan5()"></td>
+                                (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Extra Heavy Trucks" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="extraHeavyTrucks" [(ngModel)]="extraHeavyTrucks"
-                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Heavy Trucks / Tractors" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="heavyTrucksTractors" [(ngModel)]="heavyTrucksTractors"
-                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Extra Heavy Trucks / Tractors" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" [(ngModel)]="extraHeavyTrucksTractors"
-                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                         </tbody>
                       </table>
@@ -598,10 +598,11 @@
         </div>
       </div>
       <button type="button" class="btn btn-secondary" (click)="onDot1Change($event)" (click)="onQuest_T01_FatalityCoef($event)"
-        (click)="onQuest_T10_1x1Min($event)" [disabled]="(!rForm.valid || notEligible)">Generate Quote</button>
+        (click)="onQuest_T10_1x1Min($event)" [disabled]="(notEligible)">Generate Quote</button><!--!rForm.valid || -->
       <button type="submit" class="btn btn-secondary">Save</button>
-      <!--<p>{{notEligible}}</p>
-      <p>{{!rForm.valid}}</p>-->
+      <p>{{notEligible}}</p>
+      <!--<p>{{!rForm.valid}}</p>-->
+      <p>{{noOfPU <= 5 && noOfPU >= 1}}</p>
     </div>
   </div>
 </form>

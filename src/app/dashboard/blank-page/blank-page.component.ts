@@ -554,7 +554,7 @@ export class BlankPageComponent implements OnInit {
     }
 
     isEligible() {
-        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false && this.notEligibleTO === false && this.noOfPU <= 5) {
+        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false && this.notEligibleTO === false && (this.noOfPU <= 5 && this.noOfPU >= 1)) {
             this.notEligible = false;
             return this.notEligible;
         } else {
