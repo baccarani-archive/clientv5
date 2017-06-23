@@ -283,9 +283,8 @@
 <!--FORM BODY-->
 <form [formGroup]="rForm">
   <div class="col-lg-12">
-    <div class="col-lg-3"></div>
-    <!--LEFT-->
-    <div class="col-lg-6">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
       <!--INITIAL ELIGIBILITY-->
       <div class="row">
         <div class="col-sm-12">
@@ -296,56 +295,78 @@
             <div class="card-block bg-white">
               <fieldset class="form-group">
                 <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
-                  <label class="form-control-label" for="inputError">U.S DOT#:</label>
+                  <label class="form-control-label" for="inputError">U.S DOT#:
                   <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1">
+                  </label>
+                  <label class="form-control-label" style="margin-left: 50px;">Name Of Applicant:
+          <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
+          </label>
+                  <label class="form-control-label">State:
+          <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
+                  </label>
                 </div>
                 <!--<input type="text" value="{{dot1}}">-->
 
                 <br>
                 <div [ngClass]="{'form-group has-danger' : !rForm.controls['effDate'].valid && rForm.controls['effDate'].touched}">
-                  <label class="form-control-label" for="inputError">Effective Date:</label>
+                  <label class="form-control-label" for="inputError">Effective Date:
                   <input id="date1" type="text" class="form-control form-control-danger" formControlName="effDate" [(ngModel)]="effDate" (change)="newExpDate($event)">
+                  </label>
+                  <label class="form-control-label" style="margin-left: 50px;">ZIP:
+                  <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
+                  </label>
+                  <label class="form-control-label">Vehicle Type:
+          <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
+                  </label>
                 </div>
                 <!--<p>{{effDate}}</p>-->
 
                 <br>
                 <div [ngClass]="{'form-group has-danger' : !rForm.controls['expDate'].valid && rForm.controls['expDate'].touched}">
-                  <label class="form-control-label" for="inputError">Expiration Date:</label>
+                  <label class="form-control-label" for="inputError">Expiration Date:
                   <input id="date2" type="text" class="form-control form-control-danger" formControlName="expDate" [(ngModel)]="expDate">
+                  </label>
+                  <label class="form-control-label" style="margin-left: 50px;">DOT Revoked:
+                  <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
+                  </label>
+                  <label class="form-control-label">Garbage Hauled:
+          <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
+                  </label>
                 </div>
                 <!--<p>{{expDate}}</p>-->
 
                 <br>
-                <label>Safety Rating:</label><br>
-                <label class="radio-inline">
+                <div [ngClass]="{'form-group has-danger' : !rForm.controls['yearInBus'].valid && rForm.controls['yearInBus'].touched}">
+                  <label class="form-control-label" for="inputError">Years in Business:
+                  <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus">
+                  </label>
+                </div>
+                <div [hidden]="yearInBus > 3 || yearInBus === null">
+                  <!--<p>{{yearInBus}}</p>-->
+
+                  <br>
+                  <label>Safety Rating:</label><br>
+                  <label class="radio-inline">
                 <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(false)"
                   value="Satisfactory" (change)="isEligible()">Satisfactory<br>
                 </label>
-                <label class="radio-inline">
+                  <label class="radio-inline">
                 <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(false)"
                   value="Conditional" (change)="isEligible()">Conditional<br>
                   </label>
-                <label class="radio-inline">
+                  <label class="radio-inline">
                 <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
                   value="Unsatisfactory" (change)="isEligible()">Unsatisfactory<br>
                   </label>
-                <label class="radio-inline">
+                  <label class="radio-inline">
                 <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
                   value="NotRated" (change)="isEligible()">Not Rated
                 </label>
-                <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">INELIGIBLE DUE TO: ___</div><br>
-                <!--<p>{{safetyRating}}</p>-->
-                <!--<p>{{notEligibleSR}}</p>-->
+                  <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">INELIGIBLE DUE TO: ___</div><br>
+                  <!--<p>{{safetyRating}}</p>-->
+                  <!--<p>{{notEligibleSR}}</p>-->
 
-                <br>
-                <div [ngClass]="{'form-group has-danger' : !rForm.controls['yearInBus'].valid && rForm.controls['yearInBus'].touched}">
-                  <label class="form-control-label" for="inputError">Years in Business:</label>
-                  <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus">
-                </div>
-                <!--<p>{{yearInBus}}</p>-->
-
-                <div [hidden]="yearInBus > 3 || yearInBus === null">
-                  <br>
+                  <br><br>
                   <label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label><br>
                   <label class="radio-inline">
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(false)"
@@ -361,38 +382,17 @@
                 <!--<p>{{notEligibleYIB}}</p>-->
 
                 <br>
-                <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryALLimit'].valid && rForm.controls['primaryALLimit'].touched}">
-                  <label class="form-control-label" for="inputError">Primary AL Limit:</label>
-                  <input type="text" class="form-control form-control-danger" formControlName="primaryALLimit" [(ngModel)]="primaryALLimit"
-                    (input)="rangeLimitAL()" (input)="isEligible()">
-                </div>
-                <br [hidden]="primaryALLimit >= 1000000 && primaryALLimit <= 2000000 || primaryALLimit === null">
-                <div class="alert" [hidden]="primaryALLimit >= 1000000 && primaryALLimit <= 2000000 || primaryALLimit === null">Please Enter an Amount Between $1000000 and $2000000</div>
-                <!--<p>{{primaryALLimit}}</p>-->
-                <!--<p>{{notEligibleAL}}</p>-->
-
-                <br>
-                <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryCGLimit'].valid && rForm.controls['primaryCGLimit'].touched}">
-                  <label class="form-control-label">Primary CGL Limit:</label>
-                  <input type="text" class="form-control form-control-danger" formControlName="primaryCGLimit" [(ngModel)]="primaryCGLimit"
-                    (input)="rangeLimitCGL()" (input)="isEligible()">
-                </div>
-                <br [hidden]="primaryCGLimit >= 1000000 && primaryCGLimit <= 2000000 || primaryCGLimit === null">
-                <div class="alert" [hidden]="primaryCGLimit >= 1000000 && primaryCGLimit <= 2000000 || primaryCGLimit === null">Please Enter an Amount Between $1000000 and $2000000</div>
-                <!--<p>{{primaryCGLimit}}</p>-->
-                <!--<p>{{notEligibleCGL}}</p>-->
-
-                <br>
-                <div [ngClass]="{'form-group has-danger' : !rForm.controls['primaryELLimit'].valid && rForm.controls['primaryELLimit'].touched}">
-                  <label class="form-control-label">Primary EL Limit:</label>
-                  <input type="text" class="form-control form-control-danger" formControlName="primaryELLimit" [(ngModel)]="primaryELLimit"
-                    (input)="rangeLimitEL()" (input)="isEligible()">
-                </div>
-                <br>
-                <div class="alert" [hidden]="primaryELLimit >= 1000000 && primaryELLimit <= 2000000 || primaryELLimit === null">Please Enter an Amount Between $1000000 and $2000000</div>
-                <!--<p>{{primaryELLimit}}</p>-->
-                <!--<p>{{notEligibleEL}}</p>-->
-
+                <label>Primary Liabilities That Apply:</label><br>
+                <label class="checkbox-inline">
+                <input type="checkbox">Primary AL<br>
+                </label>
+                <label class="checkbox-inline">
+                <input type="checkbox">Primary GL<br>
+                  </label>
+                <label class="checkbox-inline">
+                <input type="checkbox">Primary EL<br>
+                  </label><br>
+                <br><br>
                 <div>
                   <label>CGL Class 99793 (Truckers) Only: </label><br>
                   <label class="radio-inline">
@@ -405,37 +405,7 @@
                 <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Referral To Small Fleet Team Required Due To: CGL Exposure Other Than Class Code 99793 (Truckers)</div>
                 <!--<p>{{truckersOnly}}</p>-->
 
-                <br>
-                <label>Any Of The Below Services Provided Or Commodities Hauled:</label><br>
-                <div class="horizList-outer form-control">
-                  <div class="horizList-inner">
-                    <p class="list">Passenger<br> Transit</p>
-                    <p class="list">Freight<br> Fowarding</p>
-                    <p class="list">Water<br> Hauling</p>
-                    <p class="list">Crane<br> Services</p>
-                    <p class="list">Hydraulic<br> Fracturing</p>
-                    <p class="list">Equipment<br> Rental</p>
-                    <p class="list">Logging</p>
-                    <p class="list">Explosives</p>
-                    <p class="list">Hired & Non-Owned<br> Auto Only</p>
-                    <p class="list">Medical<br> Transport</p>
-                    <p class="list">Brokerage<br> Authority Only</p>
-                  </div>
-                </div>
-                <br>
-                <label class="radio-inline">
-                <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" (change)="isEligibleSPCH(true)"
-                  name="isProvidedCommodities" (change)="isEligible()" value=yes>Yes<br>
-                </label>
-                <label class="radio-inline">
-                <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" (change)="isEligibleSPCH(false)"
-                  name="isProvidedCommodities" (change)="isEligible()" value=no>No
-                  </label><br>
-                <div class="alert" [hidden]="isProvidedCommodities === 'no' || isProvidedCommodities === null">INELIGIBLE DUE TO: Services Provided/ Commodities Hauled</div>
-                <!--<p>{{isProvidedCommodities}}</p>-->
-                <!--<p>{{notEligibleSPCH}}</p>-->
-
-                <br>
+                <br><br>
                 <label>Unscheduled Vehicles Operated Under The Applicant's Authority:</label><br>
                 <label class="radio-inline">
                 <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = true" formControlName="isUnschedVehicleAuth" (change)="isEligibleUV(true)"
@@ -444,15 +414,42 @@
                 <label class="radio-inline">
                 <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = false" formControlName="isUnschedVehicleAuth" (change)="isEligibleUV(false)"
                   name="isUnschedVehicleAuth" (change)="isEligible()" value="no">No
-                  </label>
+                  </label><br>
                 <div class="alert" [hidden]="isUnschedVehicleAuth === 'no' || isUnschedVehicleAuth === null">Referral To Small Fleet Team Required Due To: Unscheduled Vehicles Operated Under The Applicant's Authority</div>
                 <!--<p>{{isUnschedVehicleAuth}}</p>-->
                 <!--<p>{{notEligibleUV}}</p>-->
+
+                <br><br>
+                <label>Any Of The Below Services Provided Or Commodities Hauled:</label><br>
+
+                <label class="radio-inline">
+                <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" (change)="isEligibleSPCH(true)"
+                  name="isProvidedCommodities" (change)="isEligible()" value=yes>Yes<br>
+                </label>
+                <label class="radio-inline">
+                <input type="radio" [(ngModel)]="isProvidedCommodities" formControlName="isProvidedCommodities" (change)="isEligibleSPCH(false)"
+                  name="isProvidedCommodities" (change)="isEligible()" value=no>No
+                  </label><br><br>
+
+                <div class="horizList-outer form-control">
+                  <div class="horizList-inner">
+                    <p class="list">Passenger<br> Transit <br><br> Freight<br> Fowarding </p>
+                    <p class="list">Water<br> Hauling <br><br> Crane<br> Services </p>
+                    <p class="list">Hydraulic<br> Fracturing <br><br> Equipment<br> Rental </p>
+                    <p class="list">Logging <br><br><br> Explosives </p>
+                    <p class="list">Hired & Non-Owned<br> Auto Only <br><br> Medical<br> Transport </p>
+                    <p class="list">Brokerage<br> Authority Only</p>
+                  </div>
+                </div>
+                <div class="alert" [hidden]="isProvidedCommodities === 'no' || isProvidedCommodities === null">INELIGIBLE DUE TO: Services Provided/ Commodities Hauled</div>
+                <!--<p>{{isProvidedCommodities}}</p>-->
+                <!--<p>{{notEligibleSPCH}}</p>-->
               </fieldset>
             </div>
           </div>
         </div>
       </div>
+      <!--FLEET ENTRY-->
       <div class="row">
         <div class="col-sm-12">
           <div class="card card-primary card-inverse mb-3">
@@ -481,18 +478,18 @@
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Light Trucks" readonly style="text-align: center"></td>
-                            <td><input type="number" class="form-control" formControlName="lightTrucks" [(ngModel)]="lightTrucks" style="text-align: center"
-                                (change)="isNoOfPUGreaterThan5()"></td>
+                            <td><input type="number" class="form-control" formControlName="lightTrucks" [(ngModel)]="lightTrucks"
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Medium Trucks" readonly style="text-align: center"></td>
-                            <td><input type="number" class="form-control" formControlName="mediumTrucks" [(ngModel)]="mediumTrucks" style="text-align: center"
-                                (change)="isNoOfPUGreaterThan5()"></td>
+                            <td><input type="number" class="form-control" formControlName="mediumTrucks" [(ngModel)]="mediumTrucks"
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Heavy Trucks" readonly style="text-align: center"></td>
-                            <td><input type="number" class="form-control" formControlName="heavyTrucks" [(ngModel)]="heavyTrucks" style="text-align: center"
-                                (change)="isNoOfPUGreaterThan5()"></td>
+                            <td><input type="number" class="form-control" formControlName="heavyTrucks" [(ngModel)]="heavyTrucks"
+                                style="text-align: center" (change)="isNoOfPUGreaterThan5()"></td>
                           </tr>
                           <tr>
                             <td><input class="form-control" value="Extra Heavy Trucks" readonly style="text-align: center"></td>
@@ -519,6 +516,7 @@
           </div>
         </div>
       </div>
+      <!--PRIMARY LIABILITY-->
       <div class="row">
         <div class="col-sm-12">
           <div class="card card-primary card-inverse mb-3">
@@ -526,29 +524,84 @@
               Primary Liability
             </div>
             <div class="card-block bg-white">
+              <!--PRIMARY AL-->
               <div class="row">
                 <div class="col-sm-12">
+                  <div class="card-header card-default">
+                    <span style="color:black">Primary Automobile Liability</span>
+                  </div>
                   <div class="card mb-3">
                     <div class="card-block">
-                      Primary Automobile Liability
+                      <div>
+                        <label>
+                        <label class="form-control-label">Limit:<br></label><br>
+                        <label>
+                        <input type="text" class="form-control">
+                        </label>
+                        </label>
+                        <label style="margin-left: 210px;">
+                        <span><label class="form-control-label">Total Incurred Losses:<br></label><br></span>
+                        <label>
+                        <input type="text" class="form-control">
+                        </label>
+                        </label>
+                        <br>
+                        <label>
+                        <label class="form-control-label">Premium:<br></label><br>
+                        <label>
+                        <input type="text" class="form-control">
+                        </label>
+                        </label>
+                        <label style="margin-left: 210px;">
+                        <span><label class="form-control-label"># Of Claims Over $50K:<br></label><br></span>
+                        <label>
+                        <input type="text" class="form-control">
+                        </label>
+                        </label>
+                        <br>
+                        <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
+                        <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
+                        <label>
+                        <input type="text" class="form-control">
+                        </label>
+                        <br>
+                        <label class="form-control-label"># Of Claims:<br></label><br>
+                        <label><span style="font-style: italic; font-size: 12px;">* (Excluded claims without loss payment)</span></label><br>
+                        <label>
+                        <input type="text" class="form-control">
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <!--PRIMARY GL-->
               <div class="row">
                 <div class="col-sm-12">
+                  <div class="card-header card-default">
+                    <span style="color:black">Primary General Liability</span>
+                  </div>
                   <div class="card mb-3">
                     <div class="card-block">
-                      Primary General Liability
+
                     </div>
                   </div>
                 </div>
               </div>
+              <!--PRIMARY EL-->
               <div class="row">
                 <div class="col-sm-12">
+                  <div class="card-header card-default">
+                    <span style="color:black">Primary Employer's Liability</span>
+                  </div>
                   <div class="card mb-3">
                     <div class="card-block">
-                      Large Losses
+                      <label>
+                        <label class="form-control-label">Limit:<br></label><br>
+                      <label>
+                        <input type="text" class="form-control">
+                        </label>
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -557,6 +610,7 @@
           </div>
         </div>
       </div>
+      <!--PRICING INDICATION-->
       <div class="row">
         <div class="col-sm-12">
           <div class="card card-primary card-inverse mb-3">
@@ -597,6 +651,7 @@
           </div>
         </div>
       </div>
+      <!--BUTTON-->
       <button type="button" class="btn btn-secondary" (click)="onDot1Change($event)" (click)="onQuest_T01_FatalityCoef($event)"
         (click)="onQuest_T10_1x1Min($event)" [disabled]="(!rForm.valid || notEligible)">Generate Quote</button>
       <button type="submit" class="btn btn-secondary">Save</button>
