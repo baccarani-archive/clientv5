@@ -296,42 +296,42 @@
               <fieldset class="form-group">
                 <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
                   <label class="form-control-label" for="inputError">U.S DOT#:
-                  <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1">
-                  </label>
+                          <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1">
+                          </label>
                   <label class="form-control-label" style="margin-left: 50px;">Name Of Applicant:
-          <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
-          </label>
-                  <label class="form-control-label">State:
-          <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
+                  <input type="text" class="form-control" formControlName="applicantName" [(ngModel)]="applicantName">
                   </label>
+                  <label class="form-control-label">State:
+                  <input type="text" class="form-control" formControlName="stateCode" [(ngModel)]="stateCode">
+                          </label>
                 </div>
                 <!--<input type="text" value="{{dot1}}">-->
 
                 <br>
                 <div [ngClass]="{'form-group has-danger' : !rForm.controls['effDate'].valid && rForm.controls['effDate'].touched}">
                   <label class="form-control-label" for="inputError">Effective Date:
-                  <input id="date1" type="text" class="form-control form-control-danger" formControlName="effDate" [(ngModel)]="effDate" (change)="newExpDate($event)">
-                  </label>
+                          <input id="date1" type="text" class="form-control form-control-danger" formControlName="effDate" [(ngModel)]="effDate" (change)="newExpDate($event)">
+                          </label>
                   <label class="form-control-label" style="margin-left: 50px;">ZIP:
-                  <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
-                  </label>
+                          <input type="text" class="form-control" formControlName="zip" [(ngModel)]="zip">
+                          </label>
                   <label class="form-control-label">Vehicle Type:
-          <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
-                  </label>
+                  <input type="text" class="form-control" formControlName="vehicleType" [(ngModel)]="vehicleType">
+                          </label>
                 </div>
                 <!--<p>{{effDate}}</p>-->
 
                 <br>
                 <div [ngClass]="{'form-group has-danger' : !rForm.controls['expDate'].valid && rForm.controls['expDate'].touched}">
                   <label class="form-control-label" for="inputError">Expiration Date:
-                  <input id="date2" type="text" class="form-control form-control-danger" formControlName="expDate" [(ngModel)]="expDate">
-                  </label>
+                          <input id="date2" type="text" class="form-control form-control-danger" formControlName="expDate" [(ngModel)]="expDate">
+                          </label>
                   <label class="form-control-label" style="margin-left: 50px;">DOT Revoked:
-                  <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
-                  </label>
+                          <input type="text" class="form-control" formControlName="hasDOTRevoked" [(ngModel)]="hasDOTRevoked">
+                          </label>
                   <label class="form-control-label">Garbage Hauled:
-          <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
-                  </label>
+                  <input type="text" class="form-control" formControlName="garbageHaul" [(ngModel)]="garbageHaul">
+                          </label>
                 </div>
                 <!--<p>{{expDate}}</p>-->
 
@@ -533,43 +533,60 @@
                   <div class="card mb-3">
                     <div class="card-block">
                       <div>
-                        <label>
-                        <label class="form-control-label">Limit:<br></label><br>
-                        <label>
-                        <input type="text" class="form-control">
-                        </label>
-                        </label>
-                        <label style="margin-left: 210px;">
-                        <span><label class="form-control-label">Total Incurred Losses:<br></label><br></span>
-                        <label>
-                        <input type="text" class="form-control">
-                        </label>
-                        </label>
+                        <fieldset>
+                          <label>
+                              <label class="form-control-label">Limit:<br></label><br>
+                          <label>
+                              <input type="text" class="form-control">
+                              </label>
+                          </label>
+                          <label style="margin-left: 210px;">
+                              <span><label class="form-control-label">Total Incurred Losses:<br></label><br></span>
+                          <label>
+                              <input type="text" class="form-control">
+                              </label>
+                          </label>
+                          <br>
+                          <label>
+                              <label class="form-control-label">Premium:<br></label><br>
+                          <label>
+                              <input type="text" class="form-control">
+                              </label>
+                          </label>
+                          <label style="margin-left: 210px;">
+                              <span><label class="form-control-label"># Of Claims Over $50K:<br></label><br></span>
+                          <label>
+                              <input type="text" class="form-control">
+                              </label>
+                          </label>
+                          <br>
+                          <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
+                          <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
+                          <label>
+                              <input type="text" class="form-control">
+                              </label>
+                          <br>
+                          <label class="form-control-label"># Of Claims:<br></label><br>
+                          <label><span style="font-style: italic; font-size: 12px;">* (Excluded claims without loss payment)</span></label><br>
+                          <label>
+                              <input type="text" class="form-control">
+                              </label>
+                        </fieldset>
                         <br>
-                        <label>
-                        <label class="form-control-label">Premium:<br></label><br>
-                        <label>
-                        <input type="text" class="form-control">
-                        </label>
-                        </label>
-                        <label style="margin-left: 210px;">
-                        <span><label class="form-control-label"># Of Claims Over $50K:<br></label><br></span>
-                        <label>
-                        <input type="text" class="form-control">
-                        </label>
-                        </label>
-                        <br>
-                        <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
-                        <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
-                        <label>
-                        <input type="text" class="form-control">
-                        </label>
-                        <br>
-                        <label class="form-control-label"># Of Claims:<br></label><br>
-                        <label><span style="font-style: italic; font-size: 12px;">* (Excluded claims without loss payment)</span></label><br>
-                        <label>
-                        <input type="text" class="form-control">
-                        </label>
+                        <fieldset>
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <div class="card-header card-default">
+                                <span style="color:black">Large Losses</span>
+                              </div>
+                              <div class="card mb-3">
+                                <div class="card-block">
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </fieldset>
                       </div>
                     </div>
                   </div>
@@ -579,11 +596,66 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="card-header card-default">
-                    <span style="color:black">Primary General Liability</span>
+                    <span style="color:black">Primary Automobile Liability</span>
                   </div>
                   <div class="card mb-3">
                     <div class="card-block">
+                      <div>
+                        <fieldset>
+                          <label>
+                              <label class="form-control-label">Limit:<br></label><br>
+                          <label>
+                              <input type="text" class="form-control">
+                              </label>
+                          </label>
+                          <label style="margin-left: 210px;">
+                              <span><label class="form-control-label">Total Incurred Losses:<br></label><br></span>
+                          <label>
+                              <input type="text" class="form-control">
+                              </label>
+                          </label>
+                          <br>
+                          <label>
+                              <label class="form-control-label">Premium:<br></label><br>
+                          <label>
+                              <input type="text" class="form-control">
+                              </label>
+                          </label>
+                          <label style="margin-left: 210px;">
+                              <span><label class="form-control-label"># Of Claims Over $50K:<br></label><br></span>
+                          <label>
+                              <input type="text" class="form-control">
+                              </label>
+                          </label>
+                          <br>
+                          <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
+                          <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
+                          <label>
+                              <input type="text" class="form-control">
+                              </label>
+                          <br>
+                          <label class="form-control-label"># Of Claims:<br></label><br>
+                          <label><span style="font-style: italic; font-size: 12px;">* (Excluded claims without loss payment)</span></label><br>
+                          <label>
+                              <input type="text" class="form-control">
+                              </label>
+                        </fieldset>
+                        <br>
+                        <fieldset>
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <div class="card-header card-default">
+                                <span style="color:black">Large Losses</span>
+                              </div>
+                              <div class="card mb-3">
+                                <div class="card-block">
 
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
                     </div>
                   </div>
                 </div>
