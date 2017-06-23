@@ -359,8 +359,8 @@
 <!--FORM BODY-->
 <form [formGroup]="rForm">
   <div class="col-lg-12">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
       <!--INITIAL ELIGIBILITY-->
       <div class="row">
         <div class="col-sm-12">
@@ -518,17 +518,17 @@
 
                 <br><br>
                 <div>
-                <label>Primary Liabilities That Apply:</label><br>
-                <label class="checkbox-inline">
+                  <label>Primary Liabilities That Apply:</label><br>
+                  <label class="checkbox-inline">
                 <input type="checkbox">Primary AL<br>
                 </label>
-                <label class="checkbox-inline">
+                  <label class="checkbox-inline">
                 <input type="checkbox">Primary GL<br>
                   </label>
-                <label class="checkbox-inline">
+                  <label class="checkbox-inline">
                 <input type="checkbox">Primary EL<br>
                   </label><br>
-                <br><br>
+                  <br><br>
                 </div>
                 <div>
                   <label>CGL Class 99793 (Truckers) Only: </label><br>
@@ -691,6 +691,7 @@
                               <input type="text" class="form-control">
                               </label>
                                   </label>
+                                  <br>
                                   <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
                                   <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
                                   <label>
@@ -718,10 +719,10 @@
                               </label>
                                   </label>
                                   <label>
-                              <label class="form-control-label"># Of Claims Over $50K:<br></label><br>
+                                    <label class="form-control-label"># Of Claims Over $50K:<br></label><br>
                                   <label>
-                              <input type="text" class="form-control">
-                              </label>
+                                    <input type="text" class="form-control" formControlName="ALNoOfClaimsOver50K" [(ngModel)]="ALNoOfClaimsOver50K" (keyup)="ALLargeLossesIncurred($event)">
+                                    </label>
                                   </label>
                                 </div>
                               </div>
@@ -737,7 +738,7 @@
                               </div>
                               <div class="card mb-3">
                                 <div class="card-block">
-
+                                  <div id="ALnewFields"></div>
                                 </div>
                               </div>
                             </div>
@@ -778,6 +779,7 @@
                               <input type="text" class="form-control">
                               </label>
                                   </label>
+                                  <br>
                                   <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
                                   <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
                                   <label>
@@ -805,10 +807,10 @@
                               </label>
                                   </label>
                                   <label>
-                              <label class="form-control-label"># Of Claims Over $50K:<br></label><br>
+                                    <label class="form-control-label"># Of Claims Over $50K:<br></label><br>
                                   <label>
-                              <input type="text" class="form-control">
-                              </label>
+                                    <input type="text" class="form-control" formControlName="GLNoOfClaimsOver50K" [(ngModel)]="GLNoOfClaimsOver50K" (keyup)="GLLargeLossesIncurred($event)">
+                                    </label>
                                   </label>
                                 </div>
                               </div>
@@ -824,7 +826,7 @@
                               </div>
                               <div class="card mb-3">
                                 <div class="card-block">
-
+                                  <div id="GLnewFields"></div>
                                 </div>
                               </div>
                             </div>

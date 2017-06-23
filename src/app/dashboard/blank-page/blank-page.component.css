@@ -66,3 +66,7 @@ max-width:none;
    float:left; 
    margin-right: 75px;
 }
+
+#newFields input {
+    display:block;
+}

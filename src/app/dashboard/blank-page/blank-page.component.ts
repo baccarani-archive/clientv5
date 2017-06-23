@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InitialEligibilityService } from './../dashboard.service';
+import * as $ from 'jquery';
 
 
 @Component({
@@ -179,6 +180,12 @@ export class BlankPageComponent implements OnInit {
     notEligibleEL: Boolean = true;*/
     notEligible: Boolean = true;
 
+    ALNoOfClaimsOver50K: number = null;
+    GLNoOfClaimsOver50K: number = null;
+
+    ALnewFields: any = ('');
+    GLnewFields: any = ('');
+
 
     constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService) {
 
@@ -271,6 +278,12 @@ export class BlankPageComponent implements OnInit {
 
             'twoxPAnnual': [null],
             'twoxPProRated': [null],
+
+            'ALNoOfClaimsOver50K': [null],
+            'GLNoOfClaimsOver50K': [null],
+
+
+
 
         });
 
@@ -562,4 +575,95 @@ export class BlankPageComponent implements OnInit {
             return this.notEligible;
         }
     }
+
+
+    ALLargeLossesIncurred(event: any) {
+        /*let val = event.target.value;
+        let input = ('');
+        let newFields = ('');*/
+        let val = event.target.value || 0;
+        console.log("val: " + val);
+
+        /*debugger;
+        if (val > this.newFields.length) {
+            this.addFields(val);
+        } else {
+            this.removeFields(val);
+        }*/
+
+        this.ALremoveFields(val);
+        this.ALaddFields(val);
+    }
+
+    ALaddFields(val) {
+        for (let i = this.ALnewFields.length; i < val; i++) {
+
+            console.log("i: " + i);
+
+            var myOnClick = function (event) {
+                alert("change!!.. you entered: " + event.target.value);
+            }
+
+            var input = $('<label><label class="form-control-label">Incurred:<br></label><br><label><input type="text" class="form-control"></label></label><br>');
+            var ALnewFields = $("#ALnewFields");
+            var newInput = input.clone();
+            newInput.attr("id", "input_" + i);
+            newInput.change(myOnClick);
+            var ALnewFieldsRen = ALnewFields.append(newInput);
+            //newInput.appendTo('#newFields');
+        }
+    }
+
+    ALremoveFields(val) {
+        $("#ALnewFields label").remove();
+        $("#ALnewFields input").remove();
+        $("#ALnewFields br").remove();
+    }
+
+
+    GLLargeLossesIncurred(event: any) {
+        /*let val = event.target.value;
+        let input = ('');
+        let newFields = ('');*/
+        let val = event.target.value || 0;
+        console.log("val: " + val);
+
+        /*debugger;
+        if (val > this.newFields.length) {
+            this.addFields(val);
+        } else {
+            this.removeFields(val);
+        }*/
+
+        this.GLremoveFields(val);
+        this.GLaddFields(val);
+    }
+
+    GLaddFields(val) {
+        for (let i = this.GLnewFields.length; i < val; i++) {
+
+            console.log("i: " + i);
+
+            var myOnClick = function (event) {
+                alert("change!!.. you entered: " + event.target.value);
+            }
+
+            var input = $('<label><label class="form-control-label">Incurred:<br></label><br><label><input type="text" class="form-control"></label></label><br>');
+            var GLnewFields = $("#GLnewFields");
+            var newInput = input.clone();
+            newInput.attr("id", "input_" + i);
+            newInput.change(myOnClick);
+            var GLnewFields = GLnewFields.append(newInput);
+            //newInput.appendTo('#newFields');
+        }
+    }
+
+    GLremoveFields(val) {
+        $("#GLnewFields label").remove();
+        $("#GLnewFields input").remove();
+        $("#GLnewFields br").remove();
+    }
+
+
+
 }
