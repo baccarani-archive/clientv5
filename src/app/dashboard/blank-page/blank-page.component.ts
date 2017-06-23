@@ -180,7 +180,6 @@ export class BlankPageComponent implements OnInit {
     notEligibleEL: Boolean = true;*/
     notEligible: Boolean = true;
 
-<<<<<<< HEAD
     ALNoOfClaimsOver50K: number = null;
     GLNoOfClaimsOver50K: number = null;
 
@@ -188,9 +187,6 @@ export class BlankPageComponent implements OnInit {
     GLnewFields: any = ('');
 
 
-=======
-    
->>>>>>> 341ae0baf680b10cdd46b5c725ede8950ff2a80b
     constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService) {
 
         this.rForm = fb.group({
