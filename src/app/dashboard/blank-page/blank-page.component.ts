@@ -43,13 +43,13 @@ export class BlankPageComponent implements OnInit {
     totalPercent: string = '';
     */
 
-    privatePassenger: number = 0;
-    lightTrucks: number = 0;
-    mediumTrucks: number = 0;
-    heavyTrucks: number = 0;
-    extraHeavyTrucks: number = 0;
-    heavyTrucksTractors: number = 0;
-    extraHeavyTrucksTractors: number = 0;
+    privatePassenger: number = null;
+    lightTrucks: number = null;
+    mediumTrucks: number = null;
+    heavyTrucks: number = null;
+    extraHeavyTrucks: number = null;
+    heavyTrucksTractors: number = null;
+    extraHeavyTrucksTractors: number = null;
 
     limitAL: string = '';
     premiumAL: string = '';
@@ -180,7 +180,6 @@ export class BlankPageComponent implements OnInit {
     notEligibleEL: Boolean = true;*/
     notEligible: Boolean = true;
 
-<<<<<<< HEAD
     ALNoOfClaimsOver50K: number = null;
     GLNoOfClaimsOver50K: number = null;
 
@@ -188,9 +187,6 @@ export class BlankPageComponent implements OnInit {
     GLnewFields: any = ('');
 
 
-=======
-    
->>>>>>> 341ae0baf680b10cdd46b5c725ede8950ff2a80b
     constructor(private fb: FormBuilder, private phaseOneService: InitialEligibilityService) {
 
         this.rForm = fb.group({
