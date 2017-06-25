@@ -28,13 +28,33 @@ export class BlankPageComponent implements OnInit {
     safetyRating: string = null;
     yearInBus: number = null;
     isDrivingExperience: any = null;
-    primaryALLimit: number = null;
+    /*primaryALLimit: number = null;
     primaryCGLimit: number = null;
+    primarELLimit: number = null;*/
     truckersOnly: string = null;
     primaryELLimit: number = null;
     isProvidedCommodities: string = null;
     isUnschedVehicleAuth: string = null;
 
+    /*CHECKBOX AL GL EL*/
+    checkboxAL = true;
+    checkboxGL = false;
+    checkboxEL = false;
+
+    /*UNDERLYING POLICIES*/
+    limitAL = null;
+    premiumAL = null;
+    numYrsLossRunsAL = null;
+    numClaimsAL = null;
+    totIncurredLossesAL = null;
+    numClaims50kAL:number = null;
+
+    limitGL = null;
+    premiumGL = null;
+    numYrsLossRunsGL = null;
+    numClaimsGL = null;
+    totIncurredLossesGL = null;
+    numClaims50kGL:number = null;
 
     /* CARGO
     cargoLength: string = '';
@@ -51,7 +71,7 @@ export class BlankPageComponent implements OnInit {
     heavyTrucksTractors: number = null;
     extraHeavyTrucksTractors: number = null;
 
-    limitAL: string = '';
+    /*limitAL: string = '';
     premiumAL: string = '';
     noOfLossesAL: string = '';
     lossesAL: string = '';
@@ -59,7 +79,7 @@ export class BlankPageComponent implements OnInit {
     limitCGL: string = '';
     premiumCGL: string = '';
     noOfLossesCGL: string = '';
-    lossesCGL: string = '';
+    lossesCGL: string = '';*/
 
     lrgLosses: string = '';
 
@@ -146,7 +166,6 @@ export class BlankPageComponent implements OnInit {
     onex1x1P_WithMP: number = null;
     onex1x1P_Accumulation: number = null;
 
-
     //Data Point 2
     unitLower: number = null;
     unitUpper: number = null;
@@ -203,13 +222,31 @@ export class BlankPageComponent implements OnInit {
             'expDate': [null, Validators.required],
             'safetyRating': [null, Validators.required],
             'yearInBus': [null, Validators.required],
-            'isDrivingExperience' : [null],
+            'isDrivingExperience': [null],
             /*'primaryALLimit': [null, Validators.required],
             'primaryCGLimit': [null, Validators.required],*/
-            'truckersOnly': [null, Validators.required],
+            'truckersOnly': [null],
             /*'primaryELLimit': [null, Validators.required],*/
             'isProvidedCommodities': [null, Validators.required],
             'isUnschedVehicleAuth': [null, Validators.required],
+
+            'checkboxAL': [null, Validators.required],
+            'checkboxGL': [null],
+            'checkboxEL': [null],
+
+            'limitAL': [null, Validators.required],
+            'premiumAL': [null, Validators.required],
+            'numYrsLossRunsAL': [null, Validators.required],
+            'numClaimsAL': [null, Validators.required],
+            'totIncurredLossesAL': [null],
+            'numClaims50kAL': [null],
+
+            'limitGL': [null],
+            'premiumGL': [null],
+            'numYrsLossRunsGL': [null],
+            'numClaimsGL': [null],
+            'totIncurredLossesGL': [null],
+            'numClaims50kGL': [null],
 
             'privatePassenger': [null],
             'lightTrucks': [null],
@@ -282,52 +319,7 @@ export class BlankPageComponent implements OnInit {
             'ALNoOfClaimsOver50K': [null],
             'GLNoOfClaimsOver50K': [null],
 
-
-
-
         });
-
-        /* Pricing Engine -- DOES THIS DO ANYTHING */
-        /*function adjPU(pp, lt, mt, ht, eht, htt, ehtt: number): number {
-            var privatePassengerAdj = pp * 0.25;
-            var lightTrucksAdj = lt * 0.37;
-            var mediumTrucksAdj = mt * 0.45;
-            var heavyTrucksAdj = ht * 0.95;
-            var extraHeavyTrucksAdj = eht * 1;
-            var heavyTrucksTractorsAdj = htt * 0.95;
-            var extraHeavyTrucksTractorsAdj = ehtt * 1;
-
-            var adjTotal = privatePassengerAdj + lightTrucksAdj + mediumTrucksAdj + heavyTrucksAdj + extraHeavyTrucksAdj + heavyTrucksTractorsAdj + extraHeavyTrucksTractorsAdj;
-
-            return adjTotal;
-        }*/
-
-        /*        console.log("Rating Parameters");
-                console.log("# of PU " + this.noOfPU);
-                console.log("Intercept Coef " + this.intercept1);
-                console.log("LogUnit " + this.logUnit);
-                console.log("LogUnit_Coef " + this.logUnitCoef);
-                console.log("LogMile " + this.logMile);
-                console.log("LogMile_Coef " + this.logMileCoef);
-                console.log("LogISORate " + this.logISORate);
-                console.log("logISORate_Coef " + this.logISORateCoef);
-                console.log("priorViolation_Coef " + this.priorViolCoef);
-                console.log("priorInspection_Coef " + this.priorInspCoef);
-                console.log("priorCrash_Coef " + this.priorCrashCoef);
-        
-                console.log(" ");
-                console.log("Premuim Formula");
-                console.log("Base LC " + this.baseLC);
-                console.log("Size Adj. " + this.sizeAdj);
-                console.log("Mileage Adj. " + this.mileageAdj);
-                console.log("Viol. Factor " + this.violFactor);
-                console.log("Insp. Factor " + this.inspFactor);
-                console.log("Crash Factor " + this.crashFactor);
-                console.log("LCM " + this.LCM);
-                console.log("Emod " + this.Emod);
-        
-                console.log("1M Rate " + this.oneMRate);
-                console.log("1M Premium " + this.oneMPremium);*/
     }
 
     onDot1Change(event: any) {
@@ -351,7 +343,7 @@ export class BlankPageComponent implements OnInit {
                     this.garbageHaul = this.garbageHaul;
                 }
 
-                this.primaryALLimit = 1000000;
+                /*this.primaryALLimit = 1000000;*/
 
                 this.intercept1 = response.TRANS_LC_201704.intercept1;
                 this.logUnitCoef = response.TRANS_LC_201704.logUnitCoef;
@@ -420,9 +412,6 @@ export class BlankPageComponent implements OnInit {
 
                 this.onex1P_Percent = 1;
 
-
-
-
                 this.onex1P_Accumulation = this.onex1P_WithMP;
                 this.onex1x1P_Accumulation = this.onex1P_Accumulation + this.onex1x1P_WithMP;
 
@@ -433,8 +422,6 @@ export class BlankPageComponent implements OnInit {
 
                 this.onexPProRated = this.onexPAnnual * this.proRata;
                 this.twoxPProRated = this.twoxPAnnual * this.proRata;
-
-
             }
         );
         console.log("data here:" + data);
@@ -490,7 +477,7 @@ export class BlankPageComponent implements OnInit {
     }
 
     setDrivingValidator() {
-        
+
         if (this.yearInBus <= 3) {
             console.log("required");
             this.rForm.get('isDrivingExperience').setValidators([Validators.required]);
@@ -500,7 +487,7 @@ export class BlankPageComponent implements OnInit {
             this.rForm.get('isDrivingExperience').clearValidators();
             this.isDrivingExperience = null;
         }
-        
+
     }
 
     isEligibleSR(notEligible: Boolean) {
@@ -616,7 +603,7 @@ export class BlankPageComponent implements OnInit {
             var myOnClick = function (event) {
                 alert("change!!.. you entered: " + event.target.value);
             }
-
+            
             var input = $('<label><label class="form-control-label">Incurred:<br></label><br><label><input type="text" class="form-control"></label></label><br>');
             var ALnewFields = $("#ALnewFields");
             var newInput = input.clone();

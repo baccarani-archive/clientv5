@@ -5,7 +5,7 @@
     <div class="col-sm-3">
       <div class="card mb-3">
         <div class="card-header card-default">
-          U.S. DOT#
+
         </div>
         <div class="card-block" class=" input-group">
           <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" placeholder="Enter U.S. DOT#">
@@ -19,7 +19,7 @@
     <div class="col-sm-12">
       <div class="card card-default card-default">
         <div class="card-header card-default">
-          Fleet Entry
+
         </div>
         <div class="card-block bg-white">
           <fieldset class="form-group">
@@ -43,7 +43,7 @@
                   <input type="number" class="form-control" formControlName="mediumTrucks" [(ngModel)]="mediumTrucks" style="text-align: center"
                     (change)="isNoOfPUGreaterThan5()"> </div>
                 <div class="card-block">
-                  <label class="form-control-label">Heavy Trucks :</label>
+                  <label class="form-control-label">Heavy Trucks:</label>
                   <input type="number" class="form-control" formControlName="heavyTrucks" [(ngModel)]="heavyTrucks" style="text-align: center"
                     (change)="isNoOfPUGreaterThan5()"> </div>
               </div>
@@ -55,7 +55,7 @@
                   <input type="number" class="form-control" formControlName="extraHeavyTrucks" [(ngModel)]="extraHeavyTrucks" style="text-align: center"
                     (change)="isNoOfPUGreaterThan5()"> </div>
                 <div class="card-block">
-                  <label class="form-control-label">Heavy Trucks / Tractors :</label>
+                  <label class="form-control-label">Heavy Tractors:</label>
                   <input type="number" class="form-control" formControlName="heavyTrucksTractors" [(ngModel)]="heavyTrucksTractors" style="text-align: center"
                     (change)="isNoOfPUGreaterThan5()"> </div>
               </div>
@@ -63,7 +63,7 @@
             <div class="col-sm-3">
               <div class="card mb-3">
                 <div class="card-block">
-                  <label class="form-control-label">Extra Heavy Trucks:</label>
+                  <label class="form-control-label">Extra Heavy Tractors:</label>
                   <input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" [(ngModel)]="extraHeavyTrucksTractors"
                     style="text-align: center" (change)="isNoOfPUGreaterThan5()">
                 </div>
@@ -370,7 +370,7 @@
             </div>
             <div class="card-block bg-white">
               <!--INITIAL ELIGIBILITY HEADER-->
-              <div class="row" [hidden]="dot1 === ''">
+              <div class="row" [hidden]="applicantName === ''">
                 <div class="col-sm-12">
                   <div class="card card-default card-default">
                     <div class="card-header card-default">
@@ -490,7 +490,7 @@
                 </div>
 
 
-
+                <!--Safety Rating-->
                 <br>
                 <label>Safety Rating:</label><br>
                 <label class="radio-inline">
@@ -508,7 +508,7 @@
                 <label class="radio-inline">
                 <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
                   value="NotRated" (change)="isEligible()">Not Rated
-                </label>
+                </label><br>
                 <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">INELIGIBLE DUE TO: ___</div><br>
                 <!--<p>{{safetyRating}}</p>-->
                 <!--<p>{{notEligibleSR}}</p>-->
@@ -517,30 +517,33 @@
                 <!--<p>{{isDrivingExperience}}</p>-->
                 <!--<p>{{notEligibleYIB}}</p>-->
 
-                <br><br>
+                <br>
                 <div>
                   <label>Primary Liabilities That Apply:</label><br>
                   <label class="checkbox-inline">
-                <input type="checkbox">Primary AL<br>
+                <input type="checkbox" [(ngModel)]="checkboxAL" formControlName="checkboxAL">Primary AL<br>
                 </label>
                   <label class="checkbox-inline">
-                <input type="checkbox">Primary GL<br>
+                <input type="checkbox" [(ngModel)]="checkboxGL" formControlName="checkboxGL">Primary GL<br>
                   </label>
                   <label class="checkbox-inline">
-                <input type="checkbox">Primary EL<br>
+                <input type="checkbox" [(ngModel)]="checkboxEL" formControlName="checkboxGL">Primary EL<br>
                   </label><br>
-                  <br><br>
                 </div>
-                <div>
-                  <label>CGL Class 99793 (Truckers) Only: </label><br>
-                  <label class="radio-inline">
+
+                <div [hidden]="checkboxGL === false">
+                  <div>
+                    <br><br>
+                    <label>CGL Class 99793 (Truckers) Only: </label><br>
+                    <label class="radio-inline">
                   <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(false)" (change)="isEligible()" value=yes>Yes<br>
                   </label>
-                  <label class="radio-inline">
+                    <label class="radio-inline">
                   <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(true)" (change)="isEligible()" value=no>No
                   </label>
+                  </div>
+                  <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Referral To Small Fleet Team Required Due To: CGL Exposure Other Than Class Code 99793 (Truckers)</div>
                 </div>
-                <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Referral To Small Fleet Team Required Due To: CGL Exposure Other Than Class Code 99793 (Truckers)</div>
                 <!--<p>{{truckersOnly}}</p>-->
 
                 <br><br>
@@ -604,7 +607,7 @@
                       <table class="table">
                         <thead class="thead-neutral">
                           <tr>
-                            <th style="text-align: center">Vehicle Type</th>
+                            <th style="text-align: center">Power Unit</th>
                             <th style="text-align: center">Unit #</th>
                           </tr>
                         </thead>
@@ -635,12 +638,12 @@
                                 style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
-                            <td><input class="form-control" value="Heavy Trucks / Tractors" readonly style="text-align: center"></td>
+                            <td><input class="form-control" value="Heavy Tractors" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="heavyTrucksTractors" [(ngModel)]="heavyTrucksTractors"
                                 style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
                           <tr>
-                            <td><input class="form-control" value="Extra Heavy Trucks / Tractors" readonly style="text-align: center"></td>
+                            <td><input class="form-control" value="Extra Heavy Tractors" readonly style="text-align: center"></td>
                             <td><input type="number" class="form-control" formControlName="extraHeavyTrucksTractors" [(ngModel)]="extraHeavyTrucksTractors"
                                 style="text-align: center" (change)="isNoOfPUGreaterThan5()" (change)="isEligible()"></td>
                           </tr>
@@ -663,195 +666,225 @@
             </div>
             <div class="card-block bg-white">
               <!--PRIMARY AL-->
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card-header card-default">
-                    <span style="color:black">Primary Automobile Liability</span>
-                  </div>
-                  <div class="card mb-3">
-                    <div class="card-block">
-                      <div>
-                        <!--PRIMARY AL FORM-->
-                        <fieldset>
-                          <div class="row">
-                            <div class="col-sm-6">
-                              <div class="card-header card-default">
-                                <span style="color:black"></span>
-                              </div>
-                              <div class="card mb-3">
-                                <div class="card-block">
-                                  <label>
-                              <label class="form-control-label">Limit:<br></label><br>
-                                  <label>
-                              <input type="text" class="form-control">
-                              </label>
-                                  </label>
-                                  <label>
-                              <label class="form-control-label">Premium:<br></label><br>
-                                  <label>
-                              <input type="text" class="form-control">
-                              </label>
-                                  </label>
-                                  <br>
-                                  <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
-                                  <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
-                                  <label>
-                              <input type="text" class="form-control">
-                              </label>
-                                  <br>
-                                  <label class="form-control-label"># Of Claims:<br></label><br>
-                                  <label><span style="font-style: italic; font-size: 12px;">* (Excluded claims without loss payment)</span></label><br>
-                                  <label>
-                              <input type="text" class="form-control">
-                              </label>
+              <div [hidden]="checkboxAL === false">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card-header card-default">
+                      <span style="color:black">Primary Automobile Liability</span>
+                    </div>
+                    <div class="card mb-3">
+                      <div class="card-block">
+                        <div>
+                          <!--PRIMARY AL FORM-->
+                          <fieldset>
+                            <div class="row">
+                              <!--PRIMARY AL LEFT-->
+                              <div class="col-sm-6">
+                                <div class="card-header card-default">
+                                  <span style="color:black"></span>
                                 </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-6">
-                              <div class="card-header card-default">
-                                <span style="color:black"></span>
-                              </div>
-                              <div class="card mb-3">
-                                <div class="card-block">
-                                  <label>
-                              <label class="form-control-label">Total Incurred Losses:<br></label><br>
-                                  <label>
-                              <input type="text" class="form-control">
-                              </label>
-                                  </label>
-                                  <label>
-                                    <label class="form-control-label"># Of Claims Over $50K:<br></label><br>
-                                  <label>
-                                    <input type="text" class="form-control" formControlName="ALNoOfClaimsOver50K" [(ngModel)]="ALNoOfClaimsOver50K" (keyup)="ALLargeLossesIncurred($event)">
+                                <div class="card mb-3">
+                                  <div class="card-block">
+                                    <label>
+                                      <label class="form-control-label">Limit:<br></label><br>
+                                    <label>
+                                      <input type="text" class="form-control" formControlName="limitAL" [(ngModel)]="limitAL">
+                                      </label>
                                     </label>
-                                  </label>
+                                    <br>
+                                    <label>
+                                      <label class="form-control-label">Premium:<br></label><br>
+                                    <label>
+                                      <input type="text" class="form-control" formControlName="premiumAL" [(ngModel)]="premiumAL">
+                                      </label>
+                                    </label>
+                                    <br>
+                                    <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
+                                    <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
+                                    <label>
+                                      <input type="text" class="form-control" formControlName="numYrsLossRunsAL" [(ngModel)]="numYrsLossRunsAL">
+                                      </label>
+                                    <br>
+                                    <label class="form-control-label"># Of Claims:<br></label><br>
+                                    <label><span style="font-style: italic; font-size: 12px;">* (Excluding claims without loss payment)</span></label><br>
+                                    <label>
+                                      <input type="number" min=0 class="form-control" formControlName="numClaimsAL" [(ngModel)]="numClaimsAL">
+                                      </label>
+                                  </div>
+                                </div>
+                              </div>
+                              <!--PRIMARY AL RIGHT-->
+                              <div [hidden]="numClaimsAL > 0 && (numClaimsAL / (noOfPU * numYrsLossRunsAL)) > 0.30">
+                                <div [hidden]="numClaimsAL == 0 || numClaimsAL === null">
+                                  <div class="col-sm-6">
+                                    <div class="card-header card-default">
+                                      <span style="color:black"></span>
+                                    </div>
+                                    <div class="card mb-3">
+                                      <div class="card-block">
+                                        <label>
+                                        <label class="form-control-label">Total Incurred Losses:<br></label><br>
+                                        <label>
+                                          <input type="text" min=0 class="form-control" formControlName="totIncurredLossesAL" [(ngModel)]="totIncurredLossesAL">
+                                        </label>
+                                        </label>
+                                        <br>
+                                        <div [hidden]="totIncurredLossesAL < 50000 || totIncurredLossesAL >= 500000">
+                                          <label>
+                                        <label class="form-control-label"># Of Claims Over $50K:<br></label><br>
+                                          <label>
+                                        <input type="number" min=0 class="form-control" formControlName="ALNoOfClaimsOver50K" [(ngModel)]="ALNoOfClaimsOver50K" (keyup)="ALLargeLossesIncurred($event)">
+                                        </label>
+                                          </label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </fieldset>
-                        <!--PRIMARY AL LARGE LOSSES-->
-                        <fieldset>
-                          <div class="row">
-                            <div class="col-sm-12">
-                              <div class="card-header card-default">
-                                <span style="color:black">Large Losses</span>
-                              </div>
-                              <div class="card mb-3">
-                                <div class="card-block">
-                                  <div id="ALnewFields"></div>
+                          </fieldset>
+                          <!--PRIMARY AL LARGE LOSSES-->
+                          <div [hidden]="ALNoOfClaimsOver50K <= 0 || ALNoOfClaimsOver50K === null || ALNoOfClaimsOver50K > 2">
+                            <fieldset>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="card-header card-default">
+                                    <span style="color:black">Large Losses</span>
+                                  </div>
+                                  <div class="card mb-3">
+                                    <div class="card-block">
+                                      <div id="ALnewFields"></div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
+                            </fieldset>
                           </div>
-                        </fieldset>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <!--PRIMARY GL-->
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card-header card-default">
-                    <span style="color:black">Primary General Liability</span>
-                  </div>
-                  <div class="card mb-3">
-                    <div class="card-block">
-                      <div>
-                        <!--PRIMARY GL FORM-->
-                        <fieldset>
-                          <div class="row">
-                            <div class="col-sm-6">
-                              <div class="card-header card-default">
-                                <span style="color:black"></span>
-                              </div>
-                              <div class="card mb-3">
-                                <div class="card-block">
-                                  <label>
-                              <label class="form-control-label">Limit:<br></label><br>
-                                  <label>
-                              <input type="text" class="form-control">
-                              </label>
-                                  </label>
-                                  <label>
-                              <label class="form-control-label">Premium:<br></label><br>
-                                  <label>
-                              <input type="text" class="form-control">
-                              </label>
-                                  </label>
-                                  <br>
-                                  <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
-                                  <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
-                                  <label>
-                              <input type="text" class="form-control">
-                              </label>
-                                  <br>
-                                  <label class="form-control-label"># Of Claims:<br></label><br>
-                                  <label><span style="font-style: italic; font-size: 12px;">* (Excluded claims without loss payment)</span></label><br>
-                                  <label>
-                              <input type="text" class="form-control">
-                              </label>
+              <div [hidden]="checkboxGL === false">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card-header card-default">
+                      <span style="color:black">Primary General Liability</span>
+                    </div>
+                    <div class="card mb-3">
+                      <div class="card-block">
+                        <div>
+                          <!--PRIMARY GL FORM-->
+                          <fieldset>
+                            <div class="row">
+                              <!--PRIMARY GL LEFT-->
+                              <div class="col-sm-6">
+                                <div class="card-header card-default">
+                                  <span style="color:black"></span>
                                 </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-6">
-                              <div class="card-header card-default">
-                                <span style="color:black"></span>
-                              </div>
-                              <div class="card mb-3">
-                                <div class="card-block">
-                                  <label>
-                              <label class="form-control-label">Total Incurred Losses:<br></label><br>
-                                  <label>
-                              <input type="text" class="form-control">
-                              </label>
-                                  </label>
-                                  <label>
-                                    <label class="form-control-label"># Of Claims Over $50K:<br></label><br>
-                                  <label>
-                                    <input type="text" class="form-control" formControlName="GLNoOfClaimsOver50K" [(ngModel)]="GLNoOfClaimsOver50K" (keyup)="GLLargeLossesIncurred($event)">
+                                <div class="card mb-3">
+                                  <div class="card-block">
+                                    <label>
+                                      <label class="form-control-label">Limit:<br></label><br>
+                                    <label>
+                                      <input type="text" class="form-control" formControlName="limitGL" [(ngModel)]="limitGL">
+                                      </label>
                                     </label>
-                                  </label>
+                                    <br>
+                                    <label>
+                                      <label class="form-control-label">Premium:<br></label><br>
+                                    <label>
+                                      <input type="text" class="form-control" formControlName="premiumGL" [(ngModel)]="premiumGL">
+                                      </label>
+                                    </label>
+                                    <br>
+                                    <label class="form-control-label"># Years Of Loss Runs:<br></label><br>
+                                    <label><span style="font-style: italic; font-size: 12px;">* (Consecutives years incl current. Valued on or after 90 days of effective date)</span></label><br>
+                                    <label>
+                                      <input type="text" class="form-control" formControlName="numYrsLossRunsGL" [(ngModel)]="numYrsLossRunsGL">
+                                      </label>
+                                    <br>
+                                    <label class="form-control-label"># Of Claims:<br></label><br>
+                                    <label><span style="font-style: italic; font-size: 12px;">* (Excluding claims without loss payment)</span></label><br>
+                                    <label>
+                                      <input type="number" min=0 class="form-control" formControlName="numClaimsGL" [(ngModel)]="numClaimsGL">
+                                      </label>
+                                  </div>
+                                </div>
+                              </div>
+                              <!--PRIMARY GL RIGHT-->
+                              <div [hidden]="numClaimsGL > 0 && (numClaimsGL / (noOfPU * numYrsLossRunsGL)) > 0.30">
+                                <div [hidden]="numClaimsGL == 0 || numClaimsGL === null">
+                                  <div class="col-sm-6">
+                                    <div class="card-header card-default">
+                                      <span style="color:black"></span>
+                                    </div>
+                                    <div class="card mb-3">
+                                      <div class="card-block">
+                                        <label>
+                                        <label class="form-control-label">Total Incurred Losses:<br></label><br>
+                                        <label>
+                                          <input type="text" min=0 class="form-control" formControlName="totIncurredLossesGL" [(ngModel)]="totIncurredLossesGL">
+                                        </label>
+                                        </label>
+                                        <br>
+                                        <div [hidden]="totIncurredLossesGL < 50000 || totIncurredLossesGL >= 500000">
+                                          <label>
+                                        <label class="form-control-label"># Of Claims Over $50K:<br></label><br>
+                                          <label>
+                                        <input type="number" min=0 class="form-control" formControlName="GLNoOfClaimsOver50K" [(ngModel)]="GLNoOfClaimsOver50K" (keyup)="GLLargeLossesIncurred($event)">
+                                        </label>
+                                          </label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </fieldset>
-                        <!--PRIMARY GL LARGE LOSSES-->
-                        <fieldset>
-                          <div class="row">
-                            <div class="col-sm-12">
-                              <div class="card-header card-default">
-                                <span style="color:black">Large Losses</span>
-                              </div>
-                              <div class="card mb-3">
-                                <div class="card-block">
-                                  <div id="GLnewFields"></div>
+                          </fieldset>
+                          <!--PRIMARY GL LARGE LOSSES-->
+                          <div [hidden]="GLNoOfClaimsOver50K <= 0 || GLNoOfClaimsOver50K === null || GLNoOfClaimsOver50K > 2">
+                            <fieldset>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="card-header card-default">
+                                    <span style="color:black">Large Losses</span>
+                                  </div>
+                                  <div class="card mb-3">
+                                    <div class="card-block">
+                                      <div id="GLnewFields"></div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
+                            </fieldset>
                           </div>
-                        </fieldset>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <!--PRIMARY EL-->
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card-header card-default">
-                    <span style="color:black">Primary Employer's Liability</span>
-                  </div>
-                  <div class="card mb-3">
-                    <div class="card-block">
-                      <label>
+              <div [hidden]="checkboxEL === false">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card-header card-default">
+                      <span style="color:black">Primary Employer's Liability</span>
+                    </div>
+                    <div class="card mb-3">
+                      <div class="card-block">
+                        <label>
                         <label class="form-control-label">Limit:<br></label><br>
-                      <label>
+                        <label>
                         <input type="text" class="form-control">
                         </label>
-                      </label>
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
