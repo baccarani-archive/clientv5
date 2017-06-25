@@ -370,7 +370,7 @@
             </div>
             <div class="card-block bg-white">
               <!--INITIAL ELIGIBILITY HEADER-->
-              <div class="row" [hidden]="applicantName === ''">
+              <div class="row" [hidden]="applicantName == '' || dot1 == ''">
                 <div class="col-sm-12">
                   <div class="card card-default card-default">
                     <div class="card-header card-default">
@@ -428,7 +428,7 @@
                               <label class="form-control-label" for="inputError">U.S DOT#:<br></label><br>
                   <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
                     <label>
-                              <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (keyup)="onDot1Change($event)" (keyup)="onQuest_T01_FatalityCoef($event)" (keyup)="onQuest_T10_1x1Min($event)">
+                              <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)">
                               </label>
                   </div>
                   </label>

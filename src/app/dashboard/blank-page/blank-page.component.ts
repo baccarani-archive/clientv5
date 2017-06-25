@@ -47,14 +47,14 @@ export class BlankPageComponent implements OnInit {
     numYrsLossRunsAL = null;
     numClaimsAL = null;
     totIncurredLossesAL = null;
-    numClaims50kAL:number = null;
+    numClaims50kAL: number = null;
 
     limitGL = null;
     premiumGL = null;
     numYrsLossRunsGL = null;
     numClaimsGL = null;
     totIncurredLossesGL = null;
-    numClaims50kGL:number = null;
+    numClaims50kGL: number = null;
 
     /* CARGO
     cargoLength: string = '';
@@ -603,7 +603,7 @@ export class BlankPageComponent implements OnInit {
             var myOnClick = function (event) {
                 alert("change!!.. you entered: " + event.target.value);
             }
-            
+
             var input = $('<label><label class="form-control-label">Incurred:<br></label><br><label><input type="text" class="form-control"></label></label><br>');
             var ALnewFields = $("#ALnewFields");
             var newInput = input.clone();
@@ -663,7 +663,5 @@ export class BlankPageComponent implements OnInit {
         $("#GLnewFields input").remove();
         $("#GLnewFields br").remove();
     }
-
-
 
 }
