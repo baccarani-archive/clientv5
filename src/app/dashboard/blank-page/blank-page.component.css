@@ -36,7 +36,7 @@ max-width:none;
     padding: 7px;
     font-size: .9em;
     margin-bottom: 20px;
-   display: inline-block;
+    /*display: inline-block;*/
     animation: 2s alertAnim forwards;
 }
 
