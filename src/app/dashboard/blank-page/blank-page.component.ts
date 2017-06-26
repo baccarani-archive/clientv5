@@ -469,7 +469,7 @@ export class BlankPageComponent implements OnInit {
     }
 
     ngOnInit() {
-       /* $('#date1').mask('00/00/0000');*/
+        /*$('#date1').mask('00/00/0000');*/
     }
 
     newExpDate() {
