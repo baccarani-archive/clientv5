@@ -31,7 +31,7 @@ export class BlankPageComponent implements OnInit {
     /*primaryALLimit: number = null;
     primaryCGLimit: number = null;
     primarELLimit: number = null;*/
-    truckersOnly: string = null;
+    truckersOnly: string = 'yes';
     primaryELLimit: number = null;
     isProvidedCommodities: string = null;
     isUnschedVehicleAuth: string = null;
@@ -191,7 +191,7 @@ export class BlankPageComponent implements OnInit {
 
     notEligibleSR: Boolean = false;
     notEligibleTO: Boolean = false;
-    notEligibleYIB: Boolean = false;
+    notEligibleYIB: Boolean = true;
     notEligibleSPCH: Boolean = false;
     notEligibleUV: Boolean = false;
     /*notEligibleAL: Boolean = true;
@@ -478,7 +478,7 @@ export class BlankPageComponent implements OnInit {
         /*this.expDate = this.expDate.getMonth() + 1 + "/" + this.expDate.getDate() + "/" + this.expDate.getFullYear();*/
     }
 
-    setDrivingValidator() {
+    /*setDrivingValidator() {
 
         if (this.yearInBus <= 3) {
             console.log("required");
@@ -490,7 +490,7 @@ export class BlankPageComponent implements OnInit {
             this.isDrivingExperience = null;
         }
 
-    }
+    }*/
 
     isEligibleSR(notEligible: Boolean) {
 
@@ -506,12 +506,12 @@ export class BlankPageComponent implements OnInit {
 
     }
 
-    isEligibleYIB(notEligible: Boolean) {
+   /* isEligibleYIB(notEligible: Boolean) {
 
         this.notEligibleYIB = notEligible;
         return this.notEligibleYIB;
 
-    }
+    }*/
 
     isEligibleSPCH(notEligible: Boolean) {
 
@@ -524,6 +524,18 @@ export class BlankPageComponent implements OnInit {
 
         this.notEligibleUV = notEligible;
         return this.notEligibleUV;
+
+    }
+
+    rangeYIB() {
+
+        if (this.yearInBus > 3) {
+            this.notEligibleYIB = false;
+            return this.notEligibleYIB;
+        } else {
+            this.notEligibleYIB = true;
+            return this.notEligibleYIB;
+        }
 
     }
 

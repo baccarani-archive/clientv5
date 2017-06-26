@@ -429,12 +429,8 @@
                               <label class="form-control-label" for="inputError">U.S. DOT#:<br></label><br>
                   <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
                     <label>
-<<<<<<< HEAD
                               <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)">
                               <a href ="http://www.safersys.org/CompanySnapshot.aspx" target="_blank" style="font-style: italic; font-size: 12px;">click here to search a U.S. DOT#</a>
-=======
-                              <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)" (change)="onDOTReset($event)">
->>>>>>> 51a75c7188d371787bef00c3837b707f82647854
                               </label>
                   </div>
                   </label>
@@ -474,18 +470,18 @@
                               <label class="form-control-label" for="inputError">Years in Business:<br></label><br>
                   <div [ngClass]="{'form-group has-danger' : !rForm.controls['yearInBus'].valid && rForm.controls['yearInBus'].touched}">
                     <label>
-                              <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus" (input)="setDrivingValidator()">
+                              <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus" (input)="rangeYIB()" (change)="isEligible()">
                               <!--(change)="setDrivingValidator()"-->
                               </label>
-                              
+
                   </div>
                   </label>
                 </div>
                 <div class="alert" [hidden]="yearInBus > 3 || yearInBus === null">Under 3 years in business are Ineligible for the Online Portal</div>
 
-                
+
                 <!--HIDDEN -- Years In Business-->
-<!--                <div [hidden]="yearInBus > 3 || yearInBus === null">
+                <!--                <div [hidden]="yearInBus > 3 || yearInBus === null">
                   <label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label><br>
                   <label class="radio-inline">
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(false)"
@@ -518,7 +514,8 @@
                 <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
                   value="NotRated" (change)="isEligible()">Not Rated
                 </label><br>
-                <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf" target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div><br>
+                <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf"
+                    target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div><br>
                 <!--<p>{{safetyRating}}</p>-->
                 <!--<p>{{notEligibleSR}}</p>-->
 
@@ -538,25 +535,27 @@
                   <label class="checkbox-inline">
                 <input type="checkbox" [(ngModel)]="checkboxEL" formControlName="checkboxGL">Primary EL<br>
                   </label><br>
-                  <div class="alert" [hidden]="checkboxAL == true">INELIGIBLE DUE TO: ___</div>
+                  <div class="alert" [hidden]="checkboxAL === true">Ineligible Primary Auto Liability must be included</div>
                 </div>
+
 
                 <div [hidden]="checkboxGL === false">
                   <div>
                     <br><br>
                     <label>CGL Class 99793 (Truckers) Only: </label><br>
                     <label class="radio-inline">
-                  <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(false)" (change)="isEligible()" value=yes>Yes<br>
-                  </label>
+                      <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(false)" (change)="isEligible()" value=yes checked>Yes<br>
+                    </label>
                     <label class="radio-inline">
-                  <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(true)" (change)="isEligible()" value=no>No
-                  </label>
+                      <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(true)" (change)="isEligible()" value=no>No
+                    </label>
                   </div>
-                  <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf" target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div>
+                  <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf"
+                      target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div>
                 </div>
                 <!--<p>{{truckersOnly}}</p>-->
 
-                <br><br>
+                <br>
                 <label>Unscheduled Vehicles Operated Under The Applicant's Authority:</label><br>
                 <label class="radio-inline">
                 <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = true" formControlName="isUnschedVehicleAuth" (change)="isEligibleUV(true)"
@@ -566,7 +565,8 @@
                 <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = false" formControlName="isUnschedVehicleAuth" (change)="isEligibleUV(false)"
                   name="isUnschedVehicleAuth" (change)="isEligible()" value="no">No
                   </label><br>
-                <div class="alert" [hidden]="isUnschedVehicleAuth === 'no' || isUnschedVehicleAuth === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf" target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div>
+                <div class="alert" [hidden]="isUnschedVehicleAuth === 'no' || isUnschedVehicleAuth === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf"
+                    target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div>
                 <!--<p>{{isUnschedVehicleAuth}}</p>-->
                 <!--<p>{{notEligibleUV}}</p>-->
 
@@ -592,7 +592,8 @@
                     <p class="list">Brokerage<br> Authority Only</p>
                   </div>
                 </div>
-                <div class="alert" [hidden]="isProvidedCommodities === 'no' || isProvidedCommodities === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf" target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div>
+                <div class="alert" [hidden]="isProvidedCommodities === 'no' || isProvidedCommodities === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf"
+                    target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div>
                 <!--<p>{{isProvidedCommodities}}</p>-->
                 <!--<p>{{notEligibleSPCH}}</p>-->
               </fieldset>
@@ -725,29 +726,29 @@
                               </div>
                               <!--PRIMARY AL RIGHT-->
                               <div [hidden]="(numClaimsAL > 0 && (numClaimsAL / (noOfPU * numYrsLossRunsAL)) >= 0.30) || (numClaimsAL == 0 || numClaimsAL === null)">
-                                  <div class="col-sm-6">
-                                    <div class="card-header card-default">
-                                      <span style="color:black"></span>
-                                    </div>
-                                    <div class="card mb-3">
-                                      <div class="card-block">
-                                        <label>
+                                <div class="col-sm-6">
+                                  <div class="card-header card-default">
+                                    <span style="color:black"></span>
+                                  </div>
+                                  <div class="card mb-3">
+                                    <div class="card-block">
+                                      <label>
                                         <label class="form-control-label">Total Incurred Losses:<br></label><br>
-                                        <label>
+                                      <label>
                                           <input type="text" min=0 class="form-control" formControlName="totIncurredLossesAL" [(ngModel)]="totIncurredLossesAL">
                                         </label>
-                                        </label>
-                                        <br>
-                                        <div [hidden]="totIncurredLossesAL < 50000 || totIncurredLossesAL >= 500000">
-                                          <label>
+                                      </label>
+                                      <br>
+                                      <div [hidden]="totIncurredLossesAL < 50000 || totIncurredLossesAL >= 500000">
+                                        <label>
                                         <label class="form-control-label"># Of Claims Over $50K:<br></label><br>
-                                          <label>
+                                        <label>
                                         <input type="number" min=0 class="form-control" formControlName="ALNoOfClaimsOver50K" [(ngModel)]="ALNoOfClaimsOver50K" (keyup)="ALLargeLossesIncurred($event)">
                                         </label>
-                                          </label>
-                                        </div>
+                                        </label>
                                       </div>
                                     </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -825,30 +826,30 @@
                               </div>
                               <!--PRIMARY GL RIGHT-->
                               <div [hidden]="(numClaimsGL > 0 && (numClaimsGL / (noOfPU * numYrsLossRunsGL)) > 0.30) || (numClaimsGL == 0 || numClaimsGL === null)">
-                                  <div class="col-sm-6">
-                                    <div class="card-header card-default">
-                                      <span style="color:black"></span>
-                                    </div>
-                                    <div class="card mb-3">
-                                      <div class="card-block">
-                                        <label>
+                                <div class="col-sm-6">
+                                  <div class="card-header card-default">
+                                    <span style="color:black"></span>
+                                  </div>
+                                  <div class="card mb-3">
+                                    <div class="card-block">
+                                      <label>
                                         <label class="form-control-label">Total Incurred Losses:<br></label><br>
-                                        <label>
+                                      <label>
                                           <input type="text" min=0 class="form-control" formControlName="totIncurredLossesGL" [(ngModel)]="totIncurredLossesGL">
                                         </label>
-                                        </label>
-                                        <br>
-                                        <div [hidden]="totIncurredLossesGL < 50000 || totIncurredLossesGL >= 500000">
-                                          <label>
+                                      </label>
+                                      <br>
+                                      <div [hidden]="totIncurredLossesGL < 50000 || totIncurredLossesGL >= 500000">
+                                        <label>
                                         <label class="form-control-label"># Of Claims Over $50K:<br></label><br>
-                                          <label>
+                                        <label>
                                         <input type="number" min=0 class="form-control" formControlName="GLNoOfClaimsOver50K" [(ngModel)]="GLNoOfClaimsOver50K" (keyup)="GLLargeLossesIncurred($event)">
                                         </label>
-                                          </label>
-                                        </div>
+                                        </label>
                                       </div>
                                     </div>
                                   </div>
+                                </div>
                               </div>
                             </div>
                           </fieldset>
