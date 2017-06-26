@@ -31,12 +31,13 @@ max-width:none;
 }
 
 .alert {
-    background: red;
-    color: white;
+    /*background: red;*/
+    color: rgb(221,44,0);
+    font-family: 'Bern Sans CT', sans-serif;
     padding: 7px;
     font-size: .9em;
     margin-bottom: 20px;
-    /*display: inline-block;*/
+    display: inline-block;
     animation: 2s alertAnim forwards;
 }
 
@@ -69,4 +70,12 @@ max-width:none;
 
 #newFields input {
     display:block;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
 }
