@@ -470,7 +470,7 @@
                               <label class="form-control-label" for="inputError">Years in Business:<br></label><br>
                   <div [ngClass]="{'form-group has-danger' : !rForm.controls['yearInBus'].valid && rForm.controls['yearInBus'].touched}">
                     <label>
-                              <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus" (input)="setDrivingValidator()">
+                              <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus" (input)="rangeYIB()" (change)="isEligible()">
                               <!--(change)="setDrivingValidator()"-->
                               </label>
 
@@ -535,26 +535,27 @@
                   <label class="checkbox-inline">
                 <input type="checkbox" [(ngModel)]="checkboxEL" formControlName="checkboxGL">Primary EL<br>
                   </label><br>
-                  <div class="alert" [hidden]="checkboxAL == true">INELIGIBLE DUE TO: ___</div>
+                  <div class="alert" [hidden]="checkboxAL === true">Ineligible Primary Auto Liability must be included</div>
                 </div>
+
 
                 <div [hidden]="checkboxGL === false">
                   <div>
                     <br><br>
                     <label>CGL Class 99793 (Truckers) Only: </label><br>
                     <label class="radio-inline">
-                  <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(false)" (change)="isEligible()" value=yes>Yes<br>
-                  </label>
+                      <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(false)" (change)="isEligible()" value=yes checked>Yes<br>
+                    </label>
                     <label class="radio-inline">
-                  <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(true)" (change)="isEligible()" value=no>No
-                  </label>
+                      <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(true)" (change)="isEligible()" value=no>No
+                    </label>
                   </div>
                   <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf"
                       target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div>
                 </div>
                 <!--<p>{{truckersOnly}}</p>-->
 
-                <br><br>
+                <br>
                 <label>Unscheduled Vehicles Operated Under The Applicant's Authority:</label><br>
                 <label class="radio-inline">
                 <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = true" formControlName="isUnschedVehicleAuth" (change)="isEligibleUV(true)"
