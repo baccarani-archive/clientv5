@@ -426,10 +426,15 @@
                 <!--DOT#-->
                 <div>
                   <label>
-                              <label class="form-control-label" for="inputError">U.S DOT#:<br></label><br>
+                              <label class="form-control-label" for="inputError">U.S. DOT#:<br></label><br>
                   <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
                     <label>
+<<<<<<< HEAD
+                              <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)">
+                              <a href ="http://www.safersys.org/CompanySnapshot.aspx" target="_blank" style="font-style: italic; font-size: 12px;">click here to search a U.S. DOT#</a>
+=======
                               <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)" (change)="onDOTReset($event)">
+>>>>>>> 51a75c7188d371787bef00c3837b707f82647854
                               </label>
                   </div>
                   </label>
@@ -472,14 +477,15 @@
                               <input type="text" class="form-control form-control-danger" formControlName="yearInBus" [(ngModel)]="yearInBus" (input)="setDrivingValidator()">
                               <!--(change)="setDrivingValidator()"-->
                               </label>
+                              
                   </div>
                   </label>
-
                 </div>
+                <div class="alert" [hidden]="yearInBus > 3 || yearInBus === null">Under 3 years in business are Ineligible for the Online Portal</div>
 
 
                 <!--HIDDEN -- Years In Business-->
-                <div [hidden]="yearInBus > 3 || yearInBus === null">
+<!--                <div [hidden]="yearInBus > 3 || yearInBus === null">
                   <label>All Drivers Have 5 Years Similar Comercial Driving Experience:</label><br>
                   <label class="radio-inline">
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(false)"
@@ -489,8 +495,8 @@
                   <input type="radio" [(ngModel)]="isDrivingExperience" formControlName="isDrivingExperience" (change)="isEligibleYIB(true)"
                     name="isDrivingExperience" value="no" (change)="isEligible()" ng-required="required">No
                     </label>
-                  <div class="alert" [hidden]="isDrivingExperience === 'yes' || isDrivingExperience === null">INELIGIBLE DUE TO: Drivers With Less Than 5 Years Of Similar Experience</div>
-                </div>
+                  <div class="alert" [hidden]="isDrivingExperience === 'yes' || isDrivingExperience === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf" target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div>
+                </div>-->
 
 
                 <!--Safety Rating-->
@@ -512,7 +518,7 @@
                 <input type="radio" [(ngModel)]="safetyRating" formControlName="safetyRating" name="safetyRating" (change)="isEligibleSR(true)"
                   value="NotRated" (change)="isEligible()">Not Rated
                 </label><br>
-                <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">INELIGIBLE DUE TO: ___</div><br>
+                <div class="alert" [hidden]="safetyRating === 'Satisfactory' || safetyRating === 'Conditional' || safetyRating === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf" target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div><br>
                 <!--<p>{{safetyRating}}</p>-->
                 <!--<p>{{notEligibleSR}}</p>-->
 
@@ -546,7 +552,7 @@
                   <input type="radio" [(ngModel)]="truckersOnly" formControlName="truckersOnly" name="truckersOnly" (change)="isEligibleTO(true)" (change)="isEligible()" value=no>No
                   </label>
                   </div>
-                  <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Referral To Small Fleet Team Required Due To: CGL Exposure Other Than Class Code 99793 (Truckers)</div>
+                  <div class="alert" [hidden]="truckersOnly === 'yes' || truckersOnly === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf" target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div>
                 </div>
                 <!--<p>{{truckersOnly}}</p>-->
 
@@ -560,7 +566,7 @@
                 <input type="radio" [(ngModel)]="isUnschedVehicleAuth" ng-init="checked = false" formControlName="isUnschedVehicleAuth" (change)="isEligibleUV(false)"
                   name="isUnschedVehicleAuth" (change)="isEligible()" value="no">No
                   </label><br>
-                <div class="alert" [hidden]="isUnschedVehicleAuth === 'no' || isUnschedVehicleAuth === null">Referral To Small Fleet Team Required Due To: Unscheduled Vehicles Operated Under The Applicant's Authority</div>
+                <div class="alert" [hidden]="isUnschedVehicleAuth === 'no' || isUnschedVehicleAuth === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf" target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div>
                 <!--<p>{{isUnschedVehicleAuth}}</p>-->
                 <!--<p>{{notEligibleUV}}</p>-->
 
@@ -586,7 +592,7 @@
                     <p class="list">Brokerage<br> Authority Only</p>
                   </div>
                 </div>
-                <div class="alert" [hidden]="isProvidedCommodities === 'no' || isProvidedCommodities === null">INELIGIBLE DUE TO: Services Provided/ Commodities Hauled</div>
+                <div class="alert" [hidden]="isProvidedCommodities === 'no' || isProvidedCommodities === null">Ineligible for the Online Portal contact an <a href="http://www.cfins.com/wp-content/uploads/2017/04/CX-SS-Small_Fleet_Solutions-2017.04.18.pdf" target="_blank" style="color: rgb(221,44,0); text-decoration: underline;">Account Executive</a></div>
                 <!--<p>{{isProvidedCommodities}}</p>-->
                 <!--<p>{{notEligibleSPCH}}</p>-->
               </fieldset>
@@ -602,7 +608,7 @@
               Fleet Entry
             </div>
             <div class="card-block bg-white">
-              <div class="alert" [hidden]="noOfPU <= 5">Please Enter a Total # of Units No More Than 5</div>
+              <div class="alert" [hidden]="noOfPU <= 5">Fleets with more than 5 units are Ineligible for the Online Portal</div>
               <!--<p> {{noOfPU}} </p>-->
               <div class="row">
                 <div class="col-xl-12 col-lg-12">
@@ -721,8 +727,7 @@
                                 </div>
                               </div>
                               <!--PRIMARY AL RIGHT-->
-                              <div [hidden]="numClaimsAL > 0 && (numClaimsAL / (noOfPU * numYrsLossRunsAL)) > 0.30">
-                                <div [hidden]="numClaimsAL == 0 || numClaimsAL === null">
+                              <div [hidden]="(numClaimsAL > 0 && (numClaimsAL / (noOfPU * numYrsLossRunsAL)) >= 0.30) || (numClaimsAL == 0 || numClaimsAL === null)">
                                   <div class="col-sm-6">
                                     <div class="card-header card-default">
                                       <span style="color:black"></span>
@@ -746,7 +751,6 @@
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -823,8 +827,7 @@
                                 </div>
                               </div>
                               <!--PRIMARY GL RIGHT-->
-                              <div [hidden]="numClaimsGL > 0 && (numClaimsGL / (noOfPU * numYrsLossRunsGL)) > 0.30">
-                                <div [hidden]="numClaimsGL == 0 || numClaimsGL === null">
+                              <div [hidden]="(numClaimsGL > 0 && (numClaimsGL / (noOfPU * numYrsLossRunsGL)) > 0.30) || (numClaimsGL == 0 || numClaimsGL === null)">
                                   <div class="col-sm-6">
                                     <div class="card-header card-default">
                                       <span style="color:black"></span>
@@ -849,7 +852,6 @@
                                       </div>
                                     </div>
                                   </div>
-                                </div>
                               </div>
                             </div>
                           </fieldset>

@@ -234,10 +234,10 @@ export class BlankPageComponent implements OnInit {
             'checkboxGL': [null],
             'checkboxEL': [null],
 
-            'limitAL': [null, Validators.required],
-            'premiumAL': [null, Validators.required],
-            'numYrsLossRunsAL': [null, Validators.required],
-            'numClaimsAL': [null, Validators.required],
+            'limitAL': [null],
+            'premiumAL': [null],
+            'numYrsLossRunsAL': [null],
+            'numClaimsAL': [null],
             'totIncurredLossesAL': [null],
             'numClaims50kAL': [null],
 
