@@ -420,8 +420,8 @@ export class BlankPageComponent implements OnInit {
                 this.onexPAnnual = this.onex1P_Accumulation;
                 this.twoxPAnnual = this.onex1x1P_Accumulation;
 
-                this.onexPProRated = this.onexPAnnual * this.proRata;
-                this.twoxPProRated = this.twoxPAnnual * this.proRata;
+                this.onexPProRated = Math.ceil((this.onexPAnnual * this.proRata) / 5) * 5;
+                this.twoxPProRated = Math.ceil((this.twoxPAnnual * this.proRata) / 5) * 5;
             }
         );
         console.log("data here:" + data);
@@ -475,7 +475,7 @@ export class BlankPageComponent implements OnInit {
     newExpDate() {
         this.expDate = new Date(this.effDate);
         this.expDate.setFullYear(this.expDate.getFullYear() + 1);
-        this.expDate = this.expDate.getMonth() + 1 + "/" + this.expDate.getDate() + "/" + this.expDate.getFullYear();
+        /*this.expDate = this.expDate.getMonth() + 1 + "/" + this.expDate.getDate() + "/" + this.expDate.getFullYear();*/
     }
 
     setDrivingValidator() {
@@ -664,6 +664,13 @@ export class BlankPageComponent implements OnInit {
         $("#GLnewFields label").remove();
         $("#GLnewFields input").remove();
         $("#GLnewFields br").remove();
+    }
+
+
+    onDOTReset(dot1 = '') {
+         
+            this.applicantName = '';
+            return this.applicantName;
     }
 
 }
