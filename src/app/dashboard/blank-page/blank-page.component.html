@@ -8,7 +8,8 @@
 
         </div>
         <div class="card-block" class=" input-group">
-          <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" placeholder="Enter U.S. DOT#">
+          <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" placeholder="Enter U.S. DOT#"
+            (change)="onDOTReset($event)">
           <span class="input-group-btn"><button class="btn btn-secondary" type="button" (click)="onDot1Change($event)" (click)="onQuest_T01_FatalityCoef($event)" (click)="onQuest_T10_1x1Min($event)"><i class="fa fa-search"></i></button></span>
         </div>
       </div>
@@ -428,7 +429,7 @@
                               <label class="form-control-label" for="inputError">U.S DOT#:<br></label><br>
                   <div [ngClass]="{'form-group has-danger' : !rForm.controls['dot1'].valid && rForm.controls['dot1'].touched}">
                     <label>
-                              <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)">
+                              <input type="text" class="form-control form-control-danger" formControlName="dot1" [(ngModel)]="dot1" (change)="onDot1Change($event)" (change)="onDOTReset($event)">
                               </label>
                   </div>
                   </label>
@@ -443,6 +444,7 @@
                     <label>
                               <input id="date1" type="text" class="form-control form-control-danger" formControlName="effDate" [(ngModel)]="effDate" (change)="newExpDate($event)">
                               </label>
+                    <p> {{effDate | date:'yMd'}} </p>
                   </div>
                   </label>
 
@@ -454,7 +456,7 @@
                               <label class="form-control-label" for="inputError">Expiration Date:<br></label><br>
                   <div [ngClass]="{'form-group has-danger' : !rForm.controls['expDate'].valid && rForm.controls['expDate'].touched}">
                     <label>
-                              <input id="date2" type="text" class="form-control form-control-danger" formControlName="expDate" [(ngModel)]="expDate">
+                              <input id="date2" type="text" class="form-control form-control-danger" formControlName="expDate" [(ngModel)]="expDate" value="expDate | date: 'yyyyMMdd'">
                               </label>
                   </div>
                   </label>
@@ -521,7 +523,7 @@
                 <div>
                   <label>Primary Liabilities That Apply:</label><br>
                   <label class="checkbox-inline">
-                <input type="checkbox" [(ngModel)]="checkboxAL" formControlName="checkboxAL">Primary AL<br>
+                <input type="checkbox" [(ngModel)]="checkboxAL" formControlName="checkboxAL" (change)="isEligibleSR(false)" (change)="isEligible()">Primary AL<br>
                 </label>
                   <label class="checkbox-inline">
                 <input type="checkbox" [(ngModel)]="checkboxGL" formControlName="checkboxGL">Primary GL<br>
@@ -529,6 +531,7 @@
                   <label class="checkbox-inline">
                 <input type="checkbox" [(ngModel)]="checkboxEL" formControlName="checkboxGL">Primary EL<br>
                   </label><br>
+                  <div class="alert" [hidden]="checkboxAL == true">INELIGIBLE DUE TO: ___</div>
                 </div>
 
                 <div [hidden]="checkboxGL === false">
