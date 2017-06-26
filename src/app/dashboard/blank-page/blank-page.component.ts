@@ -203,7 +203,7 @@ export class BlankPageComponent implements OnInit {
             'expDate': [null, Validators.required],
             'safetyRating': [null, Validators.required],
             'yearInBus': [null, Validators.required],
-            'isDrivingExperience' : [null],
+            'isDrivingExperience': [null],
             /*'primaryALLimit': [null, Validators.required],
             'primaryCGLimit': [null, Validators.required],*/
             'truckersOnly': [null, Validators.required],
@@ -481,7 +481,9 @@ export class BlankPageComponent implements OnInit {
         console.log("data here:" + dataUpper + dataLower);
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        $('#date1').mask('00/00/0000');
+    }
 
     newExpDate() {
         this.expDate = new Date(this.effDate);
@@ -490,7 +492,7 @@ export class BlankPageComponent implements OnInit {
     }
 
     setDrivingValidator() {
-        
+
         if (this.yearInBus <= 3) {
             console.log("required");
             this.rForm.get('isDrivingExperience').setValidators([Validators.required]);
@@ -500,7 +502,7 @@ export class BlankPageComponent implements OnInit {
             this.rForm.get('isDrivingExperience').clearValidators();
             this.isDrivingExperience = null;
         }
-        
+
     }
 
     isEligibleSR(notEligible: Boolean) {
