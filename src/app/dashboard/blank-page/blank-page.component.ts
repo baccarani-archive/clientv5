@@ -468,7 +468,9 @@ export class BlankPageComponent implements OnInit {
         console.log("data here:" + dataUpper + dataLower);
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        $('#date1').mask('00/00/0000');
+    }
 
     newExpDate() {
         this.expDate = new Date(this.effDate);
