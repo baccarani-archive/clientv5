@@ -194,9 +194,9 @@ export class BlankPageComponent implements OnInit {
     notEligibleYIB: Boolean = false;
     notEligibleSPCH: Boolean = false;
     notEligibleUV: Boolean = false;
-    /*notEligibleAL: Boolean = true;
+    notEligibleAL: Boolean = true;
     notEligibleCGL: Boolean = true;
-    notEligibleEL: Boolean = true;*/
+    notEligibleEL: Boolean = true;
     notEligible: Boolean = true;
 
     ALNoOfClaimsOver50K: number = null;
@@ -234,10 +234,10 @@ export class BlankPageComponent implements OnInit {
             'checkboxGL': [null],
             'checkboxEL': [null],
 
-            'limitAL': [null],
-            'premiumAL': [null],
-            'numYrsLossRunsAL': [null],
-            'numClaimsAL': [null],
+            'limitAL': [null, Validators.required],
+            'premiumAL': [null, Validators.required],
+            'numYrsLossRunsAL': [null, Validators.required],
+            'numClaimsAL': [null, Validators.required],
             'totIncurredLossesAL': [null],
             'numClaims50kAL': [null],
 
@@ -475,7 +475,7 @@ export class BlankPageComponent implements OnInit {
     newExpDate() {
         this.expDate = new Date(this.effDate);
         this.expDate.setFullYear(this.expDate.getFullYear() + 1);
-        /*this.expDate = this.expDate.getMonth() + 1 + "/" + this.expDate.getDate() + "/" + this.expDate.getFullYear();*/
+        this.expDate = this.expDate.getMonth() + 1 + "/" + this.expDate.getDate() + "/" + this.expDate.getFullYear();
     }
 
     setDrivingValidator() {
@@ -527,19 +527,21 @@ export class BlankPageComponent implements OnInit {
 
     }
 
-    /*rangeLimitAL() {
+    
 
-        if (this.primaryALLimit >= 1000000 && this.primaryALLimit <= 2000000) {
+    rangeLimitAL() {
+
+        if (this.limitAL >= 1000000 && this.limitAL <= 2000000) {
             this.notEligibleAL = false;
             return this.notEligibleAL;
         } else {
             this.notEligibleAL = true;
             return this.notEligibleAL;
         }
-
+        
     }
 
-    rangeLimitEL() {
+/*    rangeLimitEL() {
 
         if (this.primaryELLimit >= 1000000 && this.primaryELLimit <= 2000000) {
             this.notEligibleEL = false;
@@ -549,11 +551,11 @@ export class BlankPageComponent implements OnInit {
             return this.notEligibleEL;
         }
 
-    }
+    }*/
 
-    rangeLimitCGL() {
+/*    rangeLimitCGL() {
 
-        if (this.primaryCGLimit >= 1000000 && this.primaryCGLimit <= 2000000) {
+        if (this.limitGL >= 1000000 && this.limitGL <= 2000000) {
             this.notEligibleCGL = false;
             return this.notEligibleCGL;
         } else {
@@ -569,7 +571,7 @@ export class BlankPageComponent implements OnInit {
     }
 
     isEligible() {
-        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false /*&& this.notEligibleAL === false && this.notEligibleCGL === false && this.notEligibleEL === false*/ && this.notEligibleTO === false && (this.noOfPU <= 5 && this.noOfPU >= 1)) {
+        if (this.notEligibleSR === false && this.notEligibleYIB === false && this.notEligibleSPCH === false && this.notEligibleUV === false && this.notEligibleAL === false /*&& this.notEligibleCGL === false && this.notEligibleEL === false*/ && this.notEligibleTO === false && (this.noOfPU <= 5 && this.noOfPU >= 1)) {
             this.notEligible = false;
             return this.notEligible;
         } else {
